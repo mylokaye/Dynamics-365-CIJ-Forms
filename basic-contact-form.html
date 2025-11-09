@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required: Dynamics 365 meta tags -->
+    <meta type="xrm/designer/setting" name="type" value="marketing-designer-content-editor-document">
+    <meta type="xrm/designer/setting" name="layout-editable" value="marketing-designer-layout-editable">
+
+    <!-- Required: HTML document setup -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="never">
+
+    <title>Contact Form</title>
+
+    <style>
+        /* Optional: Custom styling - can be customized to match your brand */
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .marketingForm {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .textFormFieldBlock {
+            padding: 20px 30px;
+        }
+
+        .textFormFieldBlock label {
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+            color: #323130;
+            margin-bottom: 8px;
+        }
+
+        .textFormFieldBlock input {
+            width: 100%;
+            font-size: 14px;
+            padding: 10px 12px;
+            background-color: #faf9f8;
+            border: 1px solid #e1dfdd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .textFormFieldBlock input:focus {
+            outline: none;
+            border-color: #0078d4;
+            background-color: #ffffff;
+        }
+
+        .consentBlock {
+            padding: 20px 30px;
+        }
+
+        .consentBlock input[type="checkbox"] {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .consentBlock label {
+            cursor: pointer;
+            font-size: 14px;
+            color: #323130;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .submitButtonWrapper {
+            padding: 20px 30px;
+        }
+
+        .submitButton {
+            font-family: "Segoe UI", Arial, sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 22px;
+            background-color: #0078d4;
+            border: none;
+            border-radius: 4px;
+            color: #ffffff;
+            padding: 12px 32px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .submitButton:hover {
+            background-color: #106ebe;
+        }
+
+        .submitButton:active {
+            background-color: #005a9e;
+        }
+
+        .form-header {
+            text-align: center;
+            padding: 40px 30px 20px;
+        }
+
+        .form-header h1 {
+            font-size: 32px;
+            color: #323130;
+            margin: 0 0 10px 0;
+        }
+
+        .form-header p {
+            font-size: 16px;
+            color: #605e5c;
+            margin: 0;
+        }
+
+        @media only screen and (max-width: 768px) {
+            [data-layout="true"] {
+                max-width: 100%;
+            }
+
+            .textFormFieldBlock,
+            .consentBlock,
+            .submitButtonWrapper {
+                padding: 15px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <form aria-label="Contact Form" class="marketingForm">
+            <!-- Layout Container - Required -->
+            <div data-layout="true" data-layout-version="v2" style="margin: auto; max-width: 600px;">
+
+                <!-- Section: Form Header -->
+                <div data-section="true" class="emptyContainer columns-equal-class wrap-section"
+                     style="padding: 0px; display: flex;">
+                    <div class="columnContainer" data-container="true" data-container-width="100"
+                         style="width: 600px;">
+                        <div data-editorblocktype="Text" class="form-header">
+                            <h1>Contact Us</h1>
+                            <p>We'd love to hear from you</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Form Fields -->
+                <div data-section="true" class="emptyContainer columns-equal-class wrap-section"
+                     style="padding: 0px; display: flex;">
+                    <div class="columnContainer" data-container="true" data-container-width="100"
+                         style="width: 600px;">
+
+                        <!-- First Name Field -->
+                        <div class="textFormFieldBlock"
+                             data-editorblocktype="TextFormField"
+                             data-targetproperty="firstname"
+                             data-required="required"
+                             data-prefill="prefill">
+                            <label title="First Name" for="firstname-1">First Name</label>
+                            <input id="firstname-1"
+                                   type="text"
+                                   name="firstname"
+                                   placeholder="Enter your first name"
+                                   title="First Name"
+                                   maxlength="50"
+                                   required
+                                   aria-required="true">
+                        </div>
+
+                        <!-- Last Name Field -->
+                        <div class="textFormFieldBlock"
+                             data-editorblocktype="TextFormField"
+                             data-targetproperty="lastname"
+                             data-required="required"
+                             data-prefill="prefill">
+                            <label title="Last Name" for="lastname-1">Last Name</label>
+                            <input id="lastname-1"
+                                   type="text"
+                                   name="lastname"
+                                   placeholder="Enter your last name"
+                                   title="Last Name"
+                                   maxlength="50"
+                                   required
+                                   aria-required="true">
+                        </div>
+
+                        <!-- Email Field -->
+                        <div class="textFormFieldBlock"
+                             data-editorblocktype="TextFormField"
+                             data-targetproperty="emailaddress1"
+                             data-required="required"
+                             data-prefill="prefill">
+                            <label title="Email" for="emailaddress1-1">Email</label>
+                            <input id="emailaddress1-1"
+                                   type="email"
+                                   name="emailaddress1"
+                                   placeholder="Enter your email address"
+                                   title="Email"
+                                   required
+                                   aria-required="true">
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Section: Consent (Required for compliance) -->
+                <div data-section="true" class="emptyContainer columns-equal-class wrap-section"
+                     style="padding: 0px; display: flex;">
+                    <div class="columnContainer" data-container="true" data-container-width="100"
+                         style="width: 600px;">
+
+                        <!-- Commercial Consent Checkbox -->
+                        <div class="consentBlock"
+                             data-editorblocktype="Consent"
+                             data-required="required"
+                             data-compliancesettingsid="00000000-0000-0000-0000-000000000000"
+                             data-compliancesettingsname="Default"
+                             data-purposeid="10000000-0000-0000-0000-000000000003"
+                             data-purposename="Commercial"
+                             data-channels="Email"
+                             data-optinwhenchecked="true"
+                             data-prefill="prefill">
+                            <div>
+                                <input type="checkbox"
+                                       id="consent-commercial-1"
+                                       name="msdynmkt_purposeid;channels;optinwhenchecked"
+                                       value="10000000-0000-0000-0000-000000000003;Email;true"
+                                       required
+                                       aria-required="true">
+                                <label for="consent-commercial-1">
+                                    I agree to receive commercial communications via email
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Section: Submit Button -->
+                <div data-section="true" class="emptyContainer columns-equal-class wrap-section"
+                     style="padding: 0px; display: flex;">
+                    <div class="columnContainer" data-container="true" data-container-width="100"
+                         style="width: 600px;">
+
+                        <div data-editorblocktype="SubmitButton" class="submitButtonWrapper">
+                            <button class="submitButton" type="submit">
+                                <span>Submit</span>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </main>
+</body>
+</html>

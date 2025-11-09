@@ -1,0 +1,919 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Marketing Form</title>
+        <meta name="referrer" content="never">
+        <meta type="xrm/designer/setting" name="type" value="marketing-designer-content-editor-document">
+        <meta type="xrm/designer/setting" name="layout-editable" value="marketing-designer-layout-editable">
+        <style>.editor-control-layout html {
+    box-sizing: border-box;
+    background-color: #fff;
+}
+.editor-control-layout *,
+.editor-control-layout *:before,
+.editor-control-layout *:after {
+    box-sizing: inherit;
+}
+
+.marketingForm h1 {
+    color: #000;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    font-family: "Segoe UI", Arial, sans-serif;
+    line-height: 1.25;
+    font-size: 28px;
+    text-align: center;
+}
+
+.marketingForm h2 {
+    color: #333;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    line-height: 1.25;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 22px;
+    text-align: center;
+}
+
+.marketingForm h3 {
+    color: #000;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    line-height: 1.25;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 18px;
+    text-align: center;
+}
+
+.marketingForm p {
+    margin: 0px;
+    padding: 0px;
+    line-height: 125%;
+    line-height: 1.25;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    text-align: center;
+}
+
+.marketingForm a,
+div[data-editorblocktype="Captcha"] td:nth-of-type(2) a {
+    text-decoration: none;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+}
+
+.marketingForm .primaryButtonWrapper,
+.submitButtonWrapper {
+    text-align: center;
+    margin: 10px 0px;
+}
+
+.marketingForm .primaryButton,
+.submitButton {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+    background-color: #2266e3;
+    border: none;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.marketingForm .secondaryButton {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+    background-color: #ffffff;
+    border: 1px solid #0082dd;
+    border-radius: 4px;
+    color: #2266e3;
+    padding: 10px 20px;
+    margin: 0px;
+    cursor: pointer;
+}
+
+.marketingForm .error {
+    font-family: Arial, Verdana, sans-serif;
+    font-weight: bold;
+    font-size: 8px;
+    margin: 0px;
+    padding: 0px;
+    color: #a80000;
+}
+
+.zero-state-container span {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 26px;
+    color: #242424;
+}
+form.marketingForm {
+    color: #000;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+}
+[data-layout="true"] {
+    margin: 0 auto;
+    max-width: 600px;
+    background-color: rgba(255, 255, 255, 0);
+}
+div[data-editorblocktype="SubmitButton"] {
+    padding: 20px 12%;
+}
+div[data-editorblocktype="Captcha"] {
+    padding: 20px 12%;
+}
+div[data-editorblocktype="Captcha"] table,
+div[data-editorblocktype="Captcha"] div > table > tbody > tr > td:nth-of-type(2) {
+    width: 100% !important;
+}
+div[data-editorblocktype="Captcha"] div > div > table > tbody > tr:first-of-type > td:last-of-type {
+    padding-bottom: 12px !important;
+}
+div[data-editorblocktype="Captcha"] tr[id="wlspispHIPErrorContainer"] {
+    margin-top: 20px;
+}
+div[data-editorblocktype="Captcha"] tr[id="wlspispHIPErrorContainer"] td:nth-of-type(2) {
+    width: auto !important;
+}
+div[data-editorblocktype="Captcha"] tr[id="wlspispHIPErrorContainer"] img {
+    display: flex;
+}
+div[data-editorblocktype="Captcha"] td:nth-of-type(2) > div > div {
+    margin-top: 4px;
+}
+div[data-editorblocktype="Captcha"] td:nth-of-type(2) > div > div * {
+    font-weight: 400;
+}
+div[data-editorblocktype="Captcha"] td:nth-of-type(2) > div > div b {
+    color: #797775;
+}
+
+div[data-editorblocktype="Captcha"] tr:nth-of-type(2) > td {
+    height: 0px !important;
+}
+div[data-editorblocktype="Captcha"] td input {
+    margin-top: 20px !important;
+    padding: 6px 8px !important;
+    width: 100% !important;
+}
+div[data-editorblocktype="Captcha"] div[id^="wlspaudioBtnHolder"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+div[data-editorblocktype="About"],
+div[data-editorblocktype="Sessions"],
+div[data-editorblocktype="Speakers"] {
+    padding: 32px 24px;
+}
+div[data-editorblocktype="Sessions"] h2 {
+    margin-bottom: 32px;
+    text-align: center;
+}
+.textFormFieldBlock,
+.dateTimeFormFieldBlock,
+.twoOptionFormFieldBlock,
+.optionSetFormFieldBlock,
+.passesBlock,
+.multiOptionSetFormFieldBlock,
+.lookupFormFieldBlock {
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+table.multi .textFormFieldBlock,
+table.multi .dateTimeFormFieldBlock,
+table.multi .twoOptionFormFieldBlock,
+table.multi .optionSetFormFieldBlock,
+table.multi .passesBlock,
+table.multi .multiOptionSetFormFieldBlock,
+table.multi .lookupFormFieldBlock {
+    padding: 12px 20px;
+}
+.consentBlock {
+    padding: 4px 30px;
+}
+
+.textFormFieldBlock label,
+.dateTimeFormFieldBlock label,
+.lookupFormFieldBlock label,
+.twoOptionFormFieldBlock label.block-label,
+.optionSetFormFieldBlock label.block-label,
+.multiOptionSetFormFieldBlock label.block-label,
+div[data-editorblocktype="Captcha"] label[id^="wlspispHipInstructionContainer"],
+.textFormFieldBlock label *,
+.dateTimeFormFieldBlock label *,
+.lookupFormFieldBlock label *,
+.twoOptionFormFieldBlock label.block-label *,
+.optionSetFormFieldBlock label.block-label *,
+.multiOptionSetFormFieldBlock label.block-label *,
+.consentBlock label p,
+.passesBlock label {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #323130;
+}
+
+.textFormFieldBlock label,
+.dateTimeFormFieldBlock label,
+.lookupFormFieldBlock label,
+.twoOptionFormFieldBlock label.block-label,
+.optionSetFormFieldBlock label.block-label,
+.multiOptionSetFormFieldBlock label.block-label,
+.passesBlock label,
+div[data-editorblocktype="Captcha"] label[id^="wlspispHipInstructionContainer"] {
+    display: inline-block;
+    margin-top: 4px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 0px;
+    flex: 1;
+    width: 100%;
+}
+
+.textFormFieldBlock label > *,
+.dateTimeFormFieldBlock label > *,
+.lookupFormFieldBlock label > *,
+.twoOptionFormFieldBlock label.block-label > *,
+.optionSetFormFieldBlock label.block-label > *,
+.multiOptionSetFormFieldBlock label.block-label > *,
+.passesBlock label.block-label > *,
+.consentBlock label > * {
+    display: inline-block;
+}
+.textFormFieldBlock label::after,
+.twooption_checkbox label::after,
+.dateTimeFormFieldBlock label::after,
+.lookupFormFieldBlock label::after,
+.twoOptionFormFieldBlock label.block-label::after,
+.twoOptionFormFieldBlock div.twooption_checkbox label::after,
+.optionSetFormFieldBlock label.block-label::after,
+.passesBlock label.block-label::after,
+.multiOptionSetFormFieldBlock label.block-label::after,
+.consentBlock label::after,
+.eventSession label::after,
+div[data-editorblocktype="Sessions"] h2::after,
+div[data-editorblocktype="Captcha"] label[id^="wlspispHipInstructionContainer"]::after {
+    width: 22px;
+    display: inline-block;
+    line-height: 22px;
+    text-align: center;
+    color: #c33400;
+    content: "*";
+    visibility: hidden;
+}
+div[data-required].textFormFieldBlock label::after,
+div[data-required].dateTimeFormFieldBlock label::after,
+div[data-required].lookupFormFieldBlock label::after,
+div[data-required] div.twooption_checkbox label::after,
+div[data-required] label.block-label::after,
+div[data-required="true"].consentBlock label::after,
+div[data-editorblocktype="Sessions"][data-required="true" i] h2::after,
+div[data-editorblocktype="Captcha"] label[id^="wlspispHipInstructionContainer"]::after {
+    visibility: visible;
+}
+.eventSessions div.eventSession div input[type="checkbox"]:checked + label::after,
+.eventSessions div.eventSession div input[type="radio"]:checked + label::after {
+    visibility: visible;
+}
+.optionSetFormFieldBlock select,
+.textFormFieldBlock input,
+.dateTimeFormFieldBlock input,
+.lookupFormFieldBlock input,
+.marketingForm textarea,
+div[data-editorblocktype="Captcha"] input,
+.passesBlock select {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    padding: 6px 8px;
+    background-color: #faf9f8;
+    border: 1px solid #e1dfdd;
+    border-radius: 2px;
+    display: block;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    font-size: 14px;
+    flex: 2 1 20%;
+}
+.optionSetFormFieldBlock select,
+.textFormFieldBlock input::placeholder,
+.dateTimeFormFieldBlock input,
+.lookupFormFieldBlock input::placeholder,
+.marketingForm textarea::placeholder,
+.passesBlock select,
+div[data-editorblocktype="Captcha"] input::placeholder {
+}
+.textFormFieldBlock textArea {
+    resize: vertical;
+    height: 120px;
+}
+.lookupFormFieldBlock input {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDQ4IDIwNDgiPjxwYXRoIGQ9Ik0xMzQ0IDBxOTcgMCAxODcgMjV0MTY4IDcxIDE0MiAxMTAgMTExIDE0MyA3MSAxNjggMjUgMTg3cTAgOTctMjUgMTg3dC03MSAxNjgtMTEwIDE0Mi0xNDMgMTExLTE2OCA3MS0xODcgMjVxLTEyNSAwLTIzOS00MnQtMjExLTEyMWwtNzg1IDc4NHEtMTkgMTktNDUgMTl0LTQ1LTE5LTE5LTQ1cTAtMjYgMTktNDVsNzg0LTc4NXEtNzktOTYtMTIxLTIxMHQtNDItMjQwcTAtOTcgMjUtMTg3dDcxLTE2OCAxMTAtMTQyVDk4OSA5NnQxNjgtNzEgMTg3LTI1em0wIDEyODBxMTE5IDAgMjI0LTQ1dDE4My0xMjQgMTIzLTE4MyA0Ni0yMjRxMC0xMTktNDUtMjI0dC0xMjQtMTgzLTE4My0xMjMtMjI0LTQ2cS0xMTkgMC0yMjQgNDVUOTM3IDI5NyA4MTQgNDgwdC00NiAyMjRxMCAxMTkgNDUgMjI0dDEyNCAxODMgMTgzIDEyMyAyMjQgNDZ6Ii8+PC9zdmc+);
+    background-repeat: no-repeat;
+    background-position-x: 98%;
+    background-position-y: center;
+    background-size: 1em 1em;
+}
+.lookupFormFieldBlock input:dir(rtl) {
+    background-position-x: 2%;
+}
+.optionSetFormFieldBlock select,
+.passesBlock select {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iNyIgdmlld0JveD0iMCAwIDEyIDciIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik02IDYuNzA4OThMMC4xNDY0ODQgMC44NTU0NjlMMC44NTU0NjkgMC4xNDY0ODRMNiA1LjI5MTAyTDExLjE0NDUgMC4xNDY0ODRMMTEuODUzNSAwLjg1NTQ2OUw2IDYuNzA4OThaIiBmaWxsPSIjNjA1RTVDIi8+Cjwvc3ZnPgo=);
+    background-repeat: no-repeat;
+    background-position-x: 98%;
+    background-position-y: center;
+    appearance: none;
+}
+.optionSetFormFieldBlock select option,
+.passesBlock select option {
+    background-color: #faf9f8;
+}
+.passesBlock fieldset {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 1fr;
+    border: none;
+    padding: 0px;
+}
+.passesBlock fieldset input {
+    display: none;
+}
+.passesBlock fieldset label {
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 2px 0px, rgba(0, 0, 0, 0.14) 0px 2px 4px 0px;
+    border-radius: 4px;
+    padding: 16px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+.passesBlock fieldset label .passName {
+    font-weight: 600;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
+.passesBlock fieldset label .passPrice {
+    font-size: 12px;
+    color: rgba(97, 97, 97, 1);
+    margin-bottom: 16px;
+}
+.passesBlock fieldset label .passDescription {
+    font-size: 12px;
+    color: rgba(66, 66, 66, 1);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    overflow: hidden;
+}
+.twoOptionFormFieldBlock div.radiobuttons,
+.twoOptionFormFieldBlock div.twooption_checkbox,
+.optionSetFormFieldBlock div.radiobuttons,
+.multiOptionSetFormFieldBlock fieldset {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 8px;
+    flex: 2;
+}
+.twoOptionFormFieldBlock div.radiobuttons,
+.optionSetFormFieldBlock div.radiobuttons,
+.multiOptionSetFormFieldBlock fieldset {
+    margin-top: 16px;
+}
+.twoOptionFormFieldBlock div.radiobuttons > div,
+.twoOptionFormFieldBlock div.twooption_checkbox > div,
+.optionSetFormFieldBlock div.radiobuttons > div,
+.multiOptionSetFormFieldBlock fieldset > div,
+.consentBlock > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 8px;
+}
+.twoOptionFormFieldBlock div.radiobuttons div label,
+.optionSetFormFieldBlock div.radiobuttons div label {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+}
+.twoOptionFormFieldBlock div.twooption_checkbox div label,
+.twoOptionFormFieldBlock div.twooption_checkbox div label div,
+.consentBlock div label p {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.eventSessions div.eventSession div label,
+.eventSessions div.eventSession div label div {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+}
+
+.multiOptionSetFormFieldBlock fieldset > div > label {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.optionSetFormFieldBlock div.radiobuttons div input[type="radio"]:checked + label,
+.twoOptionFormFieldBlock div.radiobuttons div input[type="radio"]:checked + label {
+}
+
+.twoOptionFormFieldBlock div.twooption_checkbox div input[type="checkbox"]:checked + label,
+.twoOptionFormFieldBlock div.twooption_checkbox div input[type="checkbox"]:checked + label div,
+.consentBlock div input[type="checkbox"]:checked + label p {
+}
+
+.eventSessions div.eventSession div input[type="checkbox"]:checked + label,
+.eventSessions div.eventSession div input[type="checkbox"]:checked + label div,
+.eventSessions div.eventSession div input[type="radio"]:checked + label,
+.eventSessions div.eventSession div input[type="radio"]:checked + label div {
+    text-decoration: none;
+    font-weight: 400;
+    color: #000;
+}
+
+.passesBlock input:checked + label {
+    border: 1px solid #0078d4;
+}
+
+.twoOptionFormFieldBlock div.radiobuttons,
+.optionSetFormFieldBlock div.radiobuttons {
+    padding: 0px;
+    margin: 0px;
+    border-radius: 0px;
+    background-color: transparent;
+}
+
+.twoOptionFormFieldBlock div.twooption_checkbox > div,
+.consentBlock > div {
+    width: 100%;
+    border-radius: 0px;
+    background-color: transparent;
+}
+
+.eventSessions div.eventSession > div {
+    width: 100%;
+    border-radius: 0px;
+    background-color: transparent;
+}
+
+.twoOptionFormFieldBlock div.radiobuttons div,
+.optionSetFormFieldBlock div.radiobuttons div {
+    width: 100%;
+}
+
+.twoOptionFormFieldBlock div.twooption_checkbox div,
+.consentBlock div {
+    padding: 0px;
+    margin: 0px;
+}
+.eventSessions div.eventSession div {
+    padding: 0px;
+    margin: 0px;
+}
+div[data-editorblocktype="Sessions"] .eventSessions div.eventSession {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+}
+.eventSessions div.eventSession div.eventSessionDescription > p:not(:first-child) {
+    font-size: 12px;
+    margin-top: 4px;
+}
+.eventSessions div.eventSession div.eventSessionDescription p .sessionFullMessage {
+    color: #bf0077;
+}
+.eventSessions div.eventSession div.eventSessionDescription p .sessionWaitlistMessage {
+    color: #707070;
+}
+.eventSessions div.eventSession:not(:last-child) {
+    margin-bottom: 16px;
+}
+.eventSessions div.eventSession div.eventSessionInput {
+    flex: 0;
+}
+.eventSessions div.eventSession div.eventSessionDescription {
+    flex: 1;
+}
+.twoOptionFormFieldBlock div.radiobuttons div input,
+.twoOptionFormFieldBlock div.twooption_checkbox div input,
+.optionSetFormFieldBlock div.radiobuttons div input,
+.multiOptionSetFormFieldBlock fieldset > div > input[type="checkbox"],
+.eventSession > div > input[type="checkbox"],
+.eventSession > div > input[type="radio"],
+.consentBlock div input {
+    margin: 0px;
+    box-sizing: border-box;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #323130;
+    border-radius: 2px;
+    accent-color: #0078d4;
+    flex-shrink: 0;
+}
+.eventSessions {
+    font-size: 16px;
+    line-height: 1.2;
+    border: none;
+}
+.eventSession label b {
+    display: inline;
+}
+.marketingForm [dir="rtl"],
+.marketingForm [dir="rtl"] * {
+    text-align: right;
+}
+.marketingForm s span {
+    text-decoration: line-through;
+}
+.marketingForm u span {
+    text-decoration: underline;
+}
+.dividerWrapper p span {
+    line-height: 0px;
+}
+.marketingForm ul,
+.marketingForm ol {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    line-height: 125%;
+    line-height: 1.25;
+    padding-inline-end: 0px !important;
+}
+.marketingForm p img {
+    max-width: 100%;
+}
+.marketingForm u a {
+    text-decoration: underline;
+}
+.marketingForm .imageWrapper a img {
+    text-decoration: none;
+    border: 0px;
+}
+.marketingForm th.columnContainer,
+.marketingForm th.inner {
+    font-weight: normal;
+    text-align: left;
+}
+.marketingForm [dir="rtl"] th.columnContainer,
+.marketingForm [dir="rtl"] th.inner {
+    font-weight: normal;
+    text-align: right;
+}
+@media only screen and (max-width: 768px) {
+    .marketingForm a span {
+        line-height: inherit !important;
+    }
+    .marketingForm .multi table {
+        table-layout: fixed;
+        height: auto !important;
+    }
+    .marketingForm .multi td {
+        width: auto !important;
+        min-height: auto !important;
+    }
+    .marketingForm .multi tbody,
+    .marketingForm .multi tbody tr,
+    .marketingForm .multi tbody tr td,
+    .marketingForm .multi tbody tr th,
+    .marketingForm .outer tbody,
+    .marketingForm .outer tbody tr,
+    .marketingForm .outer tbody tr td,
+    .marketingForm .outer tbody tr th {
+        display: block;
+        box-sizing: border-box;
+        height: auto !important;
+        min-height: auto !important;
+    }
+    .marketingForm .wrap-section .multi tbody,
+    .marketingForm .wrap-section .multi tbody tr,
+    .marketingForm .wrap-section .multi tbody tr td,
+    .marketingForm .wrap-section .multi tbody tr th,
+    .marketingForm .wrap-section .outer tbody,
+    .marketingForm .wrap-section .outer tbody tr,
+    .marketingForm .wrap-section .outer tbody tr td,
+    .marketingForm .wrap-section .outer tbody tr th {
+        width: 100% !important;
+    }
+    .marketingForm .multi .inner {
+        height: auto !important;
+        min-height: auto !important;
+    }
+    .marketingForm .tbContainer .inner {
+        box-sizing: border-box;
+    }
+    .marketingForm .outer {
+        width: 100% !important;
+    }
+    .marketingForm .tbContainer .columnContainer table {
+        table-layout: fixed !important;
+    }
+    .marketingForm .innerTable {
+        min-height: auto !important;
+    }
+    .marketingForm .no-wrap-section .outer {
+        display: table !important;
+    }
+    .marketingForm .no-wrap-section .multi table {
+        height: 100% !important;
+    }
+    .marketingForm .no-wrap-section .multi tbody,
+    .marketingForm .no-wrap-section .outer tbody {
+        display: table-row-group !important;
+        width: 100% !important;
+    }
+    .marketingForm .no-wrap-section .multi tbody tr,
+    .marketingForm .no-wrap-section .outer tbody tr {
+        display: table-row !important;
+        width: 100% !important;
+    }
+    .marketingForm .no-wrap-section .multi tbody tr td,
+    .marketingForm .no-wrap-section .multi tbody tr th,
+    .marketingForm .no-wrap-section .outer tbody tr td,
+    .marketingForm .no-wrap-section .outer tbody tr th {
+        display: table-cell !important;
+    }
+    .marketingForm .no-wrap-section.columns-equal-class .outer tbody tr td,
+    .marketingForm .no-wrap-section.columns-equal-class .outer tbody tr th {
+        height: 0px !important;
+    }
+    .marketingForm .no-wrap-section .outer tbody tr td.inner,
+    .marketingForm .no-wrap-section .outer tbody tr th.inner {
+        width: 100% !important;
+        height: auto !important;
+    }
+    .marketingForm a[x-apple-data-detectors] {
+        color: inherit !important;
+        text-decoration: none !important;
+        font-size: inherit !important;
+        font-family: inherit !important;
+        font-weight: inherit !important;
+        line-height: inherit !important;
+    }
+}
+.notification-container {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.notification-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 38px;
+    border: 1.44737px solid#CCCCCC;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.notification-message-hide {
+    display: none;
+}
+
+.phoneFormFieldBlock {
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+table.multi .phoneFormFieldBlock {
+    padding: 12px 20px;
+}
+
+.phoneFormFieldBlock label,
+.phoneFormFieldBlock label * {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #323130;
+}
+
+.phoneFormFieldBlock label {
+    display: inline-block;
+    margin-top: 4px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 0px;
+    flex: 1;
+    width: 100%;
+}
+
+.phoneFormFieldBlock label > * {
+    display: inline-block;
+}
+
+.phoneFormFieldBlock label::after {
+    width: 22px;
+    display: inline-block;
+    line-height: 22px;
+    text-align: center;
+    color: #c33400;
+    content: "*";
+    visibility: hidden;
+}
+
+div[data-required].phoneFormFieldBlock label::after {
+    visibility: visible;
+}
+.phoneFormFieldBlock input::placeholder {
+}
+
+.phoneFormFieldBlock .phoneCountryCode {
+    display: flex;
+    flex: 2 1 20%;
+    align-items: center;
+    flex-direction: row;
+    box-sizing: border-box;
+    border: 1px solid #e1dfdd;
+    border-radius: 2px;
+    justify-content: center;
+    background-color: transparent;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.phoneFormFieldBlock .phoneCountryCodeLabel {
+    overflow: hidden;
+    margin: 0;
+    cursor: pointer;
+    padding-left: 5px;
+    padding-right: 5px;
+    opacity: 1;
+    text-align: center;
+    color: #605e5c;
+    background-color: #f3f2f1;
+    align-items: center;
+    align-self: stretch;
+    display: flex;
+}
+
+.phoneFormFieldBlock span[hidden] {
+    display: none;
+}
+
+.phoneFormFieldBlock input {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    padding: 6px 8px;
+    background-color: #faf9f8;
+    display: block;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    font-size: 14px;
+    flex: 2;
+
+    border: none;
+}
+
+            </style>
+    </head>
+
+    <body dir="ltr"><form class="marketingForm">
+            <div data-layout="true" data-layout-version="v2" style="max-width: 600px; margin: auto;">
+                <div class="notification-container">
+                    <div class="notification-message notification-message-hide" data-notification-name="eventNotStarted">
+                        <div>This event has not started.</div>
+                    </div>
+                    <div class="notification-message notification-message-hide" data-notification-name="eventAtCapacity">
+                        <div>This event is fully booked</div>
+                    </div>
+                    <div class="notification-message notification-message-hide" data-notification-name="eventEnded">
+                        <div>This event has ended.</div>
+                    </div>
+                    <div class="notification-message notification-message-hide" data-notification-name="sessionsFullyBookedEventHasCapacity">
+                        <div>All sessions are fully booked but you can still register for the event.</div>
+                    </div>
+                    <div class="notification-message notification-message-hide" data-notification-name="eventWaitlisted">
+                        <div>This event is full, but you can still sign up for the waitlist.</div>
+                    </div>
+                </div>
+            <div data-section="true" class="emptyContainer columns-equal-class wrap-section" style="padding: 10px; display: flex;"><div class="columnContainer" data-container="true" data-container-width="100" style="min-width: 5px; padding: 10px; vertical-align: top; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; width: 560px; justify-content: start; display: flex; flex-direction: column;" id="container0d6ff49a117c81762539020230">
+                                  <div class="textFormFieldBlock" data-editorblocktype="TextFormField" data-targetaudience="lead" data-targetproperty="firstname" data-prefill="false"><label title="First Name" for="firstname-1762539025491">First Name</label><input id="firstname-1762539025491" type="text" name="firstname" placeholder="First Name" title="First Name" maxlength="50"></div><div class="textFormFieldBlock" data-editorblocktype="TextFormField" data-targetaudience="lead" data-targetproperty="lastname" data-required="required"><label title="Last Name" for="lastname-1762538998070">Last Name</label><input id="lastname-1762538998070" type="text" name="lastname" placeholder="Last Name" title="Last Name" maxlength="50" required=""></div><div class="textFormFieldBlock" data-editorblocktype="TextFormField" data-targetaudience="lead" data-targetproperty="emailaddress1" data-prefill="false"><label title="Email" for="emailaddress1-1762539036741">Email</label><input id="emailaddress1-1762539036741" type="email" name="emailaddress1" placeholder="Email" title="Email" pattern="[^@\s\\&quot;&lt;&gt;\)\(\[\]:;,.]+(([.]{1}[^@\s\\&quot;&lt;&gt;\)\(\[\]:;,.]+)+?|)@([^@\s\\&quot;&lt;&gt;\)\(\[\]\+:;,\.\-]+(((\.|\+|-|--)[^@\s\\&quot;&lt;&gt;\)\(\[\]+:;,.\-]+)+?|)([.][^0-9@\s\\&quot;&lt;&gt;\)\(\[\]+:;,.\-]+)+?)"></div><div class="textFormFieldBlock" data-editorblocktype="TextAreaFormField" data-prefill="false"><label title="Field label" for="longtext3776-1762539070491">Field label</label><textarea id="longtext3776-1762539070491" name="longtext3776" placeholder="Field label" title="Field label" cols="20" rows="5" maxlength="2000"></textarea></div><div class="optionSetFormFieldBlock" data-editorblocktype="OptionSetFormField" data-prefill="false"><label title="Field label" class="block-label" for="optionset2698-1762539075133">Field label</label><select id="optionset2698-1762539075133" name="optionset2698" title="Field label"><option value="" disabled="" hidden="">Select</option><option id="optionset2698-1762539075133-1" value="1" selected="">Option 1</option><option id="optionset2698-1762539075133-2" value="2">Option 2</option></select></div><div class="multiOptionSetFormFieldBlock" data-editorblocktype="MultiOptionSetFormField" data-prefill="false"><label title="Field label" class="block-label" for="multiselect8145-1762539078166">Field label</label><fieldset id="multiselect8145-1762539078166" name="multiselect8145" title="Field label"><div><input id="multiselect8145-1762539078166-1" name="multiselect8145" title="Option 1" type="checkbox" value="1"><label for="multiselect8145-1762539078166-1" title="Option 1">Option 1</label></div><div><input id="multiselect8145-1762539078166-2" name="multiselect8145" title="Option 2" type="checkbox" value="2"><label for="multiselect8145-1762539078166-2" title="Option 2">Option 2</label></div></fieldset></div><div class="dateTimeFormFieldBlock" data-editorblocktype="DateTimeFormField" data-prefill="false"><label title="Field label" for="datetime6661-1762539091182">Field label</label><input id="datetime6661-1762539091182" type="datetime-local" name="datetime6661" placeholder="Field label" title="Field label"></div><div class="twoOptionFormFieldBlock" data-editorblocktype="TwoOptionFormField" data-options="[{&quot;value&quot;:&quot;1&quot;,&quot;label&quot;:&quot;Yes&quot;},{&quot;value&quot;:&quot;0&quot;,&quot;label&quot;:&quot;No&quot;}]" data-prefill="false"><div class="twooption_checkbox"><div><input id="twooptions2226-1762539088999-1" name="twooptions2226" title="Field label" type="checkbox" value="1"><label title="Field label" class="block-label" for="twooptions2226-1762539088999-1">Field label</label></div></div></div><div class="textFormFieldBlock" data-editorblocktype="TextFormField" data-prefill="false"><label title="Field label" for="shorttext6151-1762539086128">Field label</label><input id="shorttext6151-1762539086128" type="number" name="shorttext6151" placeholder="Field label" title="Field label" maxlength="256"></div><div class="twoOptionFormFieldBlock" data-editorblocktype="TwoOptionFormField" data-options="[{&quot;value&quot;:&quot;1&quot;,&quot;label&quot;:&quot;Option 1&quot;},{&quot;value&quot;:&quot;0&quot;,&quot;label&quot;:&quot;Option 0&quot;}]" data-prefill="false"><label title="Field label" class="block-label" for="twooptions5754-1762539082419">Field label</label><div id="twooptions5754-1762539082419" class="radiobuttons"><div><input id="twooptions5754-1762539082419-1" name="twooptions5754" title="Option 1" type="radio" value="1" checked=""><label for="twooptions5754-1762539082419-1" title="Option 1">Option 1</label></div><div><input id="twooptions5754-1762539082419-0" name="twooptions5754" title="Option 0" type="radio" value="0"><label for="twooptions5754-1762539082419-0" title="Option 0">Option 0</label></div></div></div><div data-editorblocktype="Text" data-placeholder="Enter your text here" style="margin: 10px;"><p><br></p></div><div data-editorblocktype="Image" style="margin: 10px; padding: 0px;"><div align="Center" class="imageWrapper" style="" data-image-file-id="6228de52-03bc-f011-bbd3-7c1e522e1eab"><img src="https://assets-gbr.mkt.dynamics.com/ff358ac2-e5a8-f011-8707-0022481aa5a2/digitalassets/images/6228de52-03bc-f011-bbd3-7c1e522e1eab?ts=638981350953764583" style="max-height: 100%; max-width: 100%; box-sizing: border-box; display: block; border-radius: 0px;"></div></div><div data-editorblocktype="Captcha" align="center" data-captchalanguage="en"><div id="ms_captcha_holder">
+        <style type="text/css">
+          .spHipNoClear::-ms-clear {
+            display: none;
+          }
+        </style>
+        <div>
+          <table role="presentation" cellspacing="0px" dir="ltr">
+            <tbody>
+              <tr>
+                <td width="10px" style="padding: 0px; text-align: right"></td>
+                <td style="padding: 0px; width: 245px; text-align: left">
+                  <div style="padding: 0 0 8px 0">
+                    <label for="wlspispSolutionElement" id="wlspispHipInstructionContainer" role="option">Enter the characters you see</label>
+                    <div style="white-space: nowrap">
+                      <a id="wlspispHIPNew" role="button">New</a><b aria-hidden="true">&nbsp;|&nbsp;</b><a id="wlspispHIPTo" role="button">Audio</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td aria-hidden="true"></td>
+                <td style="padding: 0px; text-align: left">
+                  <table cellspacing="0" style="table-layout: fixed; width: 245px" role="presentation">
+                    <tbody>
+                      <tr>
+                        <td aria-hidden="true">
+                          <div id="wlspispContentId">
+                            <table role="presentation" cellspacing="0">
+                              <thead style="height: 0px"></thead>
+                              <tfoot style="height: 0px"></tfoot>
+                              <tbody>
+                                <tr>
+                                  <td aria-hidden="true" style="vertical-align: middle;
+                                      text-align: center;
+                                      padding: 0px;
+                                      margin: 0px;
+                                      width: 216px;
+                                      height: 96px;">
+                                    <img id="wlspispHIPBimg" style="display: inline;
+                                        width: 216px;
+                                        height: 96px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAAA4CAIAAAAkf2AkAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAADx6SURBVHhe7bz3dyvJlSY4/9f+sL/vOfvLnjM7Mzu7O9Onz3Sr+3TPSKvukVpSSWVVr6qef4/egYQhvPeWAEjQEwQtaECCBAkaGMKngcn5biTI4nv1pKptaWfOtnQrKl+ayMiIe7/47r2RCf4r6c/yZ/kD5M8A+rP8QfKvepLUkaSuJGEHBdLrSu221MVZHHelHl3u9TpdFEivR7XoHyad+/JIcJEKaxil/VC6vXbvUcHhfZ13Sr+ZR8L69Wd5V/oGg577pQfVfVvaHSicdvoVqe7jg0cFZsDNgtDuwMo9qSe0ey1WhC5Khxe7YpdM+kiABNYJBiDZjLgRrdC/XanbltoCK5zUFe+v4Xyv22Hy8PQ+NOTG+iLjAA/AnSjCQ+lKAvr5UHDIbpWrPZQ2UEpQfST9hv8sj4W00p9yssIx8buSKJcebaHhNmxE4JKrP5hNvv3+kOvA4HS5I/a6XJvdzSyDOmgYO3wHhu9jh8mDUR4YCEQDw4F7ujL3gEGIIOjJQA0DIC4D27JFiWGodKgWFZy5F+zKrITeU1++RUy3g7YeCh1+S2EPBc33G5Lloa9/ytLXxTsCNb2nOtiJsfs9jMBAspkeF7KPXJjgX1gIlID9brvXaYk46Fb5u4ubk+2D3OFplwc04JHescqDUSgGAoaoAjtJIMJ/wAWDXk+QOmK32+70xHZHbNMOHolbCGb9DjEMyRT38AzstAkl1DdAR97yaIgcIXNecnlv/My1vdNRyJ8BBHl/VpEwJb+vQDY5++qF4+k8mOkDhTVBrRBApTbwBtOL3Zvs5fbyhn3WNPJywGVxcLUmOOb3AYgQAPC14QIJg6AzYjSZfhi4SAhVhCRABc8EowFCwGvnvjDwocgMBQGViahCXrTHY9vp8fcD6xccdlDn3QI27ffxXtAW68G/WOmP85H0LzwShA2yWh8JzkBj0PO3BfrsMTX2yDhUpw0lPyoicPKdIohgi76tCxfXHpP9+Rdf//iv/+4f/v4nDpNNbAq4RLB8JGia9UsGELmTDgAkih2Bg9UJk+Wbu/PMRTFf5qp8uykABrKrA7bASagAckQj2MrRGrkxFEZHrKtAGcAoj0TodXgEY+yGR3EeaEvG0mNWejTVmJpI5L7+S5X+IB9J/8IjkUPPRyIHo+JDIdAAP+8qkyrRnKTS7omEoa4o9ERBeqeQuWBFSSrkC7FAxG2yby6u+ayu+VC0fFMClbQaHCr0rcLkoZPMhYH48CAGX5gbKGkLneTK5sy4yqg2JcKJk/RR467e4YAv+DKZKYkEWy1eRMcQ+uLxuA995OHpAAKZrmgC3M8SBEACQIrzwM1DYdU6NAXQDtvvoBtM5I7KIvf1X6q8N1j58OHkQ533hM3RbxmIcEOlB66Hsin84DE/GYBgEjbp25jJgGKvDQyBeIgKpHary+MurikIDW4pvhj1ho629nfXUnF/5OzwtIfwGW2z+EbujyzyITp2vw6EQ0AMDooxDYCytrD25cdPPvvV50Mvh8cHxxORhUapQe6sIwktoIThDLegIYT7XIev88AWeUq4IOR94D2aDWgTz5d5CJfZUwEdRlxdAfEaBU/UG4r2iEVJNUzk/v0pyOPBYkcePgSqkAUn3xcoTM6zKPogpUOrmKHgdRYaQMNSuyoidpCblYVvtTBXEYzwIs+JPDJ0GAZWkTV/lbtyWxz7G9tXJ7n5wNxyNFEt3NFjwFzMLv1H3wvOoE0GIIIFoRW1OxxopNdr9Ur5klVrmRiYXImvWnXWkVcjS9Elrs7hSRRZC+R9yN6dXqvZpsSt3w6uEoCoT5QKMvdGBVgB3CmqJm+IS6iMwoaKglCfr3Nigwd20TOoD11kjf7Ll8eDxc5j6BCOQMpg7veEAQhzmWBEcatI5qCZKXWbHbGC2StJLYkvtc7TmeXIQmpxvXnXIFXDMsAdPAmrDhaiB/ekYv427AstxxKXR2dLkXkAqJwvUAqEJJ9vk5P7kODWewABXgjYRQqnYVShJnRbnc3Ehsfkrl1X7i6Kc+6w0+TMHmRRB56OOipKIi0PwN91q3eN3Mll/uy6Xm4AXgw6bH2KagKVYDVsaYGBMgPACxOGvDbiok4bXk9AqMeQRPETyIi0JvfvT0EeDxY78qEsfRx9l4QeGAgY6hCVkKfiQAHIdyWJk7rVbnr1IGQJmCa0E8+Hx18Mz7nClwc5ZhT4GQINwlmeA29IQpNfmJv3Ob3Iv45Se36L+3g7jQp4BjqEKKUlwmwfEHSYAQg7BF4CED0A5m7R/nn63DZr3UwkuVKrfFEKWH3rifVOE0kV2BLPl8QWMU290lyILytGphEwLYQTZ4dn5es7Ik8ZQEQ/9zx0H4nDs9J6AyqAsYBCvk37aBLnOXj0P3UGwvYBNPLJ9zFEACIm71DIgwiSACRTe7smtgqtncTOFz//8h/+8v9Rv5xa8yW8s07diDpsDdav6n0rI6XhARHimKOddNDjP949yGfOI05/amGtWazhuZjbeCyggYn/ewHEXBiZGQwEUqQlG4bTZnc9tuY1e4Ae4HrOjfjcfX12Q/QDCDMf1KwJ6yup4YHxicFJlDdP3378T59Mj0xfZa+oAmEIBS0DQ2hZgnOs3lQOUun1hbXD7cPb3G2z3KTBcN1OkyrgLvSZlglAsn8aAsQ8DBb2pHkk8CL5DcSJfWyhglxky+HfNgGI7/RgZKEt0CodJm0+cxm2h/0m//DXI3/1r3/067/5Vcq7LNWkTr61GVwzjGh0Y9rczjmsQCaGddrS7cWd3+lZX1wt5m7mPMGYJ1S9LMAKnRa5BVpYpncIlOH0H/1I0LE+A1HHAHxaBGJBPXImkJAknaQzDoN9Lboq3gn7a/sA0Gp8jTABSzNjnx6cG9Qm7bThLH1+myssR5c/+cWng68Gcyc5apaSSQZN0A8YF9zTkdLbx9Pjqm++eD7wfGj09ZhJZYr54smF5OZCspwrCxVEQ+SZ6UbUx924nc3CfkfhNe+VifMgK8xONgpcpSoo0DwKnWEij/Z3CVqjuABbVsg4TB+4Ge0y9eHMB8r9PSwRoDPUllzYegYjWxyyrlI9gIG1SPXIdrTiQfuUbTDXI2DS9jotqV6scxWuUW60qvBGpArqUN+CGC4sRGkIlCsILVHgcdRuCeeHZx6Ta+zFuH7SMP50/OMff/Lio+fmcf1ufLN9KyAkOk1mdGN6w6TxdPusW6EnlvO1uHcxFpzLHZ/vbeyE3IF8JichDkbEwayACBrdhmOgRcLvCHTLAESj7MduIsiQeRAMGecvr/KLsUW3zl0+L/N3/FJgyal1oitUBKmar0adUcVbRWYzIzXIH+0sb42+GQ0HQ416tb9OSNkiAET1RSioK21uHA4NKKbGZ93WkFFpmx5QvvntwNg3Y89++dQ544jZIvurO+WLYg9ThNlEBhACSXYMlIMbiaEQW+JyB2kFFMlWyeXyLYCwxwRDxYgg2MHoHgkOoSo5wO8XtEuP68KXYhIiW+hxVElEStPqNFtCkxNbQocXwO894lVs2xgmg1GH1loQLsDHc70u7MrBJbNEhwCEywg7wBO4AWhpAS1QDeYJDuqslKWDWMajmgto/F6Nzz7l8Oi8ma1Mp4Yeok8YBtqBPmhhFvkUxtdGLsXR1ULuOmgPeI3u4+RRemXfq/c5VM4EnJfDq53SrEZXuHKrXRWON4+tKot+XH+wetirSPn9fMAY2NtM544unFb3zuZeq4rOy8gn7DOc/E6BovoAwoGsYigVh2xRETyDcF043Du0Kq3ptTRaBFDMM+bTrdNOo4NILe6JK4eUc45ItwY2pau6yVmPzVO6LaJJDJVWlmDIewDB4tBgcv1ANWNaXthslAXhrhPzJDTDGuWA6vN/+Fw7NKsd0Qx+89qiNJRApAiNQNLwqwK6Q/piNIkdCsDFpkAsxXBCgTkNgzZ0BruwI2zKRB4aRD58LDRPkA6AC2QMIRoFaHieLkEPFJ6xFPMeeQ93ATTgDuBG7AgAE3Wrv6gntAGdNtdptwAjpAldOBha6ALWKewAoWFa41oL/py5L2ime8tdbV44Jxy/+Kvf/OQ//Fz9VmMcM5kmzapBtW5CW7m6kwEEP9VuI4PCsJGIw/Fj5DgvNSuNxblFu9Z2sp1BZy/2LqKOufOdHFqu3N4FnAH16EzUM3d3WUb93F7OrraZJk1AmFvrWQ9vFC6Kq/NrQXeIciA5MMLgQfT/PADJ12AwbHGpVq4t+hc8BlfpvFC/rsa9McC8clEunhUMCp1dYy1mb4Ge4nHJPG1WDs9kD7MYqoweGUBoWgYQsXFHWl7cAv0kl3coBhelqHt+NbK2v5w2jRtSc8njtQOP3jXxajTmjzZKIHQJk50WICGCSBOOrR6RG2WURM0KvdptDe7/MnNxe357cXzRKNYBcRhZTuggGBe2bGTvCM4zT8L4AejBPQg9eLGDe0Fj7GUMVcFTGFKZsmgU0DLUizoC4hXkQeSg5Edh4PQNBBUQDYyNXvAi9RO3oxGGb3BbHShDMxhavX26dmge1H7ytx//6F//3d/9+59uhJL1XKN20VgJro48H0b0KdYw//BgshMIFz1Dl9FPUCUm0k5y22P17K7tiBXufP/MZ/LF3DGuQO4PiqoValF/VDmicBtdhbNbqSkVTotevfvNF2+dGncj37y7qRxtH5/sn9LgYCskQP88AEFV8pIDzsjKIL3z7YuDHNKxraUUWCd/fKkaVa7FVkOO4OykZmdlG4ZslZpha0Q9SlRJCiI3D4OxBVA0Iud38Dxsni8urE9PqPc3D8lJtaW4N55JZYqnBZ/Bm/DM169q4h0XsYe0U7Pnxzn0RKSVIZrsRNrgM8Y13Xr37uKuclWBJxDLwlp0TfF2yjClN8+Y9FO6gDVQOLmF7WQAYRQ0kA8BiFRELTJOAYbY4idOEBMJ6C71UGzwrSLfuG1Vrqq163qrxLUqHAECMKJmqW3SNZqSC+ELoASNM++H1oVO665VuigVsrfwIzgD/1hri5jteLx4x4d0HsMbjU/pGX0y8Rf/24+CplDjskGWPrl1aB3qUSVyW0Q51BQhm0Eb3cMU6krZoxOL3rK+sC40xNptdSEwv+Cfv8lco4f0EpK9S7+7vlsIL1jU5rAzVL+u9Rrdy/QlnF3jip7S4Ttiq43b5eQaoyGV/LMZ6EHYMZEHX+L8Vh+eXcnfNW8beoVu5MXw0LPBxWCiWULsI53sZKbfzoQdkfLlHQ4xCdEe5gYjIVgFhaVjbLYvxFYVI6qdjbRQ7cD8YUc4ldhqXDdSCynTlDG7dYIn5o8u9ZPaOX+sUSESQi+whdJoEre7jXIlFd/2Gnx+Y+Bo/fhw/WjmrfLlp6+cGpdD7QTtf/lPTxa9S0CA7IvlcWErD/uxgHDRMFvDoFo0t0EZHHwtabBVamR3M6vRpaB2zjcb9Gh8XkNwzhmb9yUuDi8wceGsSHsUzdIaDCGHttA8GAI5DIUBXKWZ3tibc80Zp8zmadPxRprcWq/XBKXSvRJ/23AojAGlc8EcN4yaBr8cH/lmdD2y3qnQxNtf34OqQ+5Q+bokD19+7dNG6NOTilelsC/idfgK+SIqby5vahW6g9RhT2ZoRGJgwxaFw6DzdCq9mUgWzwuELYSkJQGBV7d6T+cwdZOWkR+Y8jGAZEi8Jxjd+wDCjqx0uQaRJvOIqaWkQ2/bXtmSWr3U0ubrr16CfkA8eFj++EI9rrQo7ddAvdwVIJgBCN0huxGGCDrULVFKzC0rRpUHqWOEABjJnDuaXNjEXa1iy6K0hCzBRq4KqlsKJbST2uP9E+oeBoPboXWhW8rfbi6u6ceMmuFZ4EbxanrwydDf/9//eeaNspAp1i8bl3v5Fx+/nLNGxRbBF8OhLvwOAOECW87HKCmkxoOok+0eovjl0IJZoVcNTqkHFAFlJDAb9mlCbrXPPGGdfqsc/mbUqrbtru9xVcQitGTShp0oiJI9YUfkBQqsxS7UNTuiUryYVL9Wjfx22KG2Vq4rGBTQg+fi3upFwTSqSnoW130rdoVzN3FAce6E7ih5hGqNQn3eF1WMTh/vHpE6KXYn/RLy6nw8PG/WWa5zN+CP1cSazWgHStAukM3VqGNgF1ofIuRJ7UZbbDBnyiE06QA9vVpPLIunB9mr7DVgjfqEvO8AiJDwIUH33ndh8lYW7MMA4Ew8u16oO0wOvzPQLDdL+dJ6Yj2zd4Jn3F3dhT3hsbfj6fUj7o5HTfL7UAtZhQBELVAzxCIyvBajy1PDU+nUQReRZLMbsPkXgwu9Vk+sittLKZPCcLSyL1V718fX0yMz8eB8/Q7hpmxX6ersciE4Z1br1/0bZ8nzXOoibpv/6mdf/5//y/+lHdRJsAsIsSpNPp2KGOcqJbLTA25k7/yewG/xPRgFiREeQNDna6305r7H6NSOqnx616I7tuKfjxkTUdN8xBhf9W3sJw6O1k4S/mWHxmWaMYON1hc25rzR5ejq3W1VaIoibNztNWoNdLvLdYzTQKFyw7eST+ac49ap52MZFuoipOFF8pL5dHZ2QLHiiC07FzAxapet/bU91fCMy+Bo10VEP2fp7PCrYa/NW7gogCQIPXDrXC+1umUx2JLLm0j1zo7PXVb3fGShdtckEDDOpvxfXj3Bw9j0yx5kc0c5rtTq1jtwopi0+6t7EV80d3zRRmLEcENM/64LAxhIOR+S9wH0nsDyaITaFaTt1W2L1rK1ugUgI73oIgRuS7vru8px5Zx3TqyiiwRe0DbuQJIEjhQlxrbUNI0HAOpxUiKyODk0dbybQZtCXXQYnfO+OLXWki6PLjx697wj3szXWretmDc2MThRuC5TDwXp8uQy4AiY1Pq4N8TfAqeYRtJaaH3ixeSP/+In2hGdWGgDPe1iZ/zZBBioUv5+AGHMNDhatSMdIUM/2Dowa0yGKd1aZPli+2Q7vhG1+A0jZv2Q0TxptUzbo/b526MS8obKWTVknfv6o2cf//QzbN9+PbgUXhbqiMHRML0uRINclRv86q1L5ThJHJ7GD7e9G8pX0xuxDR7260ocAhSxl90+0g1OL9kjc8agftzAF7q4K2gLjLwYwoyClqBtp8k5+GJwJb4CRfXonbp0dXrtMDiCnjC8PAB0tJdJbWyfZy+JquE44JeQCVA0Q92gUIJvc7XWxnKSjLiS4oqtbqNTv62bZgwmjfkic0nmgw5ktP0RAUR5SQugkGql6tri6tZ6CocgRpxp1RrH6aNYKNq4q4MVyUkhVwBKeixXpY+q4Qspz6AoGIZC0FhvxwIxxYgimz5Fj4WqYNVZwWEdjhoUasLhxoF9yro3v0shZLaontCm1rYbd61M+hQjN0zr9ld3pAalvqXTu6gj5px1xZyxqVcKr94HPKEbYqmNw5A5XC4S8n4/gMhx0fBJCaLQPtw90s8YMPULpzfINFcCi1aFSTc6u+BfXA6voniNfv0UvKd2LZQE4psX3NNfPP/r//1vFM9n1MOzmjEdSIjsRyEVuYPKbXXwyYBxWD/z5cTXP/ps17Ppm3E61c6L02s8GGoRm/x2YsM2oV1xxoI6j1Pl6DYx/6TccW56dFo1qb4+o3C4nC9NDk4YVQbQf6fVaTfFZCKVXNyuXNVhaegne5y7uS5B4xA0i0FTgScFSGkWMyLoSqeHJxatGTovX5UJMQJi0JB6anZtYb0uf23B8EeU8UcCEMtK7rHZqjaLVwV6w4UH9KSDnTRK7uScziAcgs/FdCEkSDzSWwYgxHA0FhoSMVCnKkbdkZlhxeUh7pLEumjT2yLeCEWjrELjuu6acYSMQe6WF8rCfCAx/HLUorP5HQGnyXWwuS/xPdDv1fF11BU1KozJeLJwWrBr7G69myvwwChf4hVvFUFLsFQoYWi/H0CkI0qPKfhF0ue1es2zZoSZSFUijoh+XJ+MJmu5Ct9AQCO1Wx2+Ityc3votQdWQJhXbSc3tPPnHr3/xnz5acyf3lg7GXkwcIHDByDl6d4zsPneYm3w+YRkxjvzyzU/+179dNSysuZZmh7SplR30C91rlBsxZ8CtNCYsQa/GFraEOsgtMAmF3ur86uTQ5OLcIr3t4Xob8TWkMsiCYY5yvri3cXB+mO8iVeek7Y3duWAsd5aH8hF3CbQKAbxQYNcW+LYgYAozMyNlO3XbnBFfpF6sFy+L/B3fKjTmfFH1pCbim0MghWH+8xioH/HI5R497FBEpyiYF+ocsLK7uS02hQ7XBpjsJhvK2fEppS0UE9JTMZuJL7sCAiKeAEQLQbSaCBRiWxUirpBqdOYKnAl81UW7wT7nm+sDCP2s93aj206lY38pzRWE8/TF89+++ubzZ26L5wyYw1P4Xmbr0KIym1Xm5HwSWWG71rZprFa1pZwr9/hes9BUDs8ErP4irWd+HwNh5GDTdq9VIT3qlLqDzYP6TS3ujZoUpmQsyRXBabKSKIXGFsHyUepYOax+/dng648Hv/jxk0//5ouIOp7buhp7Phl2RstXNTnqR1a8tbKjGdTYhk36r1Wf/4dfh0bce6Et7dBs0BkpF+torVGs+g32oM4R1DicM+ZkZL0Hx8vmZ71UAzdH/VGuwvW4XqvUWo2u7Kxs312WU4ub88Gli+NbKOQ0fa7XmFYS640aDyUDPTz+ByNQmAVTUj4IUoINKuXyfDge8gZP0scIhqB5+ESxLtycF7w2n15l2EvtNystWtW6B1C//DAGYoTDhMB0DyQKxBgD3VxcOy0OrXKWpiMaFHp+l181pTzaOyTSgwtrIWSjrzvoB0aAHHaRyBIKSfPkwgCgmggAKUemr0/yGDxf5cFA0BEA2o//kSCUe75Zj11pr+cbcBPrC6nV2Hru6AJX+SqXnF9zaK1+m28XvgzMJ0oICR1am8vgrOTvMDu5cks1MuM1uW+vbzE0GghG8QCge530CwMQJkA+e6md1tm1NrSQ3T1VDE3FPfM9eBN0CVMBGSUlV/10BnRbvazvzO+eJXM3O0XHmCcwEzleO9GOG21a1+kBdRVKuyvUIq6IS+O2Dhqdb82WJ9rwiHs7kLROWk1K28FOBqzcLNeCZteiM+yeMQJA2dQJ1AK7U9ggSUipYNdEJAEMIeFAYKQcmbHN2qYHFdvLe9DVTbZonrWHPNHibQXqxnPZwi0pG6PlRUEUEK7S2lGjWt/b2TVrTcf7x3Aj8GJPPnminlSnVlJCvV0r1P2u4OCroaXYcrOG9JgBiOmH6ay/A6FLj+QBQLS6S8k2oItEtIUwmeI7Agr8dL0tNIRYYH5WoUtElij9BhSa3b1kGrM26Apdn92eJQ934hvH6/uZ5GHjpkZUAUWDigEdRNvEQ4RrrtENeqNTI6rri1uEfo1SE5FNPBDrcXgMhU5U2tLh5oFeoUsubEBr7YrQqbdhxcZtfTmyhNw+7Azdnl1KdbgVBqBC1aWz2FWG64MsAej6zjShCuhtl1lah4Tp6TM86BShAL1/lNelWIGmoXRETjUpbo2p36jSib1eqRe3x1XDmuz+JeyB2ctz0t3h3UUqf7ycOV3LXmxf5Pev6vkmjRFwl6Sl0JJx2hj0BBKx+aHXA7vJbTbBpOrVnWlMG1C5naM2/6Rny5F0jzusCuOab1k/ol/2r6G3lcuWQWVLzK1Y9FaVYubsGLk6zN5pM7Y7yeSQmStGpm/PS0Dt/urByLOxL3721ZwtLhQ6tYtG1B1DFnJDUwWZGQegU3yKTtP6d6eDiLtJhqhfNNMrhzaNA9x5l69E/XGDyri1to3ETa1Qb6b26lW+XKi5rV6D0rAeW+XLvGxB6AdUhriWrabRVKQBP5J3AYSqAn2RQ3E+TW5WYPdWFxZ1GhwRd7h2XQMr0EqGIIFUF8OLylGlVWudeDo8+WxYNajQT2pjnjm4duJhDIRBFugRiUh7XK2DXk6NziDuQ4VaqaGd0Xntbvr0BKXVxsQRa2JycUM1rgy5QrWbKnkQTmrdtaK+qEltjPrmCrkC1US2iUsAULHm1FutKv3ZzpHU6vKFmlmh9WgtuewZQwB9c90HEAKEdwp8LUVviLtNkyb1gOpkPVM8KthmbG69t4uBVjurS9sB37xH5bErHOYJk3nKbJ6yIFdyzbp3E7ulsxL6drZ7ZlVaTRrT1lpqekyxGEl06hTHFM8KuhGNX+O1j1nn1KGb9ctN97r2rXIjuOpUOpHNcbdiLd8afz0dcc1BhxaN8TqbA8pB4CJ7Gd6qc6uJtdG3oyFXFEYVK52wfc6h9pSy1e6dlAgs2bQOymeJejAgmhYCvYiBFdv0co4+ziG+vD4uuHTusCPSrfe2V3ZmFdqDrUO+LhTyRbPeOq3QrK+kMJ+vz248Zo9+SreV2ES0BwMJDVruBKG1kdEhJf9eBqIlUhauA3oU2SA0wclmJ+IKWzWWnWWaW7mDc8O0fnt5C5cuD3NTA5M/+/v/+s0vnyBhCZi8Yy9GXnz+PL2xBw2yj19hJXoE/QNANjpOi3tieFL2g9VyLRQILy4sIY8miwLhYhcJCLJWuLbD7SMwEO5CU7sbu2+evvHZffRpNs6gwzwDeo+Wep1Gm1GpPdtDANsVKy3zjM6qMpydnJIbZ9DBzocBhBZoqb2NoBgJXSPXOFhKK15Meo2B872LuC8xNaIZG5ixTFncWk/UHo3Y5gCd2RGtdlSneKOwqW0nWyewUNwTn3wzub+eBhU5Zh3FLK32Xh/kZ4dVQb3fPGaIGeekgnS7c6V5Nb0Z2pwzRb0a/978YTFTG3s25dC49JP6sCPQQhLHBkXrt5iBklQtUCQ0OahILW6hzW611y53hVJ7d3kfsfzW8jZiMnhXelsLQ/eQSvIiaACahA9ikWUxW4q64z6LnyvxF0eXLrN7OboC09C3IqJUui47bO5ZpQ7OC5OheHYTsHqN07qtxSRiQfklIDHLDwQQ/AwFPezbU6IfdIrrnu9mZ8fUS8EEX0LmKpmmDZ/+148nX49XL+/gWXD+x3/5n6dfThYzBdTfmt8YezmyEJiHj4NtMDahhVQMIQgRhlgVvDbv1MgU9Z6NWOB5XsBMoQQC4RPHta7O8xsr62eZLH0lgY7R5ym9g930zOT02tIq3+CEBjIx+tQScEeFehnc61RNzmQAIDTUFCyzBpvOnM2cku9mWPldAJJTsOuzwtunQz6Lr10Wtxe2xp+NmqaMpmmTZkyzEEhcHl/fnd2VTouFzG05W+JvwYdS4fQ24U9YVVZgKLefW4+uKd8q10LrIXPYOGE6XD2CMXJbOcTLEUvQOK6LWkPkhS/rnmlkj3PztoRPHfSqAtm1nHHUYhw3K15Nr4VWpAbRLXSO2SXUhQ4IUpTuritTbxUOnRP5Jh7dq0lXRzdOnXsrsd2Gc+9IXJMnwoGrQfILLcqxGgqbGzH3vN8ayO6dgX7Ms5aoP1a8LCMsIYBibiM1OzxzWVzK0ZmT3WOC1NnNnCPo0tu3lzaJ6QHCFk1CzMQfwEAEW/oQBq6EetDpVa7LIWvApNBfHVECmd05mX47CQxpRlUgOqneLWZvh58O/vZnX0D1qFA+LXqNbuO0/iZ7TTMAjcPR4F8UQSpfFB0mu3ZG02KRmiDwMDGG0upwXE9odnn6nEyA8G1aAQBERIHn8H+jXkvv713kzvlWE/wMlsSAMB7oqtFora2s2Uy29G5abAnNSsOg0euV2szhMeWhLIbGWD4MIEBIlE4z+Znx2YXgYq/WO1xNT76cGHs2uh5eq15WmzdNqN5r8iDLU40oAamAJbAR22jdtrgCd5O5CVoCIKewNexUufyzwVXfunnctuxZke6kvfk99VtV1BaG9uKeCPrAl/idyLb+rT5umo/q46pns4vmVbfCZxmxKp4rUpEU8EEAAgmR2Wi5GRbly5xuSmfR2OAr0chNphCwBKOuaOGM3n/RdyVkvo7QRgyEBIbWwWkiIYWpt/dW09ZZG0Kf69ObRGSRlkK2DkEQuAtj51u0Houo6fwoZ9daDQrtcTIt1Tq3x5dhm9+mNm8tbbabaItykR8EIFQF95Dhmcmbd/V0ck85oEjNb4B76vmKz+Cyqy1XB7mYK+LWOW6P81K1s+CN/frHv7GrHGIRs0zKpDKqYaXP4r06vaJPYtiaNeFdkvKHOZNKa9EawCvsudQjxC18r81J7Tuxxl4xw7Iix9FLAXSCkgh49w5Q1BIErtFA0EuQoBmBhlmwWSyWTjLZu+IdCK/dEqwGi1qhOthLE0qYF/sWQBQ73wOIaBmpilSvibupo3Ke1gAz9Nme1qww3WXL5ztnTq1TNazSTGkQ7HtMbvhxzbha8XZizhktZUsYVG7vwqywGiaMYeOc5rUuFdyxDNs9Cj9/zi87l6eeK+bsYavavBiJ03i5Xv20PvrlWMwYnzclXv18wPgaHt3nGHMpn6uSwU2pRi4VsJDAPSxC7zYoADWrTIgZ+CIv3ok+oy9oDV5l8lQNoSBgQ+OgT5HoHT19UEDoEWridfbGbfQkgov120b24Ew5rjpNZ8VmGwUjBX9jJpKhKdiVrk5y9lmTXW08Wt0un+aDFvcv/8s//uYff3WMLJt+lf7DAETejq070zAk6fI0Z5jRRZ2RKjJkTloJL028Grs+zner7ZvMlUvniDhCnUabL7YUr6c/+8fPVQNqAIiAv7KnHdNMDynMSmMiOL8cW44H40vhxMTrUZBTajlJSKUBYAj07YxIS/9dYIhrU2dpVvAtgAYKBJIQBsswwj56BTZqiqBrgk6jCZePgVFvaa0SfpJv53NXR7sHpQKtA7H8j4ZHYRbR3SMA4QGIHnpoRMgcnV2d34hV8fbkOuGL76/srIaX3HqnTWNFMnh+cla+KSFcQNSZz1xuLaXUY6p573z1ogJFJaObqiG1R+0b+XwyYVvxKgKuCf+ieXnRtqIf0NvVdofevrOxSZ2DQ77hA4agcdgIBhr/dPwX//Ej+5DLNebxTvvO13Ldale8EbEVioJYErM7ZyFbwDxj3FnaEst846YesPsdOvvl0QUZiEGN4ILRwaXTT6LYi3CmmYvjvMfsjfvmq7c1BNo2vT0enBea/aVCSmlIXcDRA4y6FwenPpNj8KuXzz95MvJ84PWXzyYGRs6OTukWUtgHErEPAEg2LVDZE7pLsYReqTtKHkhc73wva1GavCY3V2xRNFdrR10Rp9YOJAFAW/O7X//q6W9+8jHyl72VNNKT3eXdiCNsUZlmxzXKIYVqZEY3MasdV6/HV8s5WiOm2cN3uBZ9+4/SFOG/YE3WHXgvWsPg8Q/6jn3awR0Cz8aNUI36jMrNFoAHNiIMtZocGkT/AUOGJESA7PNWipbQwHcYiHIVWqM6P79y2ryrC+utYkMocne58t7Kjk1tiXqi+Uy+06QvU6hfsiCwqPAI8mYGp3cXd3B4kjy1KW3GMYthxBLWxyLauGvcp31h8ivCToVbN6J1G1zZoxO4DVJuS9qc39IMaCLasOaZ5t/8T//W8MLgmfBGDbGjxePNyJZr1hc0+aOOqN/oQ2Tt0Njj7liv1i2dFZDKGGcMma2jdh3hJPWE3D8NBeNAwMgYgumFrwnJ+c2Ie+7m/LZebLhMbsTOV2fX5BbJeRHmiJtpSvUQpEqMyJE2ne8fxzxBn9G+OreQ3ti+zObYh0dQGwXRkPdI6H0AwYLUKvsG4OLkXK/SuizOMuinJyGLVk9ojrYpPCTsS9Jh6tCkNi/NLYGEGjecWWH/+lfPhr5B3qKzqu1Q7mYsmYqvb8RWE/75pcDCWmTlZCvTqbThDUuXpeTS5vFeplKqAeCCAJQQVRAaAIM6+5oOEwWAgGDAfKdZbRaubpvVBvomw0DuORKEk+PTw4Ojq4trBALo6t1NqXhdbFRpqZd5PwYglsy/W2jmos7R4enw4LjH5uNKTYyucHod90a9Vs/50TnBEbG9wEHrxFe0pg5P1M1sHw0+HVwKLPEF4Xg949P6zQrbgnPZMGyN6OYBnRf/8Nrw0hzTzY9+NeY3+2qFiigiFqWPpOFZjJMGr8rjmnD8H//zvzO9MfoU/oRlMagPP/nl07dfDpvHjdph7fSraZfGcbCaLp4U9ld2DVM6g0K3u7INlCMeBwhowkNFjH5YliIilMZwuCq/tbTtmHXN+xOIeIKukNPiOtw9ljMG1MaNMDLFhiS4A9OszXPQOXCAYIJ9MSKngbgD1agug8/3Aohapx9qdZDpzAUiplnDZfaiK0hnxxfqaW3AE+YbIqV2bC61ue5cIDY7o7s4u5Jq0vlu3qX129WusC2iHtJohtWIJMLWUHJu9WBt7+oQfuXmJlPMH16Doqxq52f/9LlqVL25sHlzdlu/rdN84ruXmQuM+fKEXnQgfirkCif7J/TmT5Ky6SwyuJX4ShNmBrrYqhl2QDxzoejo2+Hl+SWRFzstcTm+GHT5M0f0PY3M0lDEB4No4h9Jus7dTAxN2rW22nUFNY+3DgdfDsUjC40GhSGkVWgECY5Av8MjDXal2+zN1NvJqDNaPCllN7LWKZvPFDjZvdAMG2KmxeBM7Gf//qMXP327bFl/+5uBuDPeayFiRQZFj0OeFPfGVAPKgNrjmXTM6+PaV7Nboc218MYX//SldsKQDK7vxrZ3Ytvbsa3V4LJr1jn1akw3rj7aTJNRediIPj9h9IOYuQ2DE3ooW4EFu8nlzSe/efL5z387PTgz8GIQQzvaO+4icwWAyIlTXMm4h7EOURjbowNk320JkxCxuAADEFZETD0KNPoI+h4AoT3Mb7EpHO0d6pSzibl57NdrnNsZUCv1h+lThCWEfcxD6q10fHim1ZhCgWi7KLVu2kuBNb8xfL59Uc7eLQdWMYGmX0+9+ezls4+evPns2eizibEXijdfDA1/M/H1R8//8t/81eizcZfWvRpeq13WQUv5/VzA6rfrbbdnN+hJ8bLotXoHnr5djCx2uU45X7bpbJpJzdnBGR4NTdFfjUDa2hIW5ubHB0fXEittXuSrLa/VqRyZ3FxPEkrwH2gDEIIK3vFfVOizgrZ0d1uZndLopmbP01nU3Ewkn3zy5GD/GE+BvehdQIcTRArqwUL0E3RROjvIKgamIvaIeNs+WT81jBgXIyvVm5bfHAnoo56JwK//4rPP/tOX67bU2BeT6+ENEBtSEyAWAabAi3vJvdlRlU/lbOf49Nyu8tn0bmzvfOdy9OXkiydvNC9V+iG9fnBW8WJK+WpaNzqL6PPustRrdnosryZuRq4DyqYvKDEqApC8JlGrNOKh+aefPn/28QvlsMait6S3D+SPy9gsIhfP0EPzQOYZ+p065WSMZcipU3pCk4v+XksbPol1/IcBiGKgjlQtVCx689CrgXRqr3hd2tk5nJiYCQVjoHDkS0AvvSMFTIVeo85FIguqGd3dKX1XkD+4sas9m9GtTqmLgLSer5Uyhcud8514ciO0GHGAGTaWA8nc7lVu93rOPn+wcmxTOoOGQKfS5a6aQaPPrXPur+9JzV79proWXdFOzL558lqv0B0iDmtL2b1TxeBUxB0uFe/I5SFe5NpI3dcWVyeHxwF3vslLXDvqCalGplIAEEDS7vDNFoUHQAxlKGwLnbNCaGjT77D0U7NTAxO0/ilJa7GVjz/6dG/vkN6s9HotuqPFiw36gVS3LbR4PDe5tIGobjOeApgWXYsAUGY3C25eDK6bRh2WQffMF7ovf/Rsw76tfqbfm09Tfg7OxsRGuNHrlq6KlmnD4KevsonjiCagfjpzsnbardMCT2plJ+XdWLIlNgMb58mz693Lu9Nyu8hhgoGV6Z0PRwEGLVjTf0Q/BCD2GyNYmWsK1Zva9XGhcFS6u6hgbrQqHDkN4AYUTL6JGAjDJO5hAAIVACICrV0SOAQOVEuLSeT28QCaQvSDE1nkex/kAUAELxlkOMxkMlqtdnR0NBAIhANhg9LgsXrypyxvRAHOwEPANIenSxeZC5PGZNfbt9e2CxeFkDtkRCq4c0SrYWgMXcItoMNmF5Oj0Wg1m5xAXpa+sBQqfMQecqitue3soivun3Xn9+jHKK1ic84Xddu8O8m9TPrUoDY6DE6MGNH6enhp9q0ildoW6M/N0Fxq1bnE/OL46EQ4EOEAIEmKReLqGU1ieRn75PHvC4GtjXCLzTk2Dswo/NOudef9C8PPR2h5vSed7Z+OvRoJICSq0PsW2ExAswjSq40OBtUDNZadBo9T56lc1lq3gmbE6DfONaochnZzfuPU2rSDqjV3IuVfi+j9LpXtfD+LQSEYo/6wb+2wXV5af/789W9+/dk3X7/weTElaqQrZC+CVCwWKhVSFswhz3iYhqzT/4cE5xmNEI22mcgXZcEtslC1e4GFZfvKQJG3zELUPmtVbpKEXSLB3sOZx+dleR9A8tfQ5XJ5d29vZ2fn5PQkc5g52EojNKGPKQkK0HgPSRniecTOMCqipXQqrZpQIl8LeULDr4Y+/eUnNoNNrAv9d2o8GQlmIM6g7hD4aYvWWlLA4p16PeE3+Fxqe3bjWGpI3XoHmbNOaQR6iB7KrWgwrlHM0o+eOKl8euNUWSwGGwIXmBNAxHZ9aWNscDzsm5MNHAvFp8dnFhJLGBq9Fup1W4LIsbEBMHg4ikh/NQ180qVPgxvSLf1KyRiyh4Q7ZMu1OXd4dhzx2Xq7wsifGmJbUcod5ux6p15hONu/qF01531LCPvOti+4FqWQfJ33GF3jz0bym9naUdk5ZbZMm+gHWbgVzqHdIfKmzFK6uS6urSbn44urKxuXlzdgEtRBZEN/AQqauhfQALZkYBkAVMhYslFxnl0gDNE+E3kfp2n7HWHDeF/QlHwVO/1TP0weAET3y8+mfmG+yp1A6MjRCicIE4ahF1v9VSJK8mnFiBmkVWmsIM1y+RYicYveNDE8HvYG+VqrSz6AFdwCj0HfdgCqtPBAASCuV3jFwOTHP/3IrrIdLe8DT91Ke29t16DUL8VWasU6fZsCkju9NKgNVo2ZKKElpaKrirHpxehS847rwZ9w7eX4yvDrkZAnTE8UpYVIQjmhis/NY2gs66fvkrCFcmC5d1SEfQTKCFBqPb85OP5yYiuRQs5cPi95DE7TjGElsrSzsoXYKLt7cp4+izhCmjGVx+g8Sh1Xr+orc2szQ8rU0m632aPvYgERvr0xvz78zbB5Qu+asb346JuoK9quigLCXkSoZGkyEvSAwsMvNlrY4gz1hUUl2EL5zJp9kQ2B7YM8HL63I2/fA9NjQQV53O8J6xKJ3JMfLu8DCJmGTELyw+gkBUcsmMS/tEgNV0ueC4fYp0ORPjejQ3YVQTf9pZ8mgk4wNavJQIBqwA3F9Zg3OE8A6hXOr1/+9sXr377MbB4hNZUavWR03WGwx4JxeS0HfgHd45vtpejSxJuxo+Q+mEAsNL1m3+yE9nQ3izpCQ1wOL4++HPNbA/RtdVNan08aZ0yJ8CKNTSYcOXNEk61es9yq3FbLV3c3udubbKGQKWeSZ+mVI4/e/9Uvv1a8nr46uAItlU4LYWtQNTwz+nRI+UZhnjSYp4yqQaVL6zjePEQ05rf61WNquFr6YhBa6XQbSIU5sXxT8Zo9rz9/PfDl26lXU9cn110Eiw0OzhATUDYQMzHtQcHY4iSuCPQ7JIAAwOJlQ8hGYdX6QHkQZpz+SXn/wYjUyiMwPRacpMd/R/44AILgkfIheo9h9FtksSqtNeEiZgkCLByCsAkWmPEIDumXDbiR/lALNUBfpxO2CHnsKx9CDLWJ9olZ+wDq3OZuPRb3xvxat9Zpl/nj5IHb4Iz45mqFGrknVIOuQXV8r3iFsMPhmLWWTq/xiLOdC8OUyWv082VaVdpa2Bl7PuHSejoNgE7aWdrTjGgXfYlOo1PJ3VVy5eujfP7g4nA9vRJa8hk9lhmTfkKrGVGNPRsb+GLk9acDg78dGXs68df/7m//y3/8sXHCuBZaK5+WSqfFk2Rmez4V0gf8s96oOXyyfpTZOArZgjNDU4qhqeXYEvvalX4mQakKhoswvSOVryqXx/nSZfnuipaqSa/kzLtN5B1EhKRU/I+zuIQdqBk7sLsotjmOnCWrQ0Iau0fDY3kAhHwoV5YPcR5b2Xbs4reCk2Se74h8r3xL/9QPkz6A5KZlgZnRA/k8BPZGnEZLAugkuoeCuYbEmOXG8nl5h6qhf/IObmK//qcsWkQERAoDx+NBciMAH/isfFXEDA67gofJ9HJoEehZCM7ns5dwcG1ahSbyoxAGo+5JqZXNiTcjm/HVdrkFhtiIbU4PKE9S2U6lt724O/x01KK009+I4aStxA4OJ19MLHkXtCMa9aBS+WZa9XZGNTAz8Xzszeevhr8anB3WOFTWgCGwHkjuzu9fbOWzybNXv3k98c1E3BadHdRMPZvw6z2r/sWw2b9om48ZQz6NW/VaAUKafDUetPtO9o/5ehP5CcyEcdYFZNiSQBRCM41epEMt2OAsgsZ2uy4gfSIrQsNQLFQtr/vh9sdQwL5seGwfdphlvhW5miw4fFxNvoStfP67wqz6vsj15dv7p36YfMtAssgNYds/lntGgQ4sSciQC6kGD7pHFZ1hOw/VHg5xb/88kISUsEcIY/uEofJ10WV1fvXpV6+/fj05OBH1RYuXRcxm0BWtNuE+KugEPe724tqiNugnVemVrW5VOkpmtON6lPpVM712+PbJoGPWhcyufde9Oro1K20jXw3phtTOGeuCI7oRXFnzL23NbRws7iJULxxc1bPlSqZwc3CTTV2cbJxnU7mwNfrmi0HTlLmaq2U2TuZsYf24TjWghNuaN82te5c3QxuLnoW1yGomddgqNhACdhH4EK3SkoBA2RVDO+sw9shjYrhsxKjE0QsRjJxEVqy88539/uGDPFR4LHLlx9K/8Ej6F94V2eLvSf8ak/6pHyZ9AD3Iw1PlHpAQh7xfZEaR92nGAezvVvhgYQBiBUqGQxQpYDo9PImH44uxpeTK5lU2T3+sk/4WLOrTTZhL4DsEA3gaUHuwtaceU7z44mvV8Cyg8/Lz17/56Sd7K+lM6nTq9TQ8WqfepaBYkCoX9ZPkcW77tHB8XT0vV7Kl28Ors9TJ4er+3uJ2Krqx7E9E7WGv1q2fMOsnTLpx48RLxezI7PbCNrlmBOs3jfxBLrudOd89KZ8WW1d1vsjzpRb9sRUQB/J6ygnYjGfdBGmidCiYoWkio5+4CafI22PwVGhUpAvaPt55t7wjrM47gjN9gz2S71aD0APelX7tP5K8D6D+Y98RdIto5HEBAZO7h+roLRtiPeQRlFl9T3lYxkZ0A93Tz1bp1VIHwSPH/uoNoIWpSn+bi4CDyyIMQwilt8x4lFhr7q0mDQqVftJoUVpnhlQTryaPNjOHyaPRF+OaMW0ufYFynDrZXNhanVvZiK2thJeQOtlUZu24WjOqmkUZU6uGp5WDCu2Y2jRt8pr8UXcs6orNexPp9f3aVZXCeTgghCLYEdiOXIAbFBoBSJRNIvJOtAtFsGCQgA++kXHzsJU5V67AVn2/t3yPfBAHONm//Lvl/3MAfUigIsCFeZF3CwMQAwIBiCXov7uQI4TLpz/GwywApLTFVgMxBDhJEjj6DlNE3MOxP5jN1kEww+nXlUAwTIn8plaXGDlxlTpX4xGf5k+ubs5uYOar0+vXX7/56tOvrTqbTW9XjqnePh349OeffPXrL19/+XL42eDkG8BLZVWb/RbvYnBhPba6u7Kd28/ent02QSqtDn0YijwJ8QpAg1SOfcvbHygzKI0SO8AELSgTruWeMQCxuvQdp8BGShiC5yLo3HtsUgKuYha9q5YPlX9pAMIj+5TzXgFjQCP3AKL931MAICRUSOFAODRjoX9RoNPvjhoGQcxE4aUo0soKfWgncgJLTPBA+jE58wfI0RgltGF7rlMpVOEBQ97wysLq7ube6WH2YOfw/CR3m7+5K5Qbd3UeWTRPLz1QqO8YE4rMHmiEo5/IyzNFaNCic99Ho3PoA9eSf2WLIvtgsFILp9v05eBDMgqIyUMjJ4ZDGUNohvSHPZzHo0FR72vmA+X7kPD/LwCRfj5Y6E0ROIEtB7Fk/XsKMpN7ANE3lfSmhV76ksBLyRksph8mLPv4ggDEsVfB4CZkFszAvR6sydFfskGaRoHUPQO0alylVK2Was1qC8YSW22+JQqcgFaoDiBB6iXQEKmhHdADOVUYm61LoRm0B0eJamRvMjnQyz53ExoSx0kCL4kcFVpJpt+xUZQs+y16gd0HEG3JL6OgDXmHnZHhBWZ7Xy1Q3buFvvj+/fK7APRd6d9wLzjTr/1Hkh/owvDUDxQyNQoN937/9xYQC/5nIQ0VuASMh3zVfSKKnJSuyNfYedrSiX5qSkLHVBkUhcvsFN0oowRbAkS/fl9lslBcRY/t79A1JvQM1g62okCBMeshneh3mIVi7IC8KrasmW8LrqFJeB9iG5l8GFJlxbBCfep7qO+qheD8bvm2dx8WdI6N9h3pX3tXULO/x+SDN/4h8kMA9EcTBom+ge7LO0JGuxfs35uof8j+/fYmqvDtfn+HhO1/e+2RkAZlPTJVQrBPF+S67My7ncIBlfueyOX+7KMatEP89o6w9h6EQQiA+Y48XHpUvl/6N3+f9Gs/kv6FP5L8dwVQfwT/44SB533pX/uDBU31x3kvcvvvSf/aI+lf+H8p/Zu/T/q1H0n/wh9J/rQA1O/Hu9K/9gdLv7k/MfnvCqD+FPgfJ/1+vCv9a3+w9Jv7kxJJ+m/aEwSf7eY1/gAAAABJRU5ErkJggg=="><img id="wlspispHIPBimgProgress" style="display: none">
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td aria-hidden="true" height="8px"></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <table role="presentation">
+                            <tbody>
+                              <tr id="wlspispHIPErrorContainer" style="padding: 0px; display: none !important"></tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 0px">
+                          <input id="wlspispSolutionElement" type="text" autocomplete="off" spellcheck="false" autocapitalize="off" aria-required="true" aria-label="Enter the characters you see" class="spHipNoClear" style="border-width: 2px;
+                              direction: ltr;
+                              width: 241px;
+                              text-align: left;
+                              padding: 0px;
+                              margin: 0px;">
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </div><div data-editorblocktype="Divider" style="margin: 20px 10px;"><div class="dividerWrapper" align="center"><table style="padding: 0px; margin: 0px; width: 100%; border-collapse: collapse;" role="presentation" class="" cellpadding="0" cellspacing="0"><tbody><tr style="padding: 0px;"><th style="margin:0px; padding: 0px; vertical-align:top;border-top-width: 2px; border-top-style: solid; border-top-color: #e1dfdd;"><p style="margin: 0px; padding: 0px; line-height: 0px; width: 100%;"><span><!--[if gte mso 9]><br/><![endif]-->&nbsp;</span></p></th></tr></tbody></table></div></div></div></div><div data-section="true" class="emptyContainer columns-equal-class wrap-section" style="padding: 10px; display: flex;"><div class="columnContainer" data-container="true" data-container-width="50" style="min-width: 5px; padding: 10px; vertical-align: top; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; width: 270px; justify-content: start; display: flex; flex-direction: column;" id="container20b7f346efec281762539140404">
+                                      <div class="consentBlock" data-editorblocktype="Topic" data-required="false" style="padding: 4px 30px;" data-compliancesettingsid="7f4a6355-1811-4cde-bde3-fee8c85f56b1" data-compliancesettingsname="Company" data-purposeid="10000000-0000-0000-0000-000000000003" data-channels="Email,Text" data-purposename="Commercial" data-topicid="b5cfd151-c1ac-f011-bbd3-7c1e522e1eab" data-topicname="Marketing" data-optinwhenchecked="true" data-prefill="false">
+            <div>
+                <input type="checkbox" id="consentTopicCheckbox-1762539110644" name="msdynmkt_topicid;channels;optinwhenchecked" value="b5cfd151-c1ac-f011-bbd3-7c1e522e1eab;Email,Text;true">
+                <label id="consentTopicCheckbox-1762539110644-label" for="consentTopicCheckbox-1762539110644"><p>Topic</p></label>
+            </div>
+        </div></div><div class="columnContainer" data-container="true" data-container-width="50" style="min-width: 5px; padding: 10px; vertical-align: top; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; width: 270px; justify-content: start; display: flex; flex-direction: column;" id="containerfed1a284860ff81762539140404">
+                                      <div class="consentBlock" data-editorblocktype="Consent" data-required="false" style="padding: 4px 30px;" data-compliancesettingsid="7f4a6355-1811-4cde-bde3-fee8c85f56b1" data-compliancesettingsname="Company" data-purposeid="10000000-0000-0000-0000-000000000003" data-channels="Email" data-purposename="Commercial" data-topicid="undefined" data-topicname="undefined" data-optinwhenchecked="true" data-prefill="false">
+            <div>
+                <input type="checkbox" id="consentCheckbox-1762539098227" name="msdynmkt_purposeid;channels;optinwhenchecked" value="10000000-0000-0000-0000-000000000003;Email;true">
+                <label id="consentCheckbox-1762539098227-label" for="consentCheckbox-1762539098227"><p>Purpose</p></label>
+            </div>
+        </div></div></div><div data-section="true" class="emptyContainer columns-equal-class wrap-section" style="padding: 10px; display: flex;"><div class="columnContainer" data-container="true" data-container-width="100" style="min-width: 5px; padding: 10px; vertical-align: top; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; width: 560px; justify-content: start; display: flex; flex-direction: column;" id="container51cdc687a0a291762539130224">
+                                  <div data-editorblocktype="SubmitButton" class="submitButtonWrapper"><button class="submitButton" type="submit">
+        <span>Submit</span></button></div></div></div></div>
+        </form></body></html>

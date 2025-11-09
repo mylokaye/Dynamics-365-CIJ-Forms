@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- ================================= -->
+  <!-- DYNAMICS 365 REQUIRED META TAGS   -->
+  <!-- ================================= -->
+  <!-- These meta tags are REQUIRED for D365 form editor recognition -->
+  <meta type="xrm/designer/setting" name="type" value="marketing-designer-content-editor-document">
+  <meta type="xrm/designer/setting" name="layout-editable" value="marketing-designer-layout-editable">
+
+  <!-- ================================= -->
+  <!-- STANDARD HTML META TAGS           -->
+  <!-- ================================= -->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="never"> <!-- Prevents referrer tracking for privacy -->
+
+  <title>Contact Form - Dynamics 365</title>
+
+  <!-- Import Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ========================================== */
+    /* CSS CUSTOM PROPERTIES (VARIABLES)          */
+    /* ========================================== */
+    /* Customize these variables to match your brand */
+    /* Changes here will apply throughout the form */
+
+    :root {
+      /* ===== TYPOGRAPHY ===== */
+      --form-font-family: 'Roboto', "Segoe UI", Arial, sans-serif;
+      --form-font-size-base: 14px;
+      --form-font-size-small: 12px;
+      --form-font-size-large: 16px;
+      --form-line-height-base: 1.5;
+      --form-line-height-tight: 1.25;
+
+      /* Font weights */
+      --form-font-weight-light: 300;
+      --form-font-weight-normal: 400;
+      --form-font-weight-medium: 500;
+      --form-font-weight-semibold: 600;
+      --form-font-weight-bold: 700;
+
+      /* ===== COLORS ===== */
+      /* Text colors */
+      --form-text-primary: #000000;
+      --form-text-secondary: #323130;
+      --form-text-tertiary: #605e5c;
+      --form-text-placeholder: #a19f9d;
+      --form-text-required: #c33400;
+
+      /* Background colors */
+      --form-bg-primary: #ffffff;
+      --form-bg-secondary: #faf9f8;
+      --form-bg-transparent: rgba(255, 255, 255, 0);
+
+      /* Border colors */
+      --form-border-default: #e1dfdd;
+      --form-border-focus: #0078d4;
+      --form-border-hover: #c8c6c4;
+      --form-border-error: #c33400;
+      --form-divider-color: #e1dfdd;
+
+      /* Interactive colors */
+      --form-accent-color: #0078d4;
+      --form-accent-hover: #1a56c9;
+      --form-accent-active: #144ba1;
+
+      /* ===== SPACING ===== */
+      --form-spacing-xs: 4px;
+      --form-spacing-sm: 8px;
+      --form-spacing-md: 12px;
+      --form-spacing-base: 16px;
+      --form-spacing-lg: 20px;
+      --form-spacing-xl: 30px;
+      --form-spacing-xxl: 88px;
+
+      /* Field-specific spacing */
+      --form-field-padding-vertical: 20px;
+      --form-field-padding-horizontal: 30px;
+      --form-field-gap: 16px;
+
+      /* ===== BORDERS & CORNERS ===== */
+      --form-border-width: 1px;
+      --form-border-width-thick: 2px;
+      --form-border-style: solid;
+
+      /* Border radius (rounded corners) */
+      --form-radius-small: 4px;
+      --form-radius-medium: 8px;
+      --form-radius-large: 12px;
+
+      /* Field-specific radius */
+      --form-input-radius: 15px;
+      --form-button-radius: 15px;
+      --form-checkbox-radius: 15px;
+
+      /* ===== INPUT FIELDS (TEXT, EMAIL, TEL, ETC.) ===== */
+      --input-font-family: var(--form-font-family);
+      --input-font-size: var(--form-font-size-base);
+      --input-font-weight: var(--form-font-weight-normal);
+      --input-padding-vertical: 10px;
+      --input-padding-horizontal: 12px;
+      --input-bg: var(--form-bg-secondary);
+      --input-bg-focus: var(--form-bg-primary);
+      --input-border-width: var(--form-border-width);
+      --input-border-style: var(--form-border-style);
+      --input-border-color: var(--form-border-default);
+      --input-border-radius: var(--form-input-radius);
+      --input-text-color: var(--form-text-primary);
+      --input-placeholder-color: var(--form-text-placeholder);
+
+      /* Input focus state */
+      --input-focus-border-color: var(--form-border-focus);
+      --input-focus-border-width: 2px;
+      --input-focus-outline-offset: 0px;
+
+      /* ===== LABELS ===== */
+      --label-font-family: var(--form-font-family);
+      --label-font-size: var(--form-font-size-large);
+      --label-font-weight: var(--form-font-weight-semibold);
+      --label-text-color: var(--form-text-secondary);
+      --label-margin-bottom: 0px;
+
+      /* ===== TEXTAREA ===== */
+      --textarea-font-family: var(--form-font-family);
+      --textarea-font-size: var(--form-font-size-base);
+      --textarea-padding-vertical: var(--input-padding-vertical);
+      --textarea-padding-horizontal: var(--input-padding-horizontal);
+      --textarea-bg: var(--input-bg);
+      --textarea-border-width: var(--input-border-width);
+      --textarea-border-color: var(--input-border-color);
+      --textarea-border-radius: var(--input-border-radius);
+      --textarea-min-height: 100px;
+
+      /* ===== SELECT / DROPDOWN ===== */
+      --select-font-family: var(--form-font-family);
+      --select-font-size: var(--form-font-size-base);
+      --select-padding-vertical: 36px var(--input-padding-vertical);
+      --select-padding-horizontal: 30px var(--input-padding-horizontal);
+      --select-bg: var(--input-bg);
+      --select-border-width: var(--input-border-width);
+      --select-border-color: var(--input-border-color);
+      --select-border-radius: var(--input-border-radius);
+      --select-text-color: var(--form-text-primary);
+
+      /* ===== CHECKBOXES ===== */
+      --checkbox-size: 22px;
+      --checkbox-border-width: var(--form-border-width);
+      --checkbox-border-color: var(--form-text-secondary);
+      --checkbox-border-radius: var(--form-checkbox-radius);
+      --checkbox-accent-color: var(--form-accent-color);
+      --checkbox-label-gap: 8px;
+      --checkbox-label-font-size: var(--form-font-size-base);
+      --checkbox-label-font-weight: var(--form-font-weight-normal);
+
+      /* ===== RADIO BUTTONS ===== */
+      --radio-size: 20px;
+      --radio-border-width: var(--form-border-width);
+      --radio-border-color: var(--form-text-secondary);
+      --radio-accent-color: var(--form-accent-color);
+      --radio-label-gap: 8px;
+      --radio-label-font-size: var(--form-font-size-base);
+      --radio-label-font-weight: var(--form-font-weight-normal);
+
+      /* ===== BUTTON ===== */
+      --button-font-family: var(--form-font-family);
+      --button-font-size: var(--form-font-size-large);
+      --button-font-weight: var(--form-font-weight-bold);
+      --button-text-color: #ffffff;
+      --button-bg-color: #2266e3;
+      --button-bg-hover: var(--form-accent-hover);
+      --button-bg-active: var(--form-accent-active);
+      --button-border-radius: var(--form-button-radius);
+      --button-padding-vertical: 14px;
+      --button-padding-horizontal: 32px;
+      --button-border-width: 0px;
+      --button-border-style: none;
+      --button-border-color: transparent;
+      --button-transition: background-color 0.2s ease;
+
+      /* ===== HEADINGS ===== */
+      --heading-h1-font-size: 32px;
+      --heading-h1-font-weight: var(--form-font-weight-bold);
+      --heading-h1-line-height: var(--form-line-height-tight);
+      --heading-h1-color: var(--form-text-primary);
+
+      --heading-h2-font-size: 24px;
+      --heading-h2-font-weight: var(--form-font-weight-semibold);
+      --heading-h2-line-height: var(--form-line-height-tight);
+      --heading-h2-color: #333333;
+
+      /* ===== LAYOUT ===== */
+      --form-max-width: 600px;
+      --form-layout-bg: var(--form-bg-transparent);
+
+      /* ===== DIVIDER ===== */
+      --divider-border-width: var(--form-border-width-thick);
+      --divider-border-style: var(--form-border-style);
+      --divider-border-color: var(--form-divider-color);
+      --divider-margin-vertical: 20px;
+
+      /* ===== DATETIME INPUT ===== */
+      --datetime-font-family: var(--form-font-family);
+      --datetime-font-size: var(--form-font-size-base);
+      --datetime-padding-vertical: var(--input-padding-vertical);
+      --datetime-padding-horizontal: var(--input-padding-horizontal);
+      --datetime-bg: var(--input-bg);
+      --datetime-border-width: var(--input-border-width);
+      --datetime-border-color: var(--input-border-color);
+      --datetime-border-radius: var(--input-border-radius);
+
+      /* ===== PHONE INPUT ===== */
+      --phone-font-family: var(--form-font-family);
+      --phone-font-size: var(--form-font-size-base);
+      --phone-padding-vertical: var(--input-padding-vertical);
+      --phone-padding-horizontal: var(--input-padding-horizontal);
+      --phone-bg: var(--input-bg);
+      --phone-border-width: var(--input-border-width);
+      --phone-border-color: var(--input-border-color);
+      --phone-border-radius: var(--input-border-radius);
+
+      /* ===== CONSENT BLOCK ===== */
+      --consent-checkbox-size: var(--checkbox-size);
+      --consent-checkbox-margin-top: 2px;
+      --consent-label-font-size: var(--form-font-size-base);
+      --consent-label-font-weight: var(--form-font-weight-normal);
+      --consent-label-line-height: 20px;
+      --consent-gap: 12px;
+    }
+
+    /* ========================================== */
+    /* DEFAULT D365 FORM STYLES                   */
+    /* ========================================== */
+    /* These styles now use CSS variables above */
+    /* Customize by changing the variables in :root */
+
+    /* ========== BASE FORM STYLES ========== */
+    .marketingForm {
+      color: var(--form-text-primary);
+      font-family: var(--form-font-family);
+      font-size: var(--form-font-size-base);
+    }
+
+    /* Layout container - controls max width and centering */
+    [data-layout="true"] {
+      margin: 0 auto;
+      max-width: var(--form-max-width);
+      background-color: var(--form-layout-bg);
+    }
+
+    /* ========== TYPOGRAPHY STYLES ========== */
+    .marketingForm h1 {
+      color: var(--heading-h1-color);
+      margin: 0px;
+      padding: 0px;
+      width: 100%;
+      font-family: var(--form-font-family);
+      line-height: var(--heading-h1-line-height);
+      font-size: var(--heading-h1-font-size);
+      font-weight: var(--heading-h1-font-weight);
+      text-align: center;
+    }
+
+    .marketingForm h2 {
+      color: var(--heading-h2-color);
+      margin: 0px;
+      padding: 0px;
+      width: 100%;
+      line-height: var(--heading-h2-line-height);
+      font-family: var(--form-font-family);
+      font-size: var(--heading-h2-font-size);
+      font-weight: var(--heading-h2-font-weight);
+      text-align: center;
+    }
+
+    .marketingForm p {
+      margin: 0px;
+      padding: 0px;
+      line-height: var(--form-line-height-tight);
+      font-family: var(--form-font-family);
+      font-size: var(--form-font-size-base);
+      text-align: center;
+    }
+
+    /* ========== FORM FIELD STYLES ========== */
+    /* Text input fields */
+    .textFormFieldBlock {
+      padding: var(--form-field-padding-vertical) var(--form-field-padding-horizontal);
+      display: flex;
+      flex-direction: column;
+      gap: var(--form-field-gap);
+    }
+
+    .textFormFieldBlock label {
+      font-family: var(--label-font-family);
+      font-size: var(--label-font-size);
+      font-weight: var(--label-font-weight);
+      color: var(--label-text-color);
+      display: inline-block;
+      margin: var(--label-margin-bottom);
+      padding: 0px;
+      width: 100%;
+    }
+
+    /* Required field indicator (red asterisk) */
+    .textFormFieldBlock label::after {
+      width: 22px;
+      display: inline-block;
+      line-height: 22px;
+      text-align: center;
+      color: var(--form-text-required);
+      content: "*";
+      visibility: hidden;
+    }
+
+    /* Show asterisk for required fields */
+    div[data-required].textFormFieldBlock label::after {
+      visibility: visible;
+    }
+
+    .textFormFieldBlock input,
+    .textFormFieldBlock textarea {
+      font-family: var(--input-font-family);
+      font-size: var(--input-font-size);
+      font-weight: var(--input-font-weight);
+      padding: var(--input-padding-vertical) var(--input-padding-horizontal);
+      background-color: var(--input-bg);
+      border: var(--input-border-width) var(--input-border-style) var(--input-border-color);
+      border-radius: var(--input-border-radius);
+      color: var(--input-text-color);
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Focused input state */
+    .textFormFieldBlock input:focus,
+    .textFormFieldBlock textarea:focus {
+      outline: var(--input-focus-border-width) solid var(--input-focus-border-color);
+      outline-offset: var(--input-focus-outline-offset);
+      background-color: var(--input-bg-focus);
+    }
+
+    /* ========== PHONE FIELD STYLES ========== */
+    /* Phone fields have special styling for international format */
+    .phoneFormFieldBlock {
+      padding: var(--form-field-padding-vertical) var(--form-field-padding-horizontal);
+      display: flex;
+      flex-direction: column;
+      gap: var(--form-field-gap);
+    }
+
+    .phoneFormFieldBlock label {
+      font-family: var(--label-font-family);
+      font-size: var(--label-font-size);
+      font-weight: var(--label-font-weight);
+      color: var(--label-text-color);
+    }
+
+    .phoneFormFieldBlock input {
+      font-family: var(--phone-font-family);
+      font-size: var(--phone-font-size);
+      padding: var(--phone-padding-vertical) var(--phone-padding-horizontal);
+      background-color: var(--phone-bg);
+      border: var(--phone-border-width) var(--input-border-style) var(--phone-border-color);
+      border-radius: var(--phone-border-radius);
+      color: var(--input-text-color);
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .phoneFormFieldBlock input:focus {
+      outline: var(--input-focus-border-width) solid var(--input-focus-border-color);
+      outline-offset: var(--input-focus-outline-offset);
+      background-color: var(--input-bg-focus);
+    }
+
+    /* ========== DROPDOWN/SELECT STYLES ========== */
+    .optionSetFormFieldBlock {
+      padding: var(--form-field-padding-vertical) var(--form-field-padding-horizontal);
+      display: flex;
+      flex-direction: column;
+      gap: var(--form-field-gap);
+    }
+
+    .optionSetFormFieldBlock label {
+      font-family: var(--label-font-family);
+      font-size: var(--label-font-size);
+      font-weight: var(--label-font-weight);
+      color: var(--label-text-color);
+    }
+
+    .optionSetFormFieldBlock select {
+      font-family: var(--select-font-family);
+      font-size: var(--select-font-size);
+      padding: 20px var(--select-padding-vertical) 20px var(--select-padding-horizontal);
+      background-color: var(--select-bg);
+      border: var(--select-border-width) var(--input-border-style) var(--select-border-color);
+      border-radius: var(--select-border-radius);
+      color: var(--select-text-color);
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .optionSetFormFieldBlock select:focus {
+      outline: var(--input-focus-border-width) solid var(--input-focus-border-color);
+      outline-offset: var(--input-focus-outline-offset);
+      background-color: var(--input-bg-focus);
+    }
+
+    /* ========== MULTI-SELECT CHECKBOX STYLES ========== */
+    .multiOptionSetFormFieldBlock {
+      padding: var(--form-field-padding-vertical) var(--form-field-padding-horizontal);
+      display: flex;
+      flex-direction: column;
+      gap: var(--form-field-gap);
+    }
+
+    .multiOptionSetFormFieldBlock label.block-label {
+      font-family: var(--label-font-family);
+      font-size: var(--label-font-size);
+      font-weight: var(--label-font-weight);
+      color: var(--label-text-color);
+      margin-bottom: var(--form-spacing-sm);
+    }
+
+    .multiOptionSetFormFieldBlock fieldset {
+      border: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--form-spacing-md);
+    }
+
+    .multiOptionSetFormFieldBlock fieldset>div {
+      display: flex;
+      align-items: center;
+      gap: var(--checkbox-label-gap);
+    }
+
+    .multiOptionSetFormFieldBlock input[type="checkbox"] {
+      width: var(--checkbox-size);
+      height: var(--checkbox-size);
+      border: var(--checkbox-border-width) var(--form-border-style) var(--checkbox-border-color);
+      border-radius: var(--checkbox-border-radius);
+      accent-color: var(--checkbox-accent-color);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .multiOptionSetFormFieldBlock fieldset>div>label {
+      font-weight: var(--checkbox-label-font-weight);
+      font-size: var(--checkbox-label-font-size);
+      line-height: 20px;
+      cursor: pointer;
+    }
+
+    /* ========== RADIO BUTTON / TWO-OPTION STYLES ========== */
+    .twoOptionFormFieldBlock {
+      padding: var(--form-field-padding-vertical) var(--form-field-padding-horizontal);
+      display: flex;
+      flex-direction: column;
+      gap: var(--form-field-gap);
+    }
+
+    .twoOptionFormFieldBlock label.block-label {
+      font-family: var(--label-font-family);
+      font-size: var(--label-font-size);
+      font-weight: var(--label-font-weight);
+      color: var(--label-text-color);
+    }
+
+    /* Radio button group container */
+    .twoOptionFormFieldBlock .radiobuttons {
+      display: flex;
+      flex-direction: column;
+      gap: var(--form-spacing-md);
+    }
+
+    .twoOptionFormFieldBlock .radiobuttons div {
+      display: flex;
+      align-items: center;
+      gap: var(--radio-label-gap);
+    }
+
+    .twoOptionFormFieldBlock input[type="radio"],
+    .twoOptionFormFieldBlock input[type="checkbox"] {
+      width: var(--radio-size);
+      height: var(--radio-size);
+      border: var(--radio-border-width) var(--form-border-style) var(--radio-border-color);
+      border-radius: var(--checkbox-border-radius);
+      accent-color: var(--radio-accent-color);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    /* Single checkbox variant */
+    .twoOptionFormFieldBlock .twooption_checkbox div {
+      display: flex;
+      align-items: center;
+      gap: var(--checkbox-label-gap);
+    }
+
+    .twoOptionFormFieldBlock .twooption_checkbox label {
+      font-weight: var(--radio-label-font-weight);
+      font-size: var(--radio-label-font-size);
+      cursor: pointer;
+    }
+
+    /* ========== DATETIME FIELD STYLES ========== */
+    .dateTimeFormFieldBlock {
+      padding: var(--form-field-padding-vertical) var(--form-field-padding-horizontal);
+      display: flex;
+      flex-direction: column;
+      gap: var(--form-field-gap);
+    }
+
+    .dateTimeFormFieldBlock label {
+      font-family: var(--label-font-family);
+      font-size: var(--label-font-size);
+      font-weight: var(--label-font-weight);
+      color: var(--label-text-color);
+    }
+
+    .dateTimeFormFieldBlock input {
+      font-family: var(--datetime-font-family);
+      font-size: var(--datetime-font-size);
+      padding: var(--datetime-padding-vertical) var(--datetime-padding-horizontal);
+      background-color: var(--datetime-bg);
+      border: var(--datetime-border-width) var(--input-border-style) var(--datetime-border-color);
+      border-radius: var(--datetime-border-radius);
+      color: var(--input-text-color);
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .dateTimeFormFieldBlock input:focus {
+      outline: var(--input-focus-border-width) solid var(--input-focus-border-color);
+      outline-offset: var(--input-focus-outline-offset);
+      background-color: var(--input-bg-focus);
+    }
+
+    /* ========== CONSENT CHECKBOX STYLES ========== */
+    /* Used for GDPR compliance and topic subscriptions */
+    .consentBlock {
+      padding: var(--form-field-padding-vertical) var(--form-field-padding-horizontal);
+    }
+
+    .consentBlock div {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--consent-gap);
+    }
+
+    .consentBlock input[type="checkbox"] {
+      width: var(--consent-checkbox-size);
+      height: var(--consent-checkbox-size);
+      border: var(--checkbox-border-width) var(--form-border-style) var(--checkbox-border-color);
+      border-radius: var(--checkbox-border-radius);
+      accent-color: var(--checkbox-accent-color);
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: var(--consent-checkbox-margin-top);
+    }
+
+    .consentBlock label {
+      cursor: pointer;
+      flex: 1;
+    }
+
+    .consentBlock label p {
+      font-family: var(--form-font-family);
+      font-size: var(--consent-label-font-size);
+      font-weight: var(--consent-label-font-weight);
+      line-height: var(--consent-label-line-height);
+      margin: 0;
+    }
+
+    /* ========== DIVIDER STYLES ========== */
+    .dividerWrapper {
+      margin: var(--divider-margin-vertical) 0;
+    }
+
+    .dividerWrapper table th {
+      border-top-width: var(--divider-border-width);
+      border-top-style: var(--divider-border-style);
+      border-top-color: var(--divider-border-color);
+    }
+
+    /* ========== SUBMIT BUTTON STYLES ========== */
+    .submitButtonWrapper {
+      padding: var(--form-field-padding-vertical) var(--form-field-padding-horizontal);
+      text-align: center;
+    }
+
+    .submitButton {
+      font-family: var(--button-font-family);
+      font-weight: var(--button-font-weight);
+      font-size: var(--button-font-size);
+      line-height: 22px;
+      background-color: var(--button-bg-color);
+      border: var(--button-border-width) var(--button-border-style) var(--button-border-color);
+      border-radius: var(--button-border-radius);
+      color: var(--button-text-color);
+      padding: var(--button-padding-vertical) var(--button-padding-horizontal);
+      cursor: pointer;
+      width: 100%;
+      transition: var(--button-transition);
+    }
+
+    .submitButton:hover {
+      background-color: var(--button-bg-hover);
+    }
+
+    .submitButton:active {
+      background-color: var(--button-bg-active);
+    }
+
+    /* ========== RESPONSIVE DESIGN ========== */
+    /* Mobile-friendly adjustments for screens smaller than 768px */
+    @media only screen and (max-width: 768px) {
+      [data-layout="true"] {
+        max-width: 100%;
+        padding: 0 16px;
+      }
+
+      .textFormFieldBlock,
+      .phoneFormFieldBlock,
+      .optionSetFormFieldBlock,
+      .multiOptionSetFormFieldBlock,
+      .twoOptionFormFieldBlock,
+      .dateTimeFormFieldBlock,
+      .consentBlock,
+      .submitButtonWrapper {
+        padding: 15px 20px;
+      }
+
+      .marketingForm h1 {
+        font-size: 24px;
+      }
+
+      .marketingForm h2 {
+        font-size: 20px;
+      }
+    }
+
+    /* ========== CUSTOM BRAND STYLES ========== */
+    /* ============================================== */
+    /* HOW TO CUSTOMIZE THIS FORM                     */
+    /* ============================================== */
+    /*
+      All styling is controlled by CSS variables defined in the :root section above.
+      Simply modify the variable values to customize the entire form!
+
+      QUICK START EXAMPLES:
+
+      1. CHANGE COLORS:
+         --form-accent-color: #ff6b6b;          Change link/focus color
+         --button-bg-color: #4ecdc4;            Change button color
+         --input-border-color: #95a5a6;         Change input borders
+
+      2. CHANGE FONTS:
+         --form-font-family: 'Your Font', sans-serif;
+         --heading-h1-font-size: 36px;          Bigger heading
+         --label-font-size: 18px;               Bigger labels
+
+      3. CHANGE CORNER RADIUS:
+         --form-input-radius: 4px;              Less rounded (default: 8px)
+         --form-input-radius: 16px;             More rounded
+         --form-input-radius: 0px;              Square corners
+         --form-button-radius: 20px;            Pill-shaped button
+
+      4. CHANGE INPUT PADDING:
+         --input-padding-vertical: 15px;        More vertical space
+         --input-padding-horizontal: 20px;      More horizontal space
+
+      5. CHANGE SPACING:
+         --form-field-gap: 20px;                More space between label and input
+         --form-field-padding-vertical: 30px;   More space between fields
+
+      6. CHANGE BORDERS:
+         --input-border-width: 2px;             Thicker borders
+         --input-border-color: #333;            Darker borders
+
+      7. CUSTOM BRAND EXAMPLE:
+    */
+
+    /* Uncomment and modify to create your brand style: */
+    /*
+    :root {
+      --form-font-family: 'Your Brand Font', 'Roboto', sans-serif;
+      --form-accent-color: #your-brand-color;
+      --button-bg-color: #your-brand-color;
+      --button-bg-hover: #your-brand-color-darker;
+      --form-input-radius: 12px;
+      --form-button-radius: 12px;
+    }
+    */
+
+    /* Or add custom overrides here: */
+    /*
+    .submitButton {
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .textFormFieldBlock input:hover {
+      border-color: var(--form-accent-color);
+    }
+    */
+  </style>
+</head>
+
+<body>
+  <main>
+    <!-- ============================================== -->
+    <!-- FORM ELEMENT                                   -->
+    <!-- ============================================== -->
+    <!--
+      aria-label: Provides accessible name for screen readers
+      class="marketingForm": Required class that applies D365 default styles
+    -->
+    <form aria-label="Contact Form" class="marketingForm">
+
+      <!-- ============================================== -->
+      <!-- LAYOUT CONTAINER                               -->
+      <!-- ============================================== -->
+      <!--
+        data-layout="true": REQUIRED - Identifies the main form layout container
+        data-layout-version="v2": REQUIRED - Specifies layout version for D365 editor
+
+        This is the outermost container for all form content.
+        Controls overall form width, centering, and structure.
+      -->
+      <div data-layout="true" data-layout-version="v2" style="margin: auto; max-width: 600px;">
+
+        <!-- ============================================== -->
+        <!-- SECTION 1: FORM HEADER                         -->
+        <!-- ============================================== -->
+        <!--
+          data-section="true": Marks a major section within the form
+          Sections help organize content into logical groups
+
+          Classes:
+          - emptyContainer: Section wrapper
+          - columns-equal-class: Ensures equal column heights
+          - wrap-section: Enables responsive column wrapping on mobile
+        -->
+        <div data-section="true" class="emptyContainer columns-equal-class wrap-section"
+          style="padding: 88px 10px 0px; display: flex;">
+
+          <!--
+            COLUMN CONTAINER
+            data-container="true": Identifies this as a column container
+            data-container-width="100": Full width (100% of parent)
+
+            Multiple containers in a section create multi-column layouts
+          -->
+          <div class="columnContainer" data-container="true" data-container-width="100" style="width: 580px;">
+
+            <!--
+              TEXT BLOCK: Form Title
+              data-editorblocktype="Text": Identifies as static text content
+            -->
+            <div data-editorblocktype="Text" style="margin: 10px; text-align: center;">
+              <h1>Contact Us</h1>
+            </div>
+
+            <!-- TEXT BLOCK: Form Description -->
+            <div data-editorblocktype="Text" style="margin: 10px; text-align: center;">
+              <p>We'd love to hear from you. Fill out the form below.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- SECTION 2: STANDARD FORM FIELDS                -->
+        <!-- ============================================== -->
+        <div data-section="true" class="emptyContainer columns-equal-class wrap-section"
+          style="padding: 0px; display: flex;">
+
+          <div class="columnContainer" data-container="true" data-container-width="100" style="width: 600px;">
+
+            <!-- ========================================== -->
+            <!-- FIRST NAME FIELD (REQUIRED)                -->
+            <!-- ========================================== -->
+            <!--
+              data-editorblocktype="TextFormField": Identifies as text input field
+              data-targetproperty="firstname": Maps to D365 'firstname' field
+              data-required="required": Field is mandatory
+              data-prefill="prefill": Allows pre-filling for known contacts
+
+              The 'firstname' logical name is standard in D365 Contact entity
+            -->
+            <div class="textFormFieldBlock"
+                 data-editorblocktype="TextFormField"
+                 data-targetproperty="firstname"
+                 data-required="required"
+                 data-prefill="prefill">
+
+              <label title="First Name" for="firstname-1">First Name</label>
+
+              <input id="firstname-1"
+                     type="text"
+                     name="firstname"
+                     placeholder="Enter your first name"
+                     title="First Name"
+                     maxlength="50"
+                     required
+                     aria-required="true">
+            </div>
+
+            <!-- ========================================== -->
+            <!-- LAST NAME FIELD (REQUIRED)                 -->
+            <!-- ========================================== -->
+            <div class="textFormFieldBlock"
+                 data-editorblocktype="TextFormField"
+                 data-targetproperty="lastname"
+                 data-required="required"
+                 data-prefill="prefill">
+
+              <label title="Last Name" for="lastname-1">Last Name</label>
+
+              <input id="lastname-1"
+                     type="text"
+                     name="lastname"
+                     placeholder="Enter your last name"
+                     title="Last Name"
+                     maxlength="50"
+                     required
+                     aria-required="true">
+            </div>
+
+            <!-- ========================================== -->
+            <!-- EMAIL FIELD (REQUIRED)                     -->
+            <!-- ========================================== -->
+            <!--
+              data-targetproperty="emailaddress1": Standard D365 email field
+              type="email": HTML5 email validation
+              pattern: Additional validation for email format
+            -->
+            <div class="textFormFieldBlock"
+                 data-editorblocktype="TextFormField"
+                 data-targetproperty="emailaddress1"
+                 data-required="required"
+                 data-prefill="prefill">
+
+              <label title="Email" for="emailaddress1-1">Email</label>
+
+              <input id="emailaddress1-1"
+                     type="email"
+                     name="emailaddress1"
+                     placeholder="Enter your email address"
+                     title="Email"
+                     required
+                     aria-required="true">
+            </div>
+
+            <!-- ========================================== -->
+            <!-- PHONE FIELD (OPTIONAL)                     -->
+            <!-- ========================================== -->
+            <!--
+              Uses phoneFormFieldBlock class (different from textFormFieldBlock)
+              type="tel": Optimizes mobile keyboard for phone input
+              pattern: Validates international phone number formats
+
+              Common phone field logical names:
+              - mobilephone: Mobile phone
+              - telephone1: Business phone
+              - telephone2: Home phone
+            -->
+            <div class="phoneFormFieldBlock"
+                 data-editorblocktype="TextFormField"
+                 data-targetproperty="mobilephone"
+                 data-prefill="prefill">
+
+              <label title="Mobile Phone" for="mobilephone-1">Phone Number</label>
+
+              <input id="mobilephone-1"
+                     type="tel"
+                     name="mobilephone"
+                     placeholder="Enter your phone number"
+                     title="Mobile Phone"
+                     pattern="(\+[\(]?[0-9]{1,4}|[\(]?00[0-9]{0,2}|[\(]?011[0-9]?|[\(]?010[0-9]?)[\)]?([ \-\(\)]*[0-9][ \-\(\)]*){3,16}">
+            </div>
+
+            <!-- ========================================== -->
+            <!-- JOB TITLE FIELD (OPTIONAL)                 -->
+            <!-- ========================================== -->
+            <div class="textFormFieldBlock"
+                 data-editorblocktype="TextFormField"
+                 data-targetproperty="jobtitle"
+                 data-prefill="prefill">
+
+              <label title="Job Title" for="jobtitle-1">Job Title</label>
+
+              <input id="jobtitle-1"
+                     type="text"
+                     name="jobtitle"
+                     placeholder="Enter your job title"
+                     title="Job Title"
+                     maxlength="100">
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- SECTION 3: CUSTOM FIELDS EXAMPLES              -->
+        <!-- ============================================== -->
+        <div data-section="true" class="emptyContainer columns-equal-class wrap-section"
+          style="padding: 0px; display: flex;">
+
+          <div class="columnContainer" data-container="true" data-container-width="100" style="width: 600px;">
+
+            <!-- ========================================== -->
+            <!-- DIVIDER - Visual separator                 -->
+            <!-- ========================================== -->
+            <div data-editorblocktype="Divider" style="margin: 20px 10px;">
+              <div class="dividerWrapper" align="center">
+                <table style="padding: 0px; margin: 0px; width: 100%; border-collapse: collapse;"
+                       role="presentation"
+                       cellpadding="0"
+                       cellspacing="0">
+                  <tbody>
+                    <tr style="padding: 0px;">
+                      <th style="margin:0px; padding: 0px; vertical-align:top;
+                                 border-top-width: 2px; border-top-style: solid; border-top-color: #e1dfdd;">
+                        <p style="margin: 0px; padding: 0px; line-height: 0px; width: 100%;">
+                          <span><!--[if gte mso 9]><br/><![endif]-->&nbsp;</span>
+                        </p>
+                      </th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- MULTI-SELECT CHECKBOX GROUP                -->
+            <!-- ========================================== -->
+            <!--
+              data-editorblocktype="MultiOptionSetFormField"
+              Allows selecting multiple options via checkboxes
+
+              Common use cases: Interests, product categories, preferences
+            -->
+            <div class="multiOptionSetFormFieldBlock"
+                 data-editorblocktype="MultiOptionSetFormField"
+                 data-prefill="prefill">
+
+              <label title="Interests" class="block-label" for="interests-1">Areas of Interest</label>
+
+              <fieldset id="interests-1" name="interests" title="Interests">
+                <div>
+                  <input id="interests-1-1"
+                         name="interests"
+                         title="Product Updates"
+                         type="checkbox"
+                         value="1">
+                  <label for="interests-1-1" title="Product Updates">Product Updates</label>
+                </div>
+                <div>
+                  <input id="interests-1-2"
+                         name="interests"
+                         title="Events"
+                         type="checkbox"
+                         value="2">
+                  <label for="interests-1-2" title="Events">Events & Webinars</label>
+                </div>
+                <div>
+                  <input id="interests-1-3"
+                         name="interests"
+                         title="Newsletter"
+                         type="checkbox"
+                         value="3">
+                  <label for="interests-1-3" title="Newsletter">Newsletter</label>
+                </div>
+              </fieldset>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- DROPDOWN / SELECT FIELD                    -->
+            <!-- ========================================== -->
+            <!--
+              data-editorblocktype="OptionSetFormField"
+              Single-select dropdown menu
+
+              The first option is typically a placeholder with empty value
+            -->
+            <div class="optionSetFormFieldBlock"
+                 data-editorblocktype="OptionSetFormField"
+                 data-prefill="prefill">
+
+              <label title="Industry" class="block-label" for="industry-1">Industry</label>
+
+              <select id="industry-1" name="industrycode" title="Industry">
+                <option value="" disabled selected hidden>Select an industry</option>
+                <option value="1">Technology</option>
+                <option value="2">Finance</option>
+                <option value="3">Healthcare</option>
+                <option value="4">Education</option>
+                <option value="5">Manufacturing</option>
+                <option value="6">Retail</option>
+                <option value="7">Other</option>
+              </select>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- TEXTAREA FIELD                             -->
+            <!-- ========================================== -->
+            <!--
+              data-editorblocktype="TextAreaFormField"
+              Multi-line text input for longer responses
+            -->
+            <div class="textFormFieldBlock"
+                 data-editorblocktype="TextAreaFormField"
+                 data-prefill="prefill">
+
+              <label title="Message" for="message-1">How can we help you?</label>
+
+              <textarea id="message-1"
+                        name="description"
+                        placeholder="Tell us about your needs..."
+                        title="Message"
+                        cols="20"
+                        rows="5"
+                        maxlength="2000"></textarea>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- RADIO BUTTON GROUP                         -->
+            <!-- ========================================== -->
+            <!--
+              data-editorblocktype="TwoOptionFormField"
+              Two mutually exclusive options presented as radio buttons
+
+              data-options: JSON array defining the option values and labels
+            -->
+            <div class="twoOptionFormFieldBlock"
+                 data-editorblocktype="TwoOptionFormField"
+                 data-options='[{"value":"1","label":"Yes"},{"value":"0","label":"No"}]'
+                 data-prefill="prefill">
+
+              <label title="Contact Preference" class="block-label" for="contactpreference-1">
+                Prefer to be contacted by phone?
+              </label>
+
+              <div id="contactpreference-1" class="radiobuttons">
+                <div>
+                  <input id="contactpreference-1-yes"
+                         name="contactpreference"
+                         title="Yes"
+                         type="radio"
+                         value="1">
+                  <label for="contactpreference-1-yes" title="Yes">Yes</label>
+                </div>
+                <div>
+                  <input id="contactpreference-1-no"
+                         name="contactpreference"
+                         title="No"
+                         type="radio"
+                         value="0"
+                         checked>
+                  <label for="contactpreference-1-no" title="No">No</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- DATETIME FIELD                             -->
+            <!-- ========================================== -->
+            <!--
+              data-editorblocktype="DateTimeFormField"
+              Date and time picker input
+            -->
+            <div class="dateTimeFormFieldBlock"
+                 data-editorblocktype="DateTimeFormField"
+                 data-prefill="prefill">
+
+              <label title="Preferred Contact Date" for="preferreddate-1">
+                Preferred Contact Date
+              </label>
+
+              <input id="preferreddate-1"
+                     type="datetime-local"
+                     name="preferredcontactdate"
+                     placeholder="Select date and time"
+                     title="Preferred Contact Date">
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- SECTION 4: COMPLIANCE & CONSENT                -->
+        <!-- ============================================== -->
+        <!--
+          This section handles GDPR-compliant consent collection
+
+          TWO TYPES OF CONSENT:
+          1. PURPOSE (Consent Block): Why you're contacting them (legal requirement)
+          2. TOPIC (Topic Block): What you're sending them (preference)
+        -->
+        <div data-section="true" class="emptyContainer columns-equal-class wrap-section"
+          style="padding: 0px; display: flex;">
+
+          <div class="columnContainer" data-container="true" data-container-width="100" style="width: 600px;">
+
+            <!-- Privacy Section Header -->
+            <div data-editorblocktype="Text" style="margin: 20px 30px 12px">
+              <p>
+                <span style="font-size: 16px; font-weight: 600; line-height: 22px;">
+                  Privacy & Communications
+                </span>
+              </p>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- CONSENT BLOCK - Purpose-Based Consent      -->
+            <!-- ========================================== -->
+            <!--
+              data-editorblocktype="Consent"
+              Collects legal consent for a specific communication purpose
+
+              REQUIRED ATTRIBUTES:
+              - data-compliancesettingsid: Your organization's compliance profile ID
+              - data-purposeid: The purpose ID (transactional, commercial, etc.)
+              - data-channels: Comma-separated channels (Email, Text, Phone)
+              - data-optinwhenchecked: "true" = opt-in, "false" = opt-out
+
+              IMPORTANT: Replace the compliancesettingsid with YOUR organization's ID
+              Find it in: D365 > Settings > Data Management > Compliance Settings
+
+              PURPOSE IDs (Standard):
+              - 10000000-0000-0000-0000-000000000001: Transactional
+              - 10000000-0000-0000-0000-000000000003: Commercial
+            -->
+            <div class="consentBlock"
+                 data-editorblocktype="Consent"
+                 data-required="true"
+                 style="padding: 4px 30px;"
+                 data-compliancesettingsid="00000000-0000-0000-0000-000000000000"
+                 data-compliancesettingsname="Default"
+                 data-purposeid="10000000-0000-0000-0000-000000000003"
+                 data-purposename="Commercial"
+                 data-channels="Email"
+                 data-optinwhenchecked="true"
+                 data-prefill="prefill">
+              <div>
+                <input type="checkbox"
+                       id="consent-commercial"
+                       name="msdynmkt_purposeid;channels;optinwhenchecked"
+                       value="10000000-0000-0000-0000-000000000003;Email;true"
+                       required
+                       aria-required="true">
+
+                <label id="consent-commercial-label" for="consent-commercial">
+                  <p>I agree to receive commercial communications from [Your Company Name] via email</p>
+                </label>
+              </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- TOPIC BLOCK - Subscription Preference      -->
+            <!-- ========================================== -->
+            <!--
+              data-editorblocktype="Topic"
+              Collects specific content preferences (optional)
+
+              REQUIRED ATTRIBUTES:
+              - data-topicid: The specific topic ID (create in D365)
+              - data-purposeid: Parent purpose (usually Commercial)
+
+              Topics allow granular subscription management
+              Customers can subscribe to multiple topics
+
+              Create topics in: D365 > Settings > Compliance Profiles > Topics
+            -->
+            <div class="consentBlock"
+                 data-editorblocktype="Topic"
+                 data-required="false"
+                 style="padding: 4px 30px;"
+                 data-compliancesettingsid="00000000-0000-0000-0000-000000000000"
+                 data-compliancesettingsname="Default"
+                 data-purposeid="10000000-0000-0000-0000-000000000003"
+                 data-purposename="Commercial"
+                 data-topicid="b5cfd151-c1ac-f011-bbd3-7c1e522e1eab"
+                 data-topicname="Marketing Updates"
+                 data-channels="Email"
+                 data-optinwhenchecked="true"
+                 data-prefill="prefill">
+              <div>
+                <input type="checkbox"
+                       id="topic-marketing"
+                       name="msdynmkt_topicid;channels;optinwhenchecked"
+                       value="b5cfd151-c1ac-f011-bbd3-7c1e522e1eab;Email;true">
+
+                <label id="topic-marketing-label" for="topic-marketing">
+                  <p>Send me marketing updates and product announcements</p>
+                </label>
+              </div>
+            </div>
+
+            <!-- Privacy Policy Link -->
+            <div data-editorblocktype="Text" style="margin: 10px 30px">
+              <p style="font-size: 12px; color: #605e5c;">
+                View our <a href="https://yourcompany.com/privacy" target="_blank">Privacy Policy</a>
+                to learn how we handle your data.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- SECTION 5: SUBMIT BUTTON                       -->
+        <!-- ============================================== -->
+        <div data-section="true" class="emptyContainer columns-equal-class wrap-section"
+          style="padding: 0px; display: flex;">
+
+          <div class="columnContainer" data-container="true" data-container-width="100" style="width: 600px;">
+
+            <!--
+              data-editorblocktype="SubmitButton": REQUIRED for form submission
+              Must be present for the form to work
+            -->
+            <div data-editorblocktype="SubmitButton" class="submitButtonWrapper">
+              <button class="submitButton" type="submit">
+                <span>Submit</span>
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- SECTION 6: FOOTER (OPTIONAL)                   -->
+        <!-- ============================================== -->
+        <div data-section="true" class="emptyContainer columns-equal-class wrap-section"
+          style="padding: 0px 0px 24px; display: flex;">
+
+          <div class="columnContainer" data-container="true" data-container-width="100" style="width: 580px;">
+
+            <div data-editorblocktype="Text" style="text-align: center; margin: 20px 10px;">
+              <p>
+                <span style="font-size: 10px; line-height: 14px; color: #605e5c;">
+                  © 2025 Your Company. All rights reserved.
+                </span>
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+      <!-- End of Layout Container -->
+
+    </form>
+    <!-- End of Form -->
+
+  </main>
+</body>
+
+</html>
+
+<!--
+  ================================================================
+  NEXT STEPS TO USE THIS FORM IN DYNAMICS 365:
+  ================================================================
+
+  1. UPDATE COMPLIANCE SETTINGS ID:
+     - Find line with: data-compliancesettingsid="00000000-0000-0000-0000-000000000000"
+     - Replace with your organization's compliance profile ID
+     - Location: D365 > Settings > Data Management > Compliance Settings
+
+  2. UPDATE TOPIC IDs (if using topic subscriptions):
+     - Find lines with: data-topicid="..."
+     - Replace with your actual topic IDs
+     - Create topics in: D365 > Settings > Compliance Profiles > Topics
+
+  3. CUSTOMIZE CONTENT:
+     - Update form title, description, field labels
+     - Add/remove fields as needed
+     - Update company name and privacy policy link
+
+  4. UPLOAD TO D365:
+     - Go to: Customer Insights - Journeys > Forms
+     - Create new form or edit existing
+     - Paste this HTML in the HTML editor
+     - Save and publish
+
+  5. DOMAIN AUTHENTICATION:
+     - Ensure your hosting domain is authenticated
+     - Location: Settings > Domain Authentication
+     - Allow 24 hours for DNS propagation
+
+  ================================================================
+  TROUBLESHOOTING:
+  ================================================================
+
+  - Form not submitting? Check that SubmitButton block is present
+  - Fields not mapping? Verify logical names match your D365 entity
+  - Consent not recording? Ensure compliance settings ID is correct
+  - Changes not showing? Clear cache with #d365mkt-nocache parameter
+
+  ================================================================
+  DOCUMENTATION REFERENCES:
+  ================================================================
+
+  - Technical Reference: Documentation/technical-reference.md
+  - Form Attributes: Documentation/form-attributes-reference.md
+  - Styling Guide: Documentation/styling-forms.md
+  - JavaScript API: Documentation/javascript-api.md
+
+  ================================================================
+-->
