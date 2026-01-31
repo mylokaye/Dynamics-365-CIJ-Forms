@@ -45,9 +45,10 @@ div[data-cached-form-url] .onFormSubmittedFeedback .onFormSubmittedFeedbackMessa
 
 div[data-cached-form-url] .onFormSubmittedFeedback .onFormSubmittedFeedbackInternalContainer {
     padding: 30px 0px 30px 1px;
-    background: url(https://assets-gbr.mkt.dynamics.com/7e1cce80-df82-4656-a02f-9ac1442e28e1/digitalassets/images/58b495e1-4967-ee11-9ae7-0022481b5b6a?ts=638325245567991435) no-repeat;
+    background: url(https://assets-gbr.mkt.dynamics.com/06dd126d-65e3-f011-89f6-002248c7f7aa/digitalassets/images/4429a766-8ffe-f011-8407-7ced8d9d3259?ts=639054520350757141) no-repeat;
     margin: auto;
     background-position: center;
+    background-size: 50px 50px;
 }
             @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
@@ -1079,9 +1080,16 @@ div[data-cached-form-url] .onFormSubmittedFeedback .onFormSubmittedFeedbackInter
 </style>
 
 
-<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@26.0.6/build/js/intlTelInput.min.js"></script>
+
   
-    <script>
+    
+
+
+
+
+    </head>
+
+    <body><script src="https://cdn.jsdelivr.net/npm/intl-tel-input@26.0.6/build/js/intlTelInput.min.js"></script><script>
     console.log("[Form Redirect] Script loaded");
     document.addEventListener("d365mkt-afterformsubmit", function(event) {
         console.log("[Form Redirect] Event received; scheduling redirect");
@@ -1090,9 +1098,7 @@ div[data-cached-form-url] .onFormSubmittedFeedback .onFormSubmittedFeedbackInter
             window.location.href = "https://assets-gbr.mkt.dynamics.com/06dd126d-65e3-f011-89f6-002248c7f7aa/digitalassets/standaloneforms/0b5a189f-88fe-f011-8407-7ced8d9d3259#d365mkt-nocache"; // Replace with the URL you want to redirect to
         }, 10000); //time in milliseconds - 10 seconds
     });
-    </script>
-
-<script>
+    </script><script>
             console.log("[Form Validation] Script loaded");
             document.addEventListener("DOMContentLoaded", function () {
                 console.log("[Form Validation] DOMContentLoaded fired");
@@ -1406,10 +1412,147 @@ div[data-cached-form-url] .onFormSubmittedFeedback .onFormSubmittedFeedbackInter
             });
         </script>
 
+        <!-- FreeIPAPI integration: collect requester IP info and attach to form -->
+        <script>
+            console.log("[IP Info] Script loaded");
+            document.addEventListener("DOMContentLoaded", function () {
+                const form = document.querySelector("form.marketingForm");
+                if (!form) {
+                    console.log("[IP Info] No marketing form found; aborting");
+                    return;
+                }
 
-    </head>
+                function setFieldValue(name, value) {
+                    if (!name) return;
+                    let el = form.querySelector('[name="' + name + '"]');
+                    if (!el) {
+                        el = document.createElement("input");
+                        el.type = "hidden";
+                        el.name = name;
+                        form.appendChild(el);
+                    }
+                    el.value = value == null ? "" : String(value);
+                    if (name === "IP") {
+                        console.log("[IP Info] IP field updated", { isTextarea: el.tagName === "TEXTAREA" });
+                    }
+                }
 
-    <body>
+                function joinNonEmpty(arr, sep) {
+                    return (Array.isArray(arr) ? arr : []).filter(function (x) { return x != null && String(x).trim().length > 0; }).join(sep);
+                }
+
+                function formatIpData(data) {
+                    var entries = [
+                        ["IP Address", data.ipAddress],
+                        ["IP Version", data.ipVersion],
+                        ["Country", joinNonEmpty([data.countryName, data.countryCode], " / ")],
+                        ["City", data.cityName],
+                        ["Region", joinNonEmpty([data.regionName, data.regionCode], " / ")],
+                        ["ZIP Code", data.zipCode],
+                        ["Continent", joinNonEmpty([data.continent, data.continentCode], " / ")],
+                        ["Latitude", data.latitude],
+                        ["Longitude", data.longitude],
+                        ["ASN", data.asn],
+                        ["ASN Org", data.asnOrganization],
+                        ["Proxy", data.isProxy != null ? String(data.isProxy) : ""],
+                        ["Time Zones", Array.isArray(data.timeZones) ? data.timeZones.join(", ") : ""],
+                        ["Phone Codes", Array.isArray(data.phoneCodes) ? data.phoneCodes.join(", ") : ""],
+                        ["Languages", Array.isArray(data.languages) ? data.languages.join(", ") : ""],
+                        ["Currencies", Array.isArray(data.currencies) ? data.currencies.join(", ") : ""]
+                    ];
+                    var lines = [];
+                    entries.forEach(function (pair) {
+                        var label = pair[0];
+                        var val = pair[1];
+                        var str = val == null ? "" : String(val);
+                        if (str.trim().length === 0) { return; }
+                        lines.push(label);
+                        lines.push(str);
+                        lines.push("---");
+                    });
+                    if (lines.length && lines[lines.length - 1] === "---") {
+                        lines.pop();
+                    }
+                    return lines.join("\n");
+                }
+
+                const fields = [
+                    "ipinfo_ipAddress",
+                    "ipinfo_ipVersion",
+                    "ipinfo_countryName",
+                    "ipinfo_countryCode",
+                    "ipinfo_cityName",
+                    "ipinfo_regionName",
+                    "ipinfo_regionCode",
+                    "ipinfo_zipCode",
+                    "ipinfo_continent",
+                    "ipinfo_continentCode",
+                    "ipinfo_latitude",
+                    "ipinfo_longitude",
+                    "ipinfo_asn",
+                    "ipinfo_asnOrganization",
+                    "ipinfo_isProxy",
+                    "ipinfo_timeZone",
+                    "ipinfo_phoneCode",
+                    "ipinfo_language",
+                    "ipinfo_currency",
+                    "IP",
+                    "IP_json"
+                ];
+                fields.forEach(function (f) { setFieldValue(f, ""); });
+
+                function getIPv4Address() {
+                    return fetch("https://api4.ipify.org?format=json", { method: "GET" })
+                        .then(function (res) { return res.ok ? res.json() : Promise.reject(res.status); })
+                        .then(function (j) { return (j && typeof j.ip === "string") ? j.ip : null; })
+                        .catch(function () { return null; });
+                }
+
+                getIPv4Address()
+                    .then(function (ip4) {
+                        var endpoint = ip4
+                            ? "https://free.freeipapi.com/api/json/" + encodeURIComponent(ip4)
+                            : "https://free.freeipapi.com/api/json/";
+                        console.log("[IP Info] Fetching:", endpoint, ip4 ? "(forced IPv4)" : "(auto)");
+                        return fetch(endpoint, { method: "GET" });
+                    })
+                    .then(function (res) { return res.ok ? res.json() : Promise.reject(res.status); })
+                    .then(function (data) {
+                        console.log("[IP Info] Received", data);
+                        // Store raw JSON separately and present cleaned output in IP field
+                        try {
+                            setFieldValue("IP_json", JSON.stringify(data));
+                        } catch (e) {
+                            console.log("[IP Info] JSON stringify failed", e);
+                        }
+                        var formatted = formatIpData(data);
+                        setFieldValue("IP", formatted);
+                        setFieldValue("ipinfo_ipAddress", data.ipAddress);
+                        setFieldValue("ipinfo_ipVersion", data.ipVersion);
+                        setFieldValue("ipinfo_countryName", data.countryName);
+                        setFieldValue("ipinfo_countryCode", data.countryCode);
+                        setFieldValue("ipinfo_cityName", data.cityName);
+                        setFieldValue("ipinfo_regionName", data.regionName);
+                        setFieldValue("ipinfo_regionCode", data.regionCode);
+                        setFieldValue("ipinfo_zipCode", data.zipCode);
+                        setFieldValue("ipinfo_continent", data.continent);
+                        setFieldValue("ipinfo_continentCode", data.continentCode);
+                        setFieldValue("ipinfo_latitude", data.latitude);
+                        setFieldValue("ipinfo_longitude", data.longitude);
+                        setFieldValue("ipinfo_asn", data.asn);
+                        setFieldValue("ipinfo_asnOrganization", data.asnOrganization);
+                        setFieldValue("ipinfo_isProxy", data.isProxy);
+                        setFieldValue("ipinfo_timeZone", Array.isArray(data.timeZones) ? data.timeZones[0] : "");
+                        setFieldValue("ipinfo_phoneCode", Array.isArray(data.phoneCodes) ? data.phoneCodes[0] : "");
+                        setFieldValue("ipinfo_language", Array.isArray(data.languages) ? data.languages[0] : "");
+                        setFieldValue("ipinfo_currency", Array.isArray(data.currencies) ? data.currencies[0] : "");
+                    })
+                    .catch(function (err) {
+                        console.log("[IP Info] Fetch failed", err);
+                        // Leave IP field empty if call fails
+                    });
+            });
+        </script>
         
         
         
@@ -1436,12 +1579,18 @@ div[data-cached-form-url] .onFormSubmittedFeedback .onFormSubmittedFeedbackInter
                 </div>
             <div data-section="true" class="emptyContainer columns-equal-class wrap-section" style="padding: 10px; display: flex;"><div class="columnContainer" data-container="true" data-container-width="100" id="containerdc8f6f3b8f5f881760896376439" style="min-width: 5px; padding: 10px; vertical-align: top; word-wrap: break-word; word-break: break-word; word-wrap: break-word; word-break: break-word; font-weight: normal; width: 560px; justify-content: start; display: flex; flex-direction: column;">
                                   <div data-editorblocktype="Text" style="margin: 10px;"><h1>Contact us</h1></div><div data-editorblocktype="Text" style="margin: 10px;"><p>We'd love to hear from you</p></div></div></div><div data-section="true" class="emptyContainer columns-equal-class wrap-section" style="padding: 10px; display: flex;"><div class="columnContainer" data-container="true" data-container-width="100" id="containere3278e638321081760896381404" style="min-width: 5px; padding: 10px; vertical-align: top; word-wrap: break-word; word-break: break-word; word-wrap: break-word; word-break: break-word; font-weight: normal; width: 560px; justify-content: start; display: flex; flex-direction: column;">
-                                  <div class="textFormFieldBlock" data-editorblocktype="TextFormField" data-targetaudience="contact" data-targetproperty="firstname" data-required="required" data-prefill="false"><label title="First Name" for="firstname-1760897778655">First Name</label><input id="firstname-1760897778655" type="text" name="firstname" placeholder="Required" title="First Name" maxlength="50" aria-required="true" autocomplete="given-name" required="required"><div class="field-error-message" aria-live="polite">First Name required</div></div><div class="textFormFieldBlock" data-editorblocktype="TextFormField" data-targetaudience="contact" data-targetproperty="lastname" data-required="required" data-prefill="false"><label title="Last Name" for="lastname-1760897781847">Last Name</label><input id="lastname-1760897781847" type="text" name="lastname" placeholder="Required" title="Last Name" maxlength="50" aria-required="true" autocomplete="family-name" required="required"><div class="field-error-message" aria-live="polite">Last Name required</div></div><div class="textFormFieldBlock" data-editorblocktype="TextFormField" data-targetaudience="contact" data-targetproperty="emailaddress1" data-prefill="false" data-required="required"><label title="Email" for="emailaddress1-1760897790931">Email</label><input id="emailaddress1-1760897790931" type="email" name="emailaddress1" placeholder="Required" title="Email" aria-required="true" autocomplete="email" inputmode="email" required="required"><div class="field-error-message" aria-live="polite">Email required</div></div><div class="phoneFormFieldBlock" data-editorblocktype="PhoneFormField" data-targetaudience="contact" data-targetproperty="address1_telephone1" data-countrycode="+" data-prefill="false"><label title="Phone" for="address1_telephone1-1769852850962">Phone</label><div class="phoneCountryCode"><span class="phoneCountryCodeLabel" hidden="">+</span><input id="address1_telephone1-1769852850962" type="tel" name="address1_telephone1" placeholder="Optional" title="Phone" pattern="(\+[\(]?[0-9]{1,4}|[\(]?00[0-9]{0,2}|[\(]?011[0-9]?|[\(]?010[0-9]?)[\)]?([ \-\(\)]*[0-9][ \-\(\)]*){3,16}"></div></div><div class="textFormFieldBlock" data-editorblocktype="TextAreaFormField" data-targetaudience="contact" data-targetproperty="description" data-prefill="false" data-required="required"><label title="Description" for="description-1760897808212">Message</label><textarea id="description-1760897808212" name="description" placeholder="Required" title="Description" cols="20" rows="5" maxlength="2000" aria-required="true" autocomplete="on" required="required"></textarea><div class="field-error-message" aria-live="polite">Message required</div></div><div data-editorblocktype="Divider" style="margin: 20px 10px;"><div class="dividerWrapper" align="center"><table style="padding: 0px; margin: 0px; width: 100%; border-collapse: collapse;" role="presentation" class="" cellpadding="0" cellspacing="0"><tbody><tr style="padding: 0px;"><th style="margin:0px; padding: 0px; vertical-align:top;border-top-width: 2px; border-top-style: solid; border-top-color: #e1dfdd;"><p style="margin: 0px; padding: 0px; line-height: 0px; width: 100%;"><span><!--[if gte mso 9]><br/><![endif]-->&nbsp;</span></p></th></tr></tbody></table></div></div><div data-editorblocktype="Text" style="margin: 10px;"><h2 style="text-align: left;">Newsletter</h2></div><div data-editorblocktype="Text" style="margin: 10px;"><p style="text-align: left;">We will send you news, webinars, marketing emails.</p></div><div class="consentBlock" data-editorblocktype="Topic" data-required="false" style="padding: 4px 10px;" data-compliancesettingsid="7f4a6355-1811-4cde-bde3-fee8c85f56b1" data-compliancesettingsname="Company" data-purposeid="10000000-0000-0000-0000-000000000003" data-channels="Email" data-purposename="Commercial" data-topicid="16a2e228-63e7-f011-8406-7c1e5279232c" data-topicname="Newsletter" data-optinwhenchecked="true" data-prefill="false">
+                                  <div class="textFormFieldBlock" data-editorblocktype="TextFormField" data-targetaudience="contact" data-targetproperty="firstname" data-required="required" data-prefill="false"><label title="First Name" for="firstname-1760897778655">First Name</label><input id="firstname-1760897778655" type="text" name="firstname" placeholder="Required" title="First Name" maxlength="50" aria-required="true" autocomplete="given-name" required="required"><div class="field-error-message" aria-live="polite">First Name required</div></div><div class="textFormFieldBlock" data-editorblocktype="TextFormField" data-targetaudience="contact" data-targetproperty="lastname" data-required="required" data-prefill="false"><label title="Last Name" for="lastname-1760897781847">Last Name</label><input id="lastname-1760897781847" type="text" name="lastname" placeholder="Required" title="Last Name" maxlength="50" aria-required="true" autocomplete="family-name" required="required"><div class="field-error-message" aria-live="polite">Last Name required</div></div><div class="textFormFieldBlock" data-editorblocktype="TextFormField" data-targetaudience="contact" data-targetproperty="emailaddress1" data-prefill="false" data-required="required"><label title="Email" for="emailaddress1-1760897790931">Email</label><input id="emailaddress1-1760897790931" type="email" name="emailaddress1" placeholder="Required" title="Email" aria-required="true" autocomplete="email" inputmode="email" required="required"><div class="field-error-message" aria-live="polite">Email required</div></div><div class="phoneFormFieldBlock" data-editorblocktype="PhoneFormField" data-targetaudience="contact" data-targetproperty="address1_telephone1" data-countrycode="+" data-prefill="false"><label title="Phone" for="address1_telephone1-1769852850962">Phone</label><div class="phoneCountryCode"><span class="phoneCountryCodeLabel" hidden="">+</span><input id="address1_telephone1-1769852850962" type="tel" name="address1_telephone1" placeholder="Optional" title="Phone" pattern="(\+[\(]?[0-9]{1,4}|[\(]?00[0-9]{0,2}|[\(]?011[0-9]?|[\(]?010[0-9]?)[\)]?([ \-\(\)]*[0-9][ \-\(\)]*){3,16}"></div></div><div class="textFormFieldBlock" data-editorblocktype="TextAreaFormField" data-targetaudience="contact" data-targetproperty="description" data-prefill="false" data-required="required"><label title="Description" for="description-1760897808212">Message</label><textarea id="description-1760897808212" name="description" placeholder="Required" title="Description" cols="20" rows="5" maxlength="2000" aria-required="true" autocomplete="on" required="required"></textarea><div class="field-error-message" aria-live="polite">Message required</div></div><div data-editorblocktype="Divider" style="margin: 20px 10px;"><div class="dividerWrapper" align="center"><table style="padding: 0px; margin: 0px; width: 100%; border-collapse: collapse;" role="presentation" class="" cellpadding="0" cellspacing="0"><tbody><tr style="padding: 0px;"><th style="margin: 0px; padding: 0px; vertical-align: top; border-top: 1px solid rgb(225, 223, 221);"><p style="margin: 0px; padding: 0px; line-height: 0px; width: 100%;"><span><!--[if gte mso 9]><br/><![endif]-->&nbsp;</span></p></th></tr></tbody></table></div></div><div data-editorblocktype="Text" style="margin: 10px;"><h2 style="text-align: left;">Newsletter</h2></div><div data-editorblocktype="Text" style="margin: 10px;"><p style="text-align: left;">We will send you news, webinars, marketing emails.</p></div><div class="consentBlock" data-editorblocktype="Topic" data-required="false" style="padding: 4px 10px;" data-compliancesettingsid="7f4a6355-1811-4cde-bde3-fee8c85f56b1" data-compliancesettingsname="Company" data-purposeid="10000000-0000-0000-0000-000000000003" data-channels="Email" data-purposename="Commercial" data-topicid="16a2e228-63e7-f011-8406-7c1e5279232c" data-topicname="Newsletter" data-optinwhenchecked="true" data-prefill="false">
             <div>
                 <input type="checkbox" id="consentTopicCheckbox-1760896467328" name="msdynmkt_topicid;channels;optinwhenchecked" value="16a2e228-63e7-f011-8406-7c1e5279232c;Email;true">
                 <label id="consentTopicCheckbox-1760896467328-label" for="consentTopicCheckbox-1760896467328"><p>Signup to newsletter</p></label>
             </div>
+            
                 </div><div data-editorblocktype="SubmitButton" class="submitButtonWrapper" align="center" style="margin: 20px 0px;"><button class="submitButton" type="submit">
-        <span style="">Send message</span></button></div><div data-editorblocktype="Text" style="margin: 10px;"><div class="legal">I agree and understand that by completing this form, my personal data will be processed for the purpose of receiving emails under Article 6(1)(a) of the GDPR, as outlined in the ​<a href="https://www.google.com/privacy">Privacy Policy</a>.</div></div></div></div></div>
+        <span style="">Send message</span></button></div><div data-editorblocktype="Text" style="margin: 10px;"><div class="legal">I agree and understand that by completing this form, my personal data will be processed for the purpose of receiving emails under Article 6(1)(a) of the GDPR, as outlined in the ​<a href="https://www.google.com/privacy">Privacy Policy</a>.</div></div>
+    <div class="textFormFieldBlock" data-editorblocktype="TextAreaFormField" data-prefill="false">
+                        <label title="Field label" for="longtext629-1769857173359">IP</label><textarea id="longtext629-1769857173359" name="IP" placeholder="" title="Field label" cols="20" rows="5" maxlength="2000"></textarea>
+                    </div>
+    
+    </div></div></div>
       
         </form></body></html>
