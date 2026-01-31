@@ -1,11 +1,54 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Marketing Form</title>
         <meta name="referrer" content="never">
         <meta type="xrm/designer/setting" name="type" value="marketing-designer-content-editor-document">
         <meta type="xrm/designer/setting" name="layout-editable" value="marketing-designer-layout-editable">
-        <style>
+    <link rel="icon" type="image/x-icon" href="https://meganvwalker.com/wp-content/uploads/2020/03/favicon.ico">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@26.0.6/build/css/intlTelInput.css">
+
+<style>
+
+
+
+   
+  
+   
+
+
+
+div[data-cached-form-url] .onFormSubmittedFeedback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    margin: 0 auto;
+}
+div[data-cached-form-url] .onFormSubmittedFeedbackIcon {
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+    height: 64px;
+    size: 64px;
+}
+
+div[data-cached-form-url] .onFormSubmittedFeedback .onFormSubmittedFeedbackMessage {
+    padding: 10em 1em 0em 1em;
+    color: #000;
+    font-size: 14px;
+    line-height: 20px;
+    font-family: Segoe UI;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div[data-cached-form-url] .onFormSubmittedFeedback .onFormSubmittedFeedbackInternalContainer {
+    padding: 30px 0px 30px 1px;
+    background: url(https://assets-gbr.mkt.dynamics.com/7e1cce80-df82-4656-a02f-9ac1442e28e1/digitalassets/images/58b495e1-4967-ee11-9ae7-0022481b5b6a?ts=638325245567991435) no-repeat;
+    margin: auto;
+    background-position: center;
+}
             @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
             .editor-control-layout html {
@@ -74,42 +117,73 @@
                 text-decoration: none;
                 font-family: "Inter", "Segoe UI", Arial, sans-serif;
                 font-size: 14px;
-                color: #16a34a;
+                color: #03183d;
                 transition: color 0.3s ease;
             }
 
             .marketingForm a:hover,
             div[data-editorblocktype="Captcha"] td:nth-of-type(2) a:hover {
-                color: #15803d;
+                color: #03183d;
+            }
+
+            .legal {
+                font-family: "Inter", "Segoe UI", Arial, sans-serif;
+                font-size: 12px;
+                font-weight: 300;
+                color: #999999;
+                line-height: 1.5;
+                display: block;
+            }
+
+            .marketingForm .legal {
+                text-align: left;
+                margin: 12px 0 0;
+            }
+
+            .legal a {
+                color: #03183d;
+                text-decoration: underline;
+                font-size: 12px;
+                 font-weight: 300;
+                  color: #999999;
+                   line-height: 1.5;
             }
 
             .marketingForm .primaryButtonWrapper,
             .submitButtonWrapper {
                 text-align: center;
                 margin: 20px 0px;
+                display: flex;
+                width: 100%;
+                justify-content: center;
+                align-items: stretch;
             }
 
             .marketingForm .primaryButton,
             .submitButton {
                 font-family: "Inter", "Segoe UI", Arial, sans-serif;
-                font-weight: 600;
+                font-weight: 400;
                 font-size: 16px;
                 line-height: 24px;
-                background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+                background: linear-gradient(135deg, #03183d 0%, #03183d 100%);
                 border: none;
                 border-radius: 8px;
                 color: #ffffff;
                 padding: 12px 32px;
                 cursor: pointer;
-                box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
                 transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                 transform: translateY(0);
+                width: 100%;
+                max-width: 100%;
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                flex: 1 1 auto;
             }
 
             .marketingForm .primaryButton:hover,
             .submitButton:hover {
                 transform: translateY(-2px);
-                box-shadow: 0 8px 20px rgba(22, 163, 74, 0.4);
             }
 
             .marketingForm .primaryButton:active,
@@ -124,9 +198,9 @@
                 font-size: 16px;
                 line-height: 24px;
                 background-color: #ffffff;
-                border: 2px solid #16a34a;
+                border: 2px solid #03183d;
                 border-radius: 8px;
-                color: #16a34a;
+                color: #03183d;
                 padding: 10px 28px;
                 margin: 0px;
                 cursor: pointer;
@@ -149,6 +223,27 @@
                 animation: shake 0.4s ease-in-out;
             }
 
+            .field-error-message {
+                font-family: "Inter", Arial, Verdana, sans-serif;
+                font-size: 13px;
+                color: #dc2626;
+                text-align: left;
+                align-self: flex-start;
+                width: 100%;
+                display: none;
+            }
+
+            .field-error-message.is-visible {
+                display: block;
+            }
+
+            .has-error input,
+            .has-error textarea,
+            .has-error select {
+                border-color: #e60b0b;
+                box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+            }
+
             @keyframes shake {
                 0%, 100% { transform: translateX(0); }
                 25% { transform: translateX(-5px); }
@@ -169,6 +264,14 @@
             @keyframes fadeIn {
                 from { opacity: 0; }
                 to { opacity: 1; }
+            }
+
+            /* Respect motion preferences: disable animations/transitions for users requesting reduced motion. */
+            @media (prefers-reduced-motion: reduce) {
+                * {
+                    animation: none !important;
+                    transition: none !important;
+                }
             }
 
             .zero-state-container span {
@@ -204,7 +307,7 @@
             }
 
             div[data-editorblocktype="SubmitButton"] {
-                padding: 24px 30px;
+                padding: 24px 0px;
             }
             div[data-editorblocktype="Captcha"] {
                 padding: 20px 30px;
@@ -258,19 +361,21 @@
                 text-align: center;
             }
             .textFormFieldBlock,
+            .phoneFormFieldBlock,
             .dateTimeFormFieldBlock,
             .twoOptionFormFieldBlock,
             .optionSetFormFieldBlock,
             .passesBlock,
             .multiOptionSetFormFieldBlock,
             .lookupFormFieldBlock {
-                padding: 20px 30px;
+                padding: 20px 10px;
                 display: flex;
                 flex-direction: column;
                 gap: 16px;
             }
 
             table.multi .textFormFieldBlock,
+            table.multi .phoneFormFieldBlock,
             table.multi .dateTimeFormFieldBlock,
             table.multi .twoOptionFormFieldBlock,
             table.multi .optionSetFormFieldBlock,
@@ -284,6 +389,7 @@
             }
 
             .textFormFieldBlock label,
+            .phoneFormFieldBlock label,
             .dateTimeFormFieldBlock label,
             .lookupFormFieldBlock label,
             .twoOptionFormFieldBlock label.block-label,
@@ -300,12 +406,13 @@
             .passesBlock label {
                 font-family: "Inter", "Segoe UI", Arial, sans-serif;
                 font-size: 15px;
-                font-weight: 600;
+                font-weight: 400;
                 color: #1a202c;
                 letter-spacing: -0.2px;
             }
 
             .textFormFieldBlock label,
+            .phoneFormFieldBlock label,
             .dateTimeFormFieldBlock label,
             .lookupFormFieldBlock label,
             .twoOptionFormFieldBlock label.block-label,
@@ -334,6 +441,7 @@
                 display: inline-block;
             }
             .textFormFieldBlock label::after,
+            .phoneFormFieldBlock label::after,
             .twooption_checkbox label::after,
             .dateTimeFormFieldBlock label::after,
             .lookupFormFieldBlock label::after,
@@ -355,6 +463,7 @@
                 visibility: hidden;
             }
             div[data-required].textFormFieldBlock label::after,
+            div[data-required].phoneFormFieldBlock label::after,
             div[data-required].dateTimeFormFieldBlock label::after,
             div[data-required].lookupFormFieldBlock label::after,
             div[data-required] div.twooption_checkbox label::after,
@@ -362,7 +471,7 @@
             div[data-required="true"].consentBlock label::after,
             div[data-editorblocktype="Sessions"][data-required="true" i] h2::after,
             div[data-editorblocktype="Captcha"] label[id^="wlspispHipInstructionContainer"]::after {
-                visibility: hidden;
+                visibility: visible;
             }
             .eventSessions div.eventSession div input[type="checkbox"]:checked + label::after,
             .eventSessions div.eventSession div input[type="radio"]:checked + label::after {
@@ -370,6 +479,7 @@
             }
             .optionSetFormFieldBlock select,
             .textFormFieldBlock input,
+            .phoneFormFieldBlock input,
             .dateTimeFormFieldBlock input,
             .lookupFormFieldBlock input,
             .marketingForm textarea,
@@ -392,6 +502,7 @@
 
             .optionSetFormFieldBlock select:hover,
             .textFormFieldBlock input:hover,
+            .phoneFormFieldBlock input:hover,
             .dateTimeFormFieldBlock input:hover,
             .lookupFormFieldBlock input:hover,
             .marketingForm textarea:hover,
@@ -403,18 +514,20 @@
 
             .optionSetFormFieldBlock select:focus,
             .textFormFieldBlock input:focus,
+            .phoneFormFieldBlock input:focus,
             .dateTimeFormFieldBlock input:focus,
             .lookupFormFieldBlock input:focus,
             .marketingForm textarea:focus,
             div[data-editorblocktype="Captcha"] input:focus,
             .passesBlock select:focus {
                 outline: none;
-                border-color: #16a34a;
+                border-color: #03183d;
                 background-color: #ffffff;
-                box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+                box-shadow: 0 0 0 3px rgba(3, 24, 61, 0.1);
             }
             .optionSetFormFieldBlock select,
             .textFormFieldBlock input::placeholder,
+            .phoneFormFieldBlock input::placeholder,
             .dateTimeFormFieldBlock input,
             .lookupFormFieldBlock input::placeholder,
             .marketingForm textarea::placeholder,
@@ -890,109 +1003,420 @@
                 display: none;
             }
 
-            .phoneFormFieldBlock {
-                padding: 20px 30px;
-                display: flex;
-                flex-direction: column;
-                gap: 16px;
-            }
-
-            table.multi .phoneFormFieldBlock {
-                padding: 12px 20px;
-            }
-
-            .phoneFormFieldBlock label,
-            .phoneFormFieldBlock label * {
-                font-family: "Segoe UI", Arial, sans-serif;
-                font-size: 16px;
-                font-weight: 600;
-                color: #323130;
-            }
-
-            .phoneFormFieldBlock label {
-                display: inline-block;
-                margin-top: 4px;
-                margin-bottom: 0px;
-                margin-left: 0px;
-                margin-right: 0px;
-                padding: 0px;
-                flex: 1;
+            .phoneFormFieldBlock .iti {
                 width: 100%;
             }
 
-            .phoneFormFieldBlock label > * {
-                display: inline-block;
+            .phoneFormFieldBlock .intl-phone-input {
+                width: 100%;
+                padding: 15px 15px 15px 58px;
+                border: 2px solid #e2e8f0;
+                border-radius: 8px;
+                background-color: #f8fafc;
+                font-size: 15px;
+                color: #2d3748;
+                transition: all 0.3s ease;
             }
 
-            .phoneFormFieldBlock label::after {
-                width: 22px;
-                display: inline-block;
-                line-height: 22px;
-                text-align: center;
-                color: #c33400;
-                content: "*";
-                visibility: hidden;
+            .phoneFormFieldBlock .intl-phone-input:hover {
+                border-color: #cbd5e1;
+                background-color: #f1f5f9;
             }
 
-            div[data-required].phoneFormFieldBlock label::after {
-                visibility: visible;
-            }
-            .phoneFormFieldBlock input::placeholder {
+            .phoneFormFieldBlock .intl-phone-input:focus {
+                border-color: #03183d;
+                background-color: #ffffff;
+                box-shadow: 0 0 0 3px rgba(3, 24, 61, 0.1);
+                outline: none;
             }
 
-            .phoneFormFieldBlock .phoneCountryCode {
-                display: flex;
-                flex: 2 1 20%;
-                align-items: center;
-                flex-direction: row;
-                box-sizing: border-box;
-                border: 1px solid #e1dfdd;
-                border-radius: 2px;
-                justify-content: center;
+            .phoneFormFieldBlock .intl-phone-input::placeholder {
+                color: #94a3b8;
+            }
+
+            .phoneFormFieldBlock .iti__flag-container {
                 background-color: transparent;
-                overflow: hidden;
-                width: 100%;
-                height: 100%;
+                padding: 0;
             }
 
-            .phoneFormFieldBlock .phoneCountryCodeLabel {
-                overflow: hidden;
-                margin: 0;
-                cursor: pointer;
-                padding-left: 5px;
-                padding-right: 5px;
-                opacity: 1;
-                text-align: center;
-                color: #605e5c;
-                background-color: #f3f2f1;
-                align-items: center;
-                align-self: stretch;
-                display: flex;
+            .phoneFormFieldBlock .iti__selected-flag {
+                border-radius: 8px 0 0 8px;
+                padding: 0 14px;
+                background-color: transparent;
             }
 
-            .phoneFormFieldBlock span[hidden] {
-                display: none;
+            .phoneFormFieldBlock .iti:focus-within .iti__selected-flag {
+                background-color: #f1f5f9;
             }
 
-            .phoneFormFieldBlock input {
-                font-family: "Segoe UI", Arial, sans-serif;
-                font-size: 14px;
-                padding: 6px 8px;
-                background-color: #faf9f8;
-                display: block;
-                width: 100%;
-                height: 100%;
-                box-sizing: border-box;
-                font-size: 14px;
-                flex: 2;
-
-                border: none;
+            .phoneFormFieldBlock .iti:focus-within .intl-phone-input {
+                border-color: #03183d;
+                background-color: #ffffff;
+                box-shadow: 0 0 0 3px rgba(3, 24, 61, 0.1);
             }
-        </style>
+
+            .has-error .intl-phone-input {
+                border-color: #e60b0b;
+                box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+                background-color: #fff5f5;
+            }
+
+            .has-error .iti__selected-flag {
+                background-color: #fff5f5;
+            }
+
+            /* Error state overrides placed late to win cascade */
+            .marketingForm .has-error input,
+            .marketingForm .has-error textarea,
+            .marketingForm .has-error select {
+                border-color: #e60b0b !important;
+                box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1) !important;
+                background-color: #fff5f5 !important;
+            }
+            .marketingForm .field-error-message.is-visible {
+                display: block !important;
+            }
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@26.0.6/build/js/intlTelInput.min.js"></script>
+  
+    <script>
+    console.log("[Form Redirect] Script loaded");
+    document.addEventListener("d365mkt-afterformsubmit", function(event) {
+        console.log("[Form Redirect] Event received; scheduling redirect");
+        setTimeout(function() {
+            console.log("[Form Redirect] Navigating to thank-you page");
+            window.location.href = "https://assets-gbr.mkt.dynamics.com/06dd126d-65e3-f011-89f6-002248c7f7aa/digitalassets/standaloneforms/0b5a189f-88fe-f011-8407-7ced8d9d3259#d365mkt-nocache"; // Replace with the URL you want to redirect to
+        }, 10000); //time in milliseconds - 10 seconds
+    });
+    </script>
+
+<script>
+            console.log("[Form Validation] Script loaded");
+            document.addEventListener("DOMContentLoaded", function () {
+                console.log("[Form Validation] DOMContentLoaded fired");
+                const form = document.querySelector("form.marketingForm");
+                if (!form) {
+                    console.log("[Form Validation] No marketing form found; aborting");
+                    return;
+                }
+
+                const requiredBlocks = Array.from(
+                    form.querySelectorAll('[data-required]:not([data-required="false"])')
+                );
+
+                const EMAIL_ERROR_MESSAGE = "Enter a valid email address";
+                const blockedEmailDomains = (form.dataset.blockedEmailDomains || "example.com,test.com")
+                    .split(",")
+                    .map(function (domain) {
+                        return domain.trim().toLowerCase();
+                    })
+                    .filter(function (domain) {
+                        return domain.length > 0;
+                    });
+
+                const PHONE_ERROR_MESSAGE = "Enter a valid phone number";
+                let phoneBlock = null;
+                let phoneInput = null;
+                let phonePlugin = null;
+                let phoneErrorMessageText = PHONE_ERROR_MESSAGE;
+
+                function showError(block, field, customMessage) {
+                    block.classList.add("has-error");
+                    field.setAttribute("aria-invalid", "true");
+                    const message = block.querySelector(".field-error-message");
+                    let usedMessage = customMessage || "";
+                    if (message) {
+                        const defaultMessage = message.dataset.defaultMessage || "";
+                        if (customMessage) {
+                            message.textContent = customMessage;
+                        } else if (defaultMessage) {
+                            message.textContent = defaultMessage;
+                        }
+                        message.classList.add("is-visible");
+                        if (!usedMessage) {
+                            usedMessage = message.textContent || defaultMessage || "";
+                        }
+                    }
+                    console.log("[Form Validation] ShowError", {
+                        fieldName: field.name || "",
+                        fieldId: field.id || "",
+                        message: usedMessage || "(no message)"
+                    });
+                }
+
+                function clearError(block, field) {
+                    block.classList.remove("has-error");
+                    field.removeAttribute("aria-invalid");
+                    const message = block.querySelector(".field-error-message");
+                    if (message) {
+                        const defaultMessage = message.dataset.defaultMessage || "";
+                        if (defaultMessage) {
+                            message.textContent = defaultMessage;
+                        }
+                        message.classList.remove("is-visible");
+                    }
+                    console.log("[Form Validation] ClearError", {
+                        fieldName: field.name || "",
+                        fieldId: field.id || ""
+                    });
+                }
+
+                function isEmailField(field) {
+                    return field.type === "email";
+                }
+
+                function isEmailValid(value) {
+                    const trimmed = value.trim();
+                    if (!trimmed) {
+                        return false;
+                    }
+
+                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailPattern.test(trimmed)) {
+                        return false;
+                    }
+
+                    const domain = trimmed.split("@").pop().toLowerCase();
+                    if (blockedEmailDomains.includes(domain)) {
+                        return false;
+                    }
+
+                    return true;
+                }
+
+                function validateEmailField(block, field) {
+                    if (!isEmailValid(field.value)) {
+                        showError(block, field, EMAIL_ERROR_MESSAGE);
+                        return false;
+                    }
+
+                    clearError(block, field);
+                    return true;
+                }
+
+                function ensurePhoneMessageDefaults(messageElement) {
+                    if (!messageElement) {
+                        return;
+                    }
+
+                    const trimmed = messageElement.textContent.trim();
+                    phoneErrorMessageText = trimmed || PHONE_ERROR_MESSAGE;
+
+                    if (!messageElement.dataset.defaultMessage) {
+                        messageElement.dataset.defaultMessage = phoneErrorMessageText;
+                    }
+                }
+
+                function validatePhoneField(shouldShowError) {
+                    if (!phoneInput) {
+                        return true;
+                    }
+
+                    const value = phoneInput.value.trim();
+                    if (!value) {
+                        clearError(phoneBlock, phoneInput);
+                        return true;
+                    }
+
+                    if (!phonePlugin) {
+                        clearError(phoneBlock, phoneInput);
+                        return true;
+                    }
+
+                    if (phonePlugin.isValidNumber()) {
+                        clearError(phoneBlock, phoneInput);
+                        return true;
+                    }
+
+                    if (shouldShowError) {
+                        showError(phoneBlock, phoneInput, phoneErrorMessageText);
+                    }
+
+                    return false;
+                }
+
+                function handlePhoneInput() {
+                    validatePhoneField(false);
+                }
+
+                function handlePhoneBlur() {
+                    validatePhoneField(true);
+                }
+
+                function handlePhoneCountryChange() {
+                    if (!phoneInput) {
+                        return;
+                    }
+
+                    if (!phoneInput.value.trim()) {
+                        clearError(phoneBlock, phoneInput);
+                        return;
+                    }
+
+                    if (phonePlugin && phonePlugin.isValidNumber()) {
+                        clearError(phoneBlock, phoneInput);
+                    }
+                }
+
+                function initializePhoneField() {
+                    phoneBlock = form.querySelector(".phoneFormFieldBlock");
+                    if (!phoneBlock) {
+                        console.log("[Form Validation] Phone block not present; skipping phone setup");
+                        return;
+                    }
+
+                    phoneInput = phoneBlock.querySelector('input[type="tel"]');
+                    if (!phoneInput) {
+                        console.log("[Form Validation] Phone input not found; skipping phone setup");
+                        return;
+                    }
+
+                    ensurePhoneMessageDefaults(phoneBlock.querySelector(".field-error-message"));
+
+                    if (!window.intlTelInput) {
+                        console.log("[Form Validation] intlTelInput not available; skipping plugin initialization");
+                        return;
+                    }
+
+                    phonePlugin = window.intlTelInput(phoneInput, {
+                        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@26.0.6/build/js/utils.js",
+                        autoPlaceholder: "polite",
+                        nationalMode: false,
+                        preferredCountries: ["gb", "us"],
+                    });
+
+                    phoneInput.addEventListener("input", handlePhoneInput);
+                    phoneInput.addEventListener("blur", handlePhoneBlur);
+                    phoneInput.addEventListener("countrychange", handlePhoneCountryChange);
+                    console.log("[Form Validation] Phone field initialized", {
+                        preferredCountries: ["gb", "us"]
+                    });
+                }
+
+                function validateRequiredBlocks() {
+                    let hasErrors = false;
+
+                    requiredBlocks.forEach(function (block) {
+                        const field = block.querySelector("input, textarea, select");
+                        if (!field) {
+                            return;
+                        }
+
+                        if (!field.value.trim()) {
+                            console.log("[Form Validation] Required missing", {
+                                fieldName: field.name || "",
+                                fieldId: field.id || ""
+                            });
+                            showError(block, field);
+                            hasErrors = true;
+                            return;
+                        }
+
+                        if (isEmailField(field) && !isEmailValid(field.value)) {
+                            console.log("[Form Validation] Email invalid", {
+                                fieldName: field.name || "",
+                                fieldId: field.id || "",
+                                value: field.value
+                            });
+                            showError(block, field, EMAIL_ERROR_MESSAGE);
+                            hasErrors = true;
+                            return;
+                        }
+
+                        clearError(block, field);
+                        console.log("[Form Validation] Field valid", {
+                            fieldName: field.name || "",
+                            fieldId: field.id || ""
+                        });
+                    });
+
+                    return hasErrors;
+                }
+
+                initializePhoneField();
+                console.log("[Form Validation] Core validation setup complete", {
+                    requiredBlockCount: requiredBlocks.length
+                });
+
+                requiredBlocks.forEach(function (block) {
+                    const field = block.querySelector("input, textarea, select");
+                    if (!field) {
+                        return;
+                    }
+
+                    const message = block.querySelector(".field-error-message");
+                    if (message && !message.dataset.defaultMessage) {
+                        message.dataset.defaultMessage = message.textContent.trim();
+                    }
+
+                    field.addEventListener("input", function () {
+                        if (isEmailField(field)) {
+                            if (field.value.trim() && isEmailValid(field.value)) {
+                                clearError(block, field);
+                            }
+                            return;
+                        }
+
+                        if (field.value.trim()) {
+                            clearError(block, field);
+                        }
+                    });
+
+                    field.addEventListener("blur", function () {
+                        if (!field.value.trim()) {
+                            showError(block, field);
+                            return;
+                        }
+
+                        if (isEmailField(field)) {
+                            validateEmailField(block, field);
+                        }
+                    });
+
+                    if (isEmailField(field)) {
+                        field.addEventListener("change", function () {
+                            if (!field.value.trim()) {
+                                showError(block, field);
+                                return;
+                            }
+
+                            validateEmailField(block, field);
+                        });
+                    }
+                });
+
+                form.addEventListener("submit", function (event) {
+                    event.preventDefault();
+
+                    const hasRequiredErrors = validateRequiredBlocks();
+                    const phoneIsValid = validatePhoneField(true);
+
+                    if (!hasRequiredErrors && phoneIsValid) {
+                        console.log("[Form Validation] Validation passed; submitting form");
+                        HTMLFormElement.prototype.submit.call(form);
+                    } else {
+                        console.log("[Form Validation] Validation failed", {
+                            hasRequiredErrors: hasRequiredErrors,
+                            phoneIsValid: phoneIsValid
+                        });
+                    }
+                });
+            });
+        </script>
+
+
     </head>
 
-    <body><form class="marketingForm">
-            <div data-layout="true" data-layout-version="v2" style="max-width: 600px; margin: auto;">
+    <body>
+        
+        
+        
+     
+        
+        <form class="marketingForm" autocomplete="on" novalidate="" data-blocked-email-domains="example.com,test.com,example.co.uk,test.co.uk">
+            <div data-layout="true" data-layout-version="v2" style="max-width: 600px; margin: auto;" data-layout-width="600px">
                 <div class="notification-container">
                     <div class="notification-message notification-message-hide" data-notification-name="eventNotStarted">
                         <div>This event has not started.</div>
@@ -1010,60 +1434,14 @@
                         <div>This event is full, but you can still sign up for the waitlist.</div>
                     </div>
                 </div>
-            <div data-section="true" class="emptyContainer columns-equal-class wrap-section"><table class="outer" align="center" cellpadding="0" cellspacing="0" style="width: 600px; display: block;">
-                  <tbody>
-                      <tr>
-                          <th style="padding: 10px">
-                  <table style="width: 100%;
-                border-collapse: collapse;" class="containerWrapper tbContainer" cellpadding="0" cellspacing="0">
-                      <tbody>
-                      <tr>
-                          <th data-container="true" class="columnContainer" data-container-width="100" style="vertical-align:top; min-width: 5px; width: 580px; height: 0px;" id="containerdc8f6f3b8f5f881760896376439">
-                          <table width="100%" cellpadding="0" cellspacing="0" style="height: 100%;">
-                              <tbody>
-                              <tr>
-                                  <th class="inner" style="min-width: 5px; padding: 10px; vertical-align: top; word-wrap: break-word; word-break: break-word; word-wrap: break-word; word-break: break-word; font-weight: normal;">
-                                  <div data-editorblocktype="Text" style="margin: 10px;"><h1>Contact us</h1></div><div data-editorblocktype="Text" style="margin: 10px;"><p>We'd love to hear from you</p></div></th>
-                              </tr>
-                              </tbody>
-                          </table>
-                          </th>
-                      </tr>
-                      </tbody>
-                  </table>
-                  </th>
-              </tr>
-              </tbody>
-          </table></div><div data-section="true" class="emptyContainer columns-equal-class wrap-section"><table class="outer" align="center" cellpadding="0" cellspacing="0" style="width: 600px; display: block;">
-                  <tbody>
-                      <tr>
-                          <th style="padding: 10px">
-                  <table style="width: 100%;
-                border-collapse: collapse;" class="containerWrapper tbContainer" cellpadding="0" cellspacing="0">
-                      <tbody>
-                      <tr>
-                          <th data-container="true" class="columnContainer" data-container-width="100" style="vertical-align:top; min-width: 5px; width: 580px; height: 0px;" id="containere3278e638321081760896381404">
-                          <table width="100%" cellpadding="0" cellspacing="0" style="height: 100%;">
-                              <tbody>
-                              <tr>
-                                  <th class="inner" style="min-width: 5px; padding: 10px; vertical-align: top; word-wrap: break-word; word-break: break-word; word-wrap: break-word; word-break: break-word; font-weight: normal;">
-                                  <div class="textFormFieldBlock" data-editorblocktype="TextFormField" data-targetaudience="contact" data-targetproperty="firstname" data-prefill="false"><label title="First Name" for="firstname-1760897778655">First Name *</label><input id="firstname-1760897778655" type="text" name="firstname" placeholder="First Name" title="First Name" maxlength="50"></div><div class="textFormFieldBlock" data-editorblocktype="TextFormField" data-targetaudience="contact" data-targetproperty="lastname" data-required="required" data-prefill="false"><label title="Last Name" for="lastname-1760897781847">Last Name *</label><input id="lastname-1760897781847" type="text" name="lastname" placeholder="Last Name" title="Last Name" maxlength="50" required=""></div><div class="textFormFieldBlock" data-editorblocktype="TextFormField" data-targetaudience="contact" data-targetproperty="emailaddress1" data-prefill="false"><label title="Email" for="emailaddress1-1760897790931">Email *</label><input id="emailaddress1-1760897790931" type="email" name="emailaddress1" placeholder="Email" title="Email" pattern="[^@\s\\&quot;&lt;&gt;\)\(\[\]:;,.]+(([.]{1}[^@\s\\&quot;&lt;&gt;\)\(\[\]:;,.]+)+?|)@([^@\s\\&quot;&lt;&gt;\)\(\[\]\+:;,\.\-]+(((\.|\+|-|--)[^@\s\\&quot;&lt;&gt;\)\(\[\]+:;,.\-]+)+?|)([.][^0-9@\s\\&quot;&lt;&gt;\)\(\[\]+:;,.\-]+)+?)"></div><div class="textFormFieldBlock" data-editorblocktype="TextAreaFormField" data-targetaudience="contact" data-targetproperty="description" data-prefill="false"><label title="Description" for="description-1760897808212">Message *</label><textarea id="description-1760897808212" name="description" placeholder="How can we help?" title="Description" cols="20" rows="5" maxlength="2000"></textarea></div><div data-editorblocktype="Divider" style="margin: 20px 10px;"><div class="dividerWrapper" align="center"><table style="padding: 0px; margin: 0px; width: 100%; border-collapse: collapse;" role="presentation" class="" cellpadding="0" cellspacing="0"><tbody><tr style="padding: 0px;"><th style="margin:0px; padding: 0px; vertical-align:top;border-top-width: 2px; border-top-style: solid; border-top-color: #e1dfdd;"><p style="margin: 0px; padding: 0px; line-height: 0px; width: 100%;"><span><!--[if gte mso 9]><br/><![endif]-->&nbsp;</span></p></th></tr></tbody></table></div></div><div data-editorblocktype="Text" style="margin: 10px;"><h2 style="text-align: left;">Newsletter</h2></div><div data-editorblocktype="Text" style="margin: 10px;"><p style="text-align: left;">We will send you news, webinars, marketing emails. You can opt out of receiving these at any time by adjusting your preferences in any email we send to you.</p></div><div class="consentBlock" data-editorblocktype="Topic" data-required="false" style="padding: 4px 10px;" data-compliancesettingsid="7f4a6355-1811-4cde-bde3-fee8c85f56b1" data-compliancesettingsname="Company" data-purposeid="10000000-0000-0000-0000-000000000003" data-channels="Email" data-purposename="Commercial" data-topicid="b5cfd151-c1ac-f011-bbd3-7c1e522e1eab" data-topicname="Marketing" data-optinwhenchecked="true" data-prefill="false">
+            <div data-section="true" class="emptyContainer columns-equal-class wrap-section" style="padding: 10px; display: flex;"><div class="columnContainer" data-container="true" data-container-width="100" id="containerdc8f6f3b8f5f881760896376439" style="min-width: 5px; padding: 10px; vertical-align: top; word-wrap: break-word; word-break: break-word; word-wrap: break-word; word-break: break-word; font-weight: normal; width: 560px; justify-content: start; display: flex; flex-direction: column;">
+                                  <div data-editorblocktype="Text" style="margin: 10px;"><h1>Contact us</h1></div><div data-editorblocktype="Text" style="margin: 10px;"><p>We'd love to hear from you</p></div></div></div><div data-section="true" class="emptyContainer columns-equal-class wrap-section" style="padding: 10px; display: flex;"><div class="columnContainer" data-container="true" data-container-width="100" id="containere3278e638321081760896381404" style="min-width: 5px; padding: 10px; vertical-align: top; word-wrap: break-word; word-break: break-word; word-wrap: break-word; word-break: break-word; font-weight: normal; width: 560px; justify-content: start; display: flex; flex-direction: column;">
+                                  <div class="textFormFieldBlock" data-editorblocktype="TextFormField" data-targetaudience="contact" data-targetproperty="firstname" data-required="required" data-prefill="false"><label title="First Name" for="firstname-1760897778655">First Name</label><input id="firstname-1760897778655" type="text" name="firstname" placeholder="Required" title="First Name" maxlength="50" aria-required="true" autocomplete="given-name" required="required"><div class="field-error-message" aria-live="polite">First Name required</div></div><div class="textFormFieldBlock" data-editorblocktype="TextFormField" data-targetaudience="contact" data-targetproperty="lastname" data-required="required" data-prefill="false"><label title="Last Name" for="lastname-1760897781847">Last Name</label><input id="lastname-1760897781847" type="text" name="lastname" placeholder="Required" title="Last Name" maxlength="50" aria-required="true" autocomplete="family-name" required="required"><div class="field-error-message" aria-live="polite">Last Name required</div></div><div class="textFormFieldBlock" data-editorblocktype="TextFormField" data-targetaudience="contact" data-targetproperty="emailaddress1" data-prefill="false" data-required="required"><label title="Email" for="emailaddress1-1760897790931">Email</label><input id="emailaddress1-1760897790931" type="email" name="emailaddress1" placeholder="Required" title="Email" aria-required="true" autocomplete="email" inputmode="email" required="required"><div class="field-error-message" aria-live="polite">Email required</div></div><div class="phoneFormFieldBlock" data-editorblocktype="PhoneFormField" data-targetaudience="contact" data-targetproperty="address1_telephone1" data-countrycode="+" data-prefill="false"><label title="Phone" for="address1_telephone1-1769852850962">Phone</label><div class="phoneCountryCode"><span class="phoneCountryCodeLabel" hidden="">+</span><input id="address1_telephone1-1769852850962" type="tel" name="address1_telephone1" placeholder="Optional" title="Phone" pattern="(\+[\(]?[0-9]{1,4}|[\(]?00[0-9]{0,2}|[\(]?011[0-9]?|[\(]?010[0-9]?)[\)]?([ \-\(\)]*[0-9][ \-\(\)]*){3,16}"></div></div><div class="textFormFieldBlock" data-editorblocktype="TextAreaFormField" data-targetaudience="contact" data-targetproperty="description" data-prefill="false" data-required="required"><label title="Description" for="description-1760897808212">Message</label><textarea id="description-1760897808212" name="description" placeholder="Required" title="Description" cols="20" rows="5" maxlength="2000" aria-required="true" autocomplete="on" required="required"></textarea><div class="field-error-message" aria-live="polite">Message required</div></div><div data-editorblocktype="Divider" style="margin: 20px 10px;"><div class="dividerWrapper" align="center"><table style="padding: 0px; margin: 0px; width: 100%; border-collapse: collapse;" role="presentation" class="" cellpadding="0" cellspacing="0"><tbody><tr style="padding: 0px;"><th style="margin:0px; padding: 0px; vertical-align:top;border-top-width: 2px; border-top-style: solid; border-top-color: #e1dfdd;"><p style="margin: 0px; padding: 0px; line-height: 0px; width: 100%;"><span><!--[if gte mso 9]><br/><![endif]-->&nbsp;</span></p></th></tr></tbody></table></div></div><div data-editorblocktype="Text" style="margin: 10px;"><h2 style="text-align: left;">Newsletter</h2></div><div data-editorblocktype="Text" style="margin: 10px;"><p style="text-align: left;">We will send you news, webinars, marketing emails.</p></div><div class="consentBlock" data-editorblocktype="Topic" data-required="false" style="padding: 4px 10px;" data-compliancesettingsid="7f4a6355-1811-4cde-bde3-fee8c85f56b1" data-compliancesettingsname="Company" data-purposeid="10000000-0000-0000-0000-000000000003" data-channels="Email" data-purposename="Commercial" data-topicid="16a2e228-63e7-f011-8406-7c1e5279232c" data-topicname="Newsletter" data-optinwhenchecked="true" data-prefill="false">
             <div>
-                <input type="checkbox" id="consentTopicCheckbox-1760896467328" name="msdynmkt_topicid;channels;optinwhenchecked" value="b5cfd151-c1ac-f011-bbd3-7c1e522e1eab;Email;true">
-                <label id="consentTopicCheckbox-1760896467328-label" for="consentTopicCheckbox-1760896467328"><p>Send me the newsletter</p></label>
+                <input type="checkbox" id="consentTopicCheckbox-1760896467328" name="msdynmkt_topicid;channels;optinwhenchecked" value="16a2e228-63e7-f011-8406-7c1e5279232c;Email;true">
+                <label id="consentTopicCheckbox-1760896467328-label" for="consentTopicCheckbox-1760896467328"><p>Signup to newsletter</p></label>
             </div>
-        </div><div data-editorblocktype="SubmitButton" class="submitButtonWrapper" align="center" style="margin: 20px 0px;"><button class="submitButton" type="submit" style="margin-left: auto; margin-right: auto; padding: 12px 32px; height: auto; width: 200px; box-sizing: border-box; display: table-cell; vertical-align: middle;">
-        <span style="">Send message</span></button></div><div data-editorblocktype="Text" style="margin: 10px;"><p><span style="font-size: 13px; font-weight: thin;
- color: rgb(153, 153, 153);">By selecting Send message, I agree to the Terms of Service and acknowledge the Privacy policy.</span></p></div></th>
-                              </tr>
-                              </tbody>
-                          </table>
-                          </th>
-                      </tr>
-                      </tbody>
-                  </table>
-                  </th>
-              </tr>
-              </tbody>
-          </table></div></div>
+                </div><div data-editorblocktype="SubmitButton" class="submitButtonWrapper" align="center" style="margin: 20px 0px;"><button class="submitButton" type="submit">
+        <span style="">Send message</span></button></div><div data-editorblocktype="Text" style="margin: 10px;"><div class="legal">I agree and understand that by completing this form, my personal data will be processed for the purpose of receiving emails under Article 6(1)(a) of the GDPR, as outlined in the ​<a href="https://www.google.com/privacy">Privacy Policy</a>.</div></div></div></div></div>
+      
         </form></body></html>
