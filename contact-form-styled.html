@@ -1078,18 +1078,150 @@ div[data-cached-form-url] .onFormSubmittedFeedback .onFormSubmittedFeedbackInter
                 display: block !important;
             }
 </style>
+  <!-- FreeIPAPI integration: collect requester IP info and attach to form -->
+        <script>
+            console.log("[IP Info] Script loaded");
+            document.addEventListener("DOMContentLoaded", function () {
+                const form = document.querySelector("form.marketingForm");
+                if (!form) {
+                    console.log("[IP Info] No marketing form found; aborting");
+                    return;
+                }
 
+                function setFieldValue(name, value) {
+                    if (!name) return;
+                    let el = form.querySelector('[name="' + name + '"]');
+                    if (!el) {
+                        el = document.createElement("input");
+                        el.type = "hidden";
+                        el.name = name;
+                        form.appendChild(el);
+                    }
+                    el.value = value == null ? "" : String(value);
+                    if (name === "IP") {
+                        console.log("[IP Info] IP field updated", { isTextarea: el.tagName === "TEXTAREA" });
+                    }
+                }
 
+                function joinNonEmpty(arr, sep) {
+                    return (Array.isArray(arr) ? arr : []).filter(function (x) { return x != null && String(x).trim().length > 0; }).join(sep);
+                }
 
-  
-    
+                function formatIpData(data) {
+                    var entries = [
+                        ["IP Address", data.ipAddress],
+                        ["IP Version", data.ipVersion],
+                        ["Country", joinNonEmpty([data.countryName, data.countryCode], " / ")],
+                        ["City", data.cityName],
+                        ["Region", joinNonEmpty([data.regionName, data.regionCode], " / ")],
+                        ["ZIP Code", data.zipCode],
+                        ["Continent", joinNonEmpty([data.continent, data.continentCode], " / ")],
+                        ["Latitude", data.latitude],
+                        ["Longitude", data.longitude],
+                        ["ASN", data.asn],
+                        ["ASN Org", data.asnOrganization],
+                        ["Proxy", data.isProxy != null ? String(data.isProxy) : ""],
+                        ["Time Zones", Array.isArray(data.timeZones) ? data.timeZones.join(", ") : ""],
+                        ["Phone Codes", Array.isArray(data.phoneCodes) ? data.phoneCodes.join(", ") : ""],
+                        ["Languages", Array.isArray(data.languages) ? data.languages.join(", ") : ""],
+                        ["Currencies", Array.isArray(data.currencies) ? data.currencies.join(", ") : ""]
+                    ];
+                    var lines = [];
+                    entries.forEach(function (pair) {
+                        var label = pair[0];
+                        var val = pair[1];
+                        var str = val == null ? "" : String(val);
+                        if (str.trim().length === 0) { return; }
+                        lines.push(label);
+                        lines.push(str);
+                        lines.push("---");
+                    });
+                    if (lines.length && lines[lines.length - 1] === "---") {
+                        lines.pop();
+                    }
+                    return lines.join("\n");
+                }
 
+                const fields = [
+                    "ipinfo_ipAddress",
+                    "ipinfo_ipVersion",
+                    "ipinfo_countryName",
+                    "ipinfo_countryCode",
+                    "ipinfo_cityName",
+                    "ipinfo_regionName",
+                    "ipinfo_regionCode",
+                    "ipinfo_zipCode",
+                    "ipinfo_continent",
+                    "ipinfo_continentCode",
+                    "ipinfo_latitude",
+                    "ipinfo_longitude",
+                    "ipinfo_asn",
+                    "ipinfo_asnOrganization",
+                    "ipinfo_isProxy",
+                    "ipinfo_timeZone",
+                    "ipinfo_phoneCode",
+                    "ipinfo_language",
+                    "ipinfo_currency",
+                    "IP",
+                    "IP_json"
+                ];
+                fields.forEach(function (f) { setFieldValue(f, ""); });
 
+                function getIPv4Address() {
+                    return fetch("https://api4.ipify.org?format=json", { method: "GET" })
+                        .then(function (res) { return res.ok ? res.json() : Promise.reject(res.status); })
+                        .then(function (j) { return (j && typeof j.ip === "string") ? j.ip : null; })
+                        .catch(function () { return null; });
+                }
 
+                getIPv4Address()
+                    .then(function (ip4) {
+                        var endpoint = ip4
+                            ? "https://free.freeipapi.com/api/json/" + encodeURIComponent(ip4)
+                            : "https://free.freeipapi.com/api/json/";
+                        console.log("[IP Info] Fetching:", endpoint, ip4 ? "(forced IPv4)" : "(auto)");
+                        return fetch(endpoint, { method: "GET" });
+                    })
+                    .then(function (res) { return res.ok ? res.json() : Promise.reject(res.status); })
+                    .then(function (data) {
+                        console.log("[IP Info] Received", data);
+                        // Store raw JSON separately and present cleaned output in IP field
+                        try {
+                            setFieldValue("IP_json", JSON.stringify(data));
+                        } catch (e) {
+                            console.log("[IP Info] JSON stringify failed", e);
+                        }
+                        var formatted = formatIpData(data);
+                        setFieldValue("IP", formatted);
+                        setFieldValue("ipinfo_ipAddress", data.ipAddress);
+                        setFieldValue("ipinfo_ipVersion", data.ipVersion);
+                        setFieldValue("ipinfo_countryName", data.countryName);
+                        setFieldValue("ipinfo_countryCode", data.countryCode);
+                        setFieldValue("ipinfo_cityName", data.cityName);
+                        setFieldValue("ipinfo_regionName", data.regionName);
+                        setFieldValue("ipinfo_regionCode", data.regionCode);
+                        setFieldValue("ipinfo_zipCode", data.zipCode);
+                        setFieldValue("ipinfo_continent", data.continent);
+                        setFieldValue("ipinfo_continentCode", data.continentCode);
+                        setFieldValue("ipinfo_latitude", data.latitude);
+                        setFieldValue("ipinfo_longitude", data.longitude);
+                        setFieldValue("ipinfo_asn", data.asn);
+                        setFieldValue("ipinfo_asnOrganization", data.asnOrganization);
+                        setFieldValue("ipinfo_isProxy", data.isProxy);
+                        setFieldValue("ipinfo_timeZone", Array.isArray(data.timeZones) ? data.timeZones[0] : "");
+                        setFieldValue("ipinfo_phoneCode", Array.isArray(data.phoneCodes) ? data.phoneCodes[0] : "");
+                        setFieldValue("ipinfo_language", Array.isArray(data.languages) ? data.languages[0] : "");
+                        setFieldValue("ipinfo_currency", Array.isArray(data.currencies) ? data.currencies[0] : "");
+                    })
+                    .catch(function (err) {
+                        console.log("[IP Info] Fetch failed", err);
+                        // Leave IP field empty if call fails
+                    });
+            });
+        </script>
+        
 
-    </head>
-
-    <body><script src="https://cdn.jsdelivr.net/npm/intl-tel-input@26.0.6/build/js/intlTelInput.min.js"></script><script>
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@26.0.6/build/js/intlTelInput.min.js"></script><script>
     console.log("[Form Redirect] Script loaded");
     document.addEventListener("d365mkt-afterformsubmit", function(event) {
         console.log("[Form Redirect] Event received; scheduling redirect");
@@ -1098,7 +1230,9 @@ div[data-cached-form-url] .onFormSubmittedFeedback .onFormSubmittedFeedbackInter
             window.location.href = "https://assets-gbr.mkt.dynamics.com/06dd126d-65e3-f011-89f6-002248c7f7aa/digitalassets/standaloneforms/0b5a189f-88fe-f011-8407-7ced8d9d3259#d365mkt-nocache"; // Replace with the URL you want to redirect to
         }, 10000); //time in milliseconds - 10 seconds
     });
-    </script><script>
+    </script>
+  
+    <script>
             console.log("[Form Validation] Script loaded");
             document.addEventListener("DOMContentLoaded", function () {
                 console.log("[Form Validation] DOMContentLoaded fired");
@@ -1412,148 +1546,16 @@ div[data-cached-form-url] .onFormSubmittedFeedback .onFormSubmittedFeedbackInter
             });
         </script>
 
-        <!-- FreeIPAPI integration: collect requester IP info and attach to form -->
-        <script>
-            console.log("[IP Info] Script loaded");
-            document.addEventListener("DOMContentLoaded", function () {
-                const form = document.querySelector("form.marketingForm");
-                if (!form) {
-                    console.log("[IP Info] No marketing form found; aborting");
-                    return;
-                }
 
-                function setFieldValue(name, value) {
-                    if (!name) return;
-                    let el = form.querySelector('[name="' + name + '"]');
-                    if (!el) {
-                        el = document.createElement("input");
-                        el.type = "hidden";
-                        el.name = name;
-                        form.appendChild(el);
-                    }
-                    el.value = value == null ? "" : String(value);
-                    if (name === "IP") {
-                        console.log("[IP Info] IP field updated", { isTextarea: el.tagName === "TEXTAREA" });
-                    }
-                }
 
-                function joinNonEmpty(arr, sep) {
-                    return (Array.isArray(arr) ? arr : []).filter(function (x) { return x != null && String(x).trim().length > 0; }).join(sep);
-                }
 
-                function formatIpData(data) {
-                    var entries = [
-                        ["IP Address", data.ipAddress],
-                        ["IP Version", data.ipVersion],
-                        ["Country", joinNonEmpty([data.countryName, data.countryCode], " / ")],
-                        ["City", data.cityName],
-                        ["Region", joinNonEmpty([data.regionName, data.regionCode], " / ")],
-                        ["ZIP Code", data.zipCode],
-                        ["Continent", joinNonEmpty([data.continent, data.continentCode], " / ")],
-                        ["Latitude", data.latitude],
-                        ["Longitude", data.longitude],
-                        ["ASN", data.asn],
-                        ["ASN Org", data.asnOrganization],
-                        ["Proxy", data.isProxy != null ? String(data.isProxy) : ""],
-                        ["Time Zones", Array.isArray(data.timeZones) ? data.timeZones.join(", ") : ""],
-                        ["Phone Codes", Array.isArray(data.phoneCodes) ? data.phoneCodes.join(", ") : ""],
-                        ["Languages", Array.isArray(data.languages) ? data.languages.join(", ") : ""],
-                        ["Currencies", Array.isArray(data.currencies) ? data.currencies.join(", ") : ""]
-                    ];
-                    var lines = [];
-                    entries.forEach(function (pair) {
-                        var label = pair[0];
-                        var val = pair[1];
-                        var str = val == null ? "" : String(val);
-                        if (str.trim().length === 0) { return; }
-                        lines.push(label);
-                        lines.push(str);
-                        lines.push("---");
-                    });
-                    if (lines.length && lines[lines.length - 1] === "---") {
-                        lines.pop();
-                    }
-                    return lines.join("\n");
-                }
+    </head>
 
-                const fields = [
-                    "ipinfo_ipAddress",
-                    "ipinfo_ipVersion",
-                    "ipinfo_countryName",
-                    "ipinfo_countryCode",
-                    "ipinfo_cityName",
-                    "ipinfo_regionName",
-                    "ipinfo_regionCode",
-                    "ipinfo_zipCode",
-                    "ipinfo_continent",
-                    "ipinfo_continentCode",
-                    "ipinfo_latitude",
-                    "ipinfo_longitude",
-                    "ipinfo_asn",
-                    "ipinfo_asnOrganization",
-                    "ipinfo_isProxy",
-                    "ipinfo_timeZone",
-                    "ipinfo_phoneCode",
-                    "ipinfo_language",
-                    "ipinfo_currency",
-                    "IP",
-                    "IP_json"
-                ];
-                fields.forEach(function (f) { setFieldValue(f, ""); });
-
-                function getIPv4Address() {
-                    return fetch("https://api4.ipify.org?format=json", { method: "GET" })
-                        .then(function (res) { return res.ok ? res.json() : Promise.reject(res.status); })
-                        .then(function (j) { return (j && typeof j.ip === "string") ? j.ip : null; })
-                        .catch(function () { return null; });
-                }
-
-                getIPv4Address()
-                    .then(function (ip4) {
-                        var endpoint = ip4
-                            ? "https://free.freeipapi.com/api/json/" + encodeURIComponent(ip4)
-                            : "https://free.freeipapi.com/api/json/";
-                        console.log("[IP Info] Fetching:", endpoint, ip4 ? "(forced IPv4)" : "(auto)");
-                        return fetch(endpoint, { method: "GET" });
-                    })
-                    .then(function (res) { return res.ok ? res.json() : Promise.reject(res.status); })
-                    .then(function (data) {
-                        console.log("[IP Info] Received", data);
-                        // Store raw JSON separately and present cleaned output in IP field
-                        try {
-                            setFieldValue("IP_json", JSON.stringify(data));
-                        } catch (e) {
-                            console.log("[IP Info] JSON stringify failed", e);
-                        }
-                        var formatted = formatIpData(data);
-                        setFieldValue("IP", formatted);
-                        setFieldValue("ipinfo_ipAddress", data.ipAddress);
-                        setFieldValue("ipinfo_ipVersion", data.ipVersion);
-                        setFieldValue("ipinfo_countryName", data.countryName);
-                        setFieldValue("ipinfo_countryCode", data.countryCode);
-                        setFieldValue("ipinfo_cityName", data.cityName);
-                        setFieldValue("ipinfo_regionName", data.regionName);
-                        setFieldValue("ipinfo_regionCode", data.regionCode);
-                        setFieldValue("ipinfo_zipCode", data.zipCode);
-                        setFieldValue("ipinfo_continent", data.continent);
-                        setFieldValue("ipinfo_continentCode", data.continentCode);
-                        setFieldValue("ipinfo_latitude", data.latitude);
-                        setFieldValue("ipinfo_longitude", data.longitude);
-                        setFieldValue("ipinfo_asn", data.asn);
-                        setFieldValue("ipinfo_asnOrganization", data.asnOrganization);
-                        setFieldValue("ipinfo_isProxy", data.isProxy);
-                        setFieldValue("ipinfo_timeZone", Array.isArray(data.timeZones) ? data.timeZones[0] : "");
-                        setFieldValue("ipinfo_phoneCode", Array.isArray(data.phoneCodes) ? data.phoneCodes[0] : "");
-                        setFieldValue("ipinfo_language", Array.isArray(data.languages) ? data.languages[0] : "");
-                        setFieldValue("ipinfo_currency", Array.isArray(data.currencies) ? data.currencies[0] : "");
-                    })
-                    .catch(function (err) {
-                        console.log("[IP Info] Fetch failed", err);
-                        // Leave IP field empty if call fails
-                    });
-            });
-        </script>
+    <body>
         
+    
+
+      
         
         
      
