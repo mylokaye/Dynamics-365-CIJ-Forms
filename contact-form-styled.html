@@ -1078,476 +1078,511 @@ div[data-cached-form-url] .onFormSubmittedFeedback .onFormSubmittedFeedbackInter
                 display: block !important;
             }
 </style>
-  <!-- FreeIPAPI integration: collect requester IP info and attach to form -->
-        <script>
-            console.log("[IP Info] Script loaded");
-            document.addEventListener("DOMContentLoaded", function () {
-                const form = document.querySelector("form.marketingForm");
-                if (!form) {
-                    console.log("[IP Info] No marketing form found; aborting");
-                    return;
-                }
-
-                function setFieldValue(name, value) {
-                    if (!name) return;
-                    let el = form.querySelector('[name="' + name + '"]');
-                    if (!el) {
-                        el = document.createElement("input");
-                        el.type = "hidden";
-                        el.name = name;
-                        form.appendChild(el);
-                    }
-                    el.value = value == null ? "" : String(value);
-                    if (name === "IP") {
-                        console.log("[IP Info] IP field updated", { isTextarea: el.tagName === "TEXTAREA" });
-                    }
-                }
-
-                function joinNonEmpty(arr, sep) {
-                    return (Array.isArray(arr) ? arr : []).filter(function (x) { return x != null && String(x).trim().length > 0; }).join(sep);
-                }
-
-                function formatIpData(data) {
-                    var entries = [
-                        ["IP Address", data.ipAddress],
-                        ["IP Version", data.ipVersion],
-                        ["Country", joinNonEmpty([data.countryName, data.countryCode], " / ")],
-                        ["City", data.cityName],
-                        ["Region", joinNonEmpty([data.regionName, data.regionCode], " / ")],
-                        ["ZIP Code", data.zipCode],
-                        ["Continent", joinNonEmpty([data.continent, data.continentCode], " / ")],
-                        ["Latitude", data.latitude],
-                        ["Longitude", data.longitude],
-                        ["ASN", data.asn],
-                        ["ASN Org", data.asnOrganization],
-                        ["Proxy", data.isProxy != null ? String(data.isProxy) : ""],
-                        ["Time Zones", Array.isArray(data.timeZones) ? data.timeZones.join(", ") : ""],
-                        ["Phone Codes", Array.isArray(data.phoneCodes) ? data.phoneCodes.join(", ") : ""],
-                        ["Languages", Array.isArray(data.languages) ? data.languages.join(", ") : ""],
-                        ["Currencies", Array.isArray(data.currencies) ? data.currencies.join(", ") : ""]
-                    ];
-                    var lines = [];
-                    entries.forEach(function (pair) {
-                        var label = pair[0];
-                        var val = pair[1];
-                        var str = val == null ? "" : String(val);
-                        if (str.trim().length === 0) { return; }
-                        lines.push(label);
-                        lines.push(str);
-                        lines.push("---");
-                    });
-                    if (lines.length && lines[lines.length - 1] === "---") {
-                        lines.pop();
-                    }
-                    return lines.join("\n");
-                }
-
-                const fields = [
-                    "ipinfo_ipAddress",
-                    "ipinfo_ipVersion",
-                    "ipinfo_countryName",
-                    "ipinfo_countryCode",
-                    "ipinfo_cityName",
-                    "ipinfo_regionName",
-                    "ipinfo_regionCode",
-                    "ipinfo_zipCode",
-                    "ipinfo_continent",
-                    "ipinfo_continentCode",
-                    "ipinfo_latitude",
-                    "ipinfo_longitude",
-                    "ipinfo_asn",
-                    "ipinfo_asnOrganization",
-                    "ipinfo_isProxy",
-                    "ipinfo_timeZone",
-                    "ipinfo_phoneCode",
-                    "ipinfo_language",
-                    "ipinfo_currency",
-                    "IP",
-                    "IP_json"
-                ];
-                fields.forEach(function (f) { setFieldValue(f, ""); });
-
-                function getIPv4Address() {
-                    return fetch("https://api4.ipify.org?format=json", { method: "GET" })
-                        .then(function (res) { return res.ok ? res.json() : Promise.reject(res.status); })
-                        .then(function (j) { return (j && typeof j.ip === "string") ? j.ip : null; })
-                        .catch(function () { return null; });
-                }
-
-                getIPv4Address()
-                    .then(function (ip4) {
-                        var endpoint = ip4
-                            ? "https://free.freeipapi.com/api/json/" + encodeURIComponent(ip4)
-                            : "https://free.freeipapi.com/api/json/";
-                        console.log("[IP Info] Fetching:", endpoint, ip4 ? "(forced IPv4)" : "(auto)");
-                        return fetch(endpoint, { method: "GET" });
-                    })
-                    .then(function (res) { return res.ok ? res.json() : Promise.reject(res.status); })
-                    .then(function (data) {
-                        console.log("[IP Info] Received", data);
-                        // Store raw JSON separately and present cleaned output in IP field
-                        try {
-                            setFieldValue("IP_json", JSON.stringify(data));
-                        } catch (e) {
-                            console.log("[IP Info] JSON stringify failed", e);
-                        }
-                        var formatted = formatIpData(data);
-                        setFieldValue("IP", formatted);
-                        setFieldValue("ipinfo_ipAddress", data.ipAddress);
-                        setFieldValue("ipinfo_ipVersion", data.ipVersion);
-                        setFieldValue("ipinfo_countryName", data.countryName);
-                        setFieldValue("ipinfo_countryCode", data.countryCode);
-                        setFieldValue("ipinfo_cityName", data.cityName);
-                        setFieldValue("ipinfo_regionName", data.regionName);
-                        setFieldValue("ipinfo_regionCode", data.regionCode);
-                        setFieldValue("ipinfo_zipCode", data.zipCode);
-                        setFieldValue("ipinfo_continent", data.continent);
-                        setFieldValue("ipinfo_continentCode", data.continentCode);
-                        setFieldValue("ipinfo_latitude", data.latitude);
-                        setFieldValue("ipinfo_longitude", data.longitude);
-                        setFieldValue("ipinfo_asn", data.asn);
-                        setFieldValue("ipinfo_asnOrganization", data.asnOrganization);
-                        setFieldValue("ipinfo_isProxy", data.isProxy);
-                        setFieldValue("ipinfo_timeZone", Array.isArray(data.timeZones) ? data.timeZones[0] : "");
-                        setFieldValue("ipinfo_phoneCode", Array.isArray(data.phoneCodes) ? data.phoneCodes[0] : "");
-                        setFieldValue("ipinfo_language", Array.isArray(data.languages) ? data.languages[0] : "");
-                        setFieldValue("ipinfo_currency", Array.isArray(data.currencies) ? data.currencies[0] : "");
-                    })
-                    .catch(function (err) {
-                        console.log("[IP Info] Fetch failed", err);
-                        // Leave IP field empty if call fails
-                    });
-            });
-        </script>
-        
-
-    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@26.0.6/build/js/intlTelInput.min.js"></script><script>
-    console.log("[Form Redirect] Script loaded");
-    document.addEventListener("d365mkt-afterformsubmit", function(event) {
-        console.log("[Form Redirect] Event received; scheduling redirect");
-        setTimeout(function() {
-            console.log("[Form Redirect] Navigating to thank-you page");
-            window.location.href = "https://assets-gbr.mkt.dynamics.com/06dd126d-65e3-f011-89f6-002248c7f7aa/digitalassets/standaloneforms/0b5a189f-88fe-f011-8407-7ced8d9d3259#d365mkt-nocache"; // Replace with the URL you want to redirect to
-        }, 10000); //time in milliseconds - 10 seconds
-    });
-    </script>
-  
-    <script>
-            console.log("[Form Validation] Script loaded");
-            document.addEventListener("DOMContentLoaded", function () {
-                console.log("[Form Validation] DOMContentLoaded fired");
-                const form = document.querySelector("form.marketingForm");
-                if (!form) {
-                    console.log("[Form Validation] No marketing form found; aborting");
-                    return;
-                }
-
-                const requiredBlocks = Array.from(
-                    form.querySelectorAll('[data-required]:not([data-required="false"])')
-                );
-
-                const EMAIL_ERROR_MESSAGE = "Enter a valid email address";
-                const blockedEmailDomains = (form.dataset.blockedEmailDomains || "example.com,test.com")
-                    .split(",")
-                    .map(function (domain) {
-                        return domain.trim().toLowerCase();
-                    })
-                    .filter(function (domain) {
-                        return domain.length > 0;
-                    });
-
-                const PHONE_ERROR_MESSAGE = "Enter a valid phone number";
-                let phoneBlock = null;
-                let phoneInput = null;
-                let phonePlugin = null;
-                let phoneErrorMessageText = PHONE_ERROR_MESSAGE;
-
-                function showError(block, field, customMessage) {
-                    block.classList.add("has-error");
-                    field.setAttribute("aria-invalid", "true");
-                    const message = block.querySelector(".field-error-message");
-                    let usedMessage = customMessage || "";
-                    if (message) {
-                        const defaultMessage = message.dataset.defaultMessage || "";
-                        if (customMessage) {
-                            message.textContent = customMessage;
-                        } else if (defaultMessage) {
-                            message.textContent = defaultMessage;
-                        }
-                        message.classList.add("is-visible");
-                        if (!usedMessage) {
-                            usedMessage = message.textContent || defaultMessage || "";
-                        }
-                    }
-                    console.log("[Form Validation] ShowError", {
-                        fieldName: field.name || "",
-                        fieldId: field.id || "",
-                        message: usedMessage || "(no message)"
-                    });
-                }
-
-                function clearError(block, field) {
-                    block.classList.remove("has-error");
-                    field.removeAttribute("aria-invalid");
-                    const message = block.querySelector(".field-error-message");
-                    if (message) {
-                        const defaultMessage = message.dataset.defaultMessage || "";
-                        if (defaultMessage) {
-                            message.textContent = defaultMessage;
-                        }
-                        message.classList.remove("is-visible");
-                    }
-                    console.log("[Form Validation] ClearError", {
-                        fieldName: field.name || "",
-                        fieldId: field.id || ""
-                    });
-                }
-
-                function isEmailField(field) {
-                    return field.type === "email";
-                }
-
-                function isEmailValid(value) {
-                    const trimmed = value.trim();
-                    if (!trimmed) {
-                        return false;
-                    }
-
-                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    if (!emailPattern.test(trimmed)) {
-                        return false;
-                    }
-
-                    const domain = trimmed.split("@").pop().toLowerCase();
-                    if (blockedEmailDomains.includes(domain)) {
-                        return false;
-                    }
-
-                    return true;
-                }
-
-                function validateEmailField(block, field) {
-                    if (!isEmailValid(field.value)) {
-                        showError(block, field, EMAIL_ERROR_MESSAGE);
-                        return false;
-                    }
-
-                    clearError(block, field);
-                    return true;
-                }
-
-                function ensurePhoneMessageDefaults(messageElement) {
-                    if (!messageElement) {
-                        return;
-                    }
-
-                    const trimmed = messageElement.textContent.trim();
-                    phoneErrorMessageText = trimmed || PHONE_ERROR_MESSAGE;
-
-                    if (!messageElement.dataset.defaultMessage) {
-                        messageElement.dataset.defaultMessage = phoneErrorMessageText;
-                    }
-                }
-
-                function validatePhoneField(shouldShowError) {
-                    if (!phoneInput) {
-                        return true;
-                    }
-
-                    const value = phoneInput.value.trim();
-                    if (!value) {
-                        clearError(phoneBlock, phoneInput);
-                        return true;
-                    }
-
-                    if (!phonePlugin) {
-                        clearError(phoneBlock, phoneInput);
-                        return true;
-                    }
-
-                    if (phonePlugin.isValidNumber()) {
-                        clearError(phoneBlock, phoneInput);
-                        return true;
-                    }
-
-                    if (shouldShowError) {
-                        showError(phoneBlock, phoneInput, phoneErrorMessageText);
-                    }
-
-                    return false;
-                }
-
-                function handlePhoneInput() {
-                    validatePhoneField(false);
-                }
-
-                function handlePhoneBlur() {
-                    validatePhoneField(true);
-                }
-
-                function handlePhoneCountryChange() {
-                    if (!phoneInput) {
-                        return;
-                    }
-
-                    if (!phoneInput.value.trim()) {
-                        clearError(phoneBlock, phoneInput);
-                        return;
-                    }
-
-                    if (phonePlugin && phonePlugin.isValidNumber()) {
-                        clearError(phoneBlock, phoneInput);
-                    }
-                }
-
-                function initializePhoneField() {
-                    phoneBlock = form.querySelector(".phoneFormFieldBlock");
-                    if (!phoneBlock) {
-                        console.log("[Form Validation] Phone block not present; skipping phone setup");
-                        return;
-                    }
-
-                    phoneInput = phoneBlock.querySelector('input[type="tel"]');
-                    if (!phoneInput) {
-                        console.log("[Form Validation] Phone input not found; skipping phone setup");
-                        return;
-                    }
-
-                    ensurePhoneMessageDefaults(phoneBlock.querySelector(".field-error-message"));
-
-                    if (!window.intlTelInput) {
-                        console.log("[Form Validation] intlTelInput not available; skipping plugin initialization");
-                        return;
-                    }
-
-                    phonePlugin = window.intlTelInput(phoneInput, {
-                        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@26.0.6/build/js/utils.js",
-                        autoPlaceholder: "polite",
-                        nationalMode: false,
-                        preferredCountries: ["gb", "us"],
-                    });
-
-                    phoneInput.addEventListener("input", handlePhoneInput);
-                    phoneInput.addEventListener("blur", handlePhoneBlur);
-                    phoneInput.addEventListener("countrychange", handlePhoneCountryChange);
-                    console.log("[Form Validation] Phone field initialized", {
-                        preferredCountries: ["gb", "us"]
-                    });
-                }
-
-                function validateRequiredBlocks() {
-                    let hasErrors = false;
-
-                    requiredBlocks.forEach(function (block) {
-                        const field = block.querySelector("input, textarea, select");
-                        if (!field) {
-                            return;
-                        }
-
-                        if (!field.value.trim()) {
-                            console.log("[Form Validation] Required missing", {
-                                fieldName: field.name || "",
-                                fieldId: field.id || ""
-                            });
-                            showError(block, field);
-                            hasErrors = true;
-                            return;
-                        }
-
-                        if (isEmailField(field) && !isEmailValid(field.value)) {
-                            console.log("[Form Validation] Email invalid", {
-                                fieldName: field.name || "",
-                                fieldId: field.id || "",
-                                value: field.value
-                            });
-                            showError(block, field, EMAIL_ERROR_MESSAGE);
-                            hasErrors = true;
-                            return;
-                        }
-
-                        clearError(block, field);
-                        console.log("[Form Validation] Field valid", {
-                            fieldName: field.name || "",
-                            fieldId: field.id || ""
-                        });
-                    });
-
-                    return hasErrors;
-                }
-
-                initializePhoneField();
-                console.log("[Form Validation] Core validation setup complete", {
-                    requiredBlockCount: requiredBlocks.length
-                });
-
-                requiredBlocks.forEach(function (block) {
-                    const field = block.querySelector("input, textarea, select");
-                    if (!field) {
-                        return;
-                    }
-
-                    const message = block.querySelector(".field-error-message");
-                    if (message && !message.dataset.defaultMessage) {
-                        message.dataset.defaultMessage = message.textContent.trim();
-                    }
-
-                    field.addEventListener("input", function () {
-                        if (isEmailField(field)) {
-                            if (field.value.trim() && isEmailValid(field.value)) {
-                                clearError(block, field);
-                            }
-                            return;
-                        }
-
-                        if (field.value.trim()) {
-                            clearError(block, field);
-                        }
-                    });
-
-                    field.addEventListener("blur", function () {
-                        if (!field.value.trim()) {
-                            showError(block, field);
-                            return;
-                        }
-
-                        if (isEmailField(field)) {
-                            validateEmailField(block, field);
-                        }
-                    });
-
-                    if (isEmailField(field)) {
-                        field.addEventListener("change", function () {
-                            if (!field.value.trim()) {
-                                showError(block, field);
-                                return;
-                            }
-
-                            validateEmailField(block, field);
-                        });
-                    }
-                });
-
-                form.addEventListener("submit", function (event) {
-                    event.preventDefault();
-
-                    const hasRequiredErrors = validateRequiredBlocks();
-                    const phoneIsValid = validatePhoneField(true);
-
-                    if (!hasRequiredErrors && phoneIsValid) {
-                        console.log("[Form Validation] Validation passed; submitting form");
-                        HTMLFormElement.prototype.submit.call(form);
-                    } else {
-                        console.log("[Form Validation] Validation failed", {
-                            hasRequiredErrors: hasRequiredErrors,
-                            phoneIsValid: phoneIsValid
-                        });
-                    }
-                });
-            });
-    </script>
 
 
+<script>
+'use strict';
+// Global error handler (only set once)
+(function () {
+	if (!window.__formErrorHandlerAdded) {
+		window.__formErrorHandlerAdded = true;
+		window.addEventListener("error", function (event) {
+			console.error("[Form Error] Uncaught error", {
+				message: event && event.message ? event.message : "",
+				filename: event && event.filename ? event.filename : "",
+				lineno: event && event.lineno ? event.lineno : 0,
+				colno: event && event.colno ? event.colno : 0,
+				error: event && event.error ? String(event.error) : ""
+			});
+		});
+		window.addEventListener("unhandledrejection", function (event) {
+			var reason = event && event.reason ? event.reason : "";
+			console.error("[Form Error] Unhandled promise rejection", {
+				reason: reason ? String(reason) : ""
+			});
+		});
+	}
+})();
+console.log("[Form Validation] Script loaded");
+document.addEventListener("DOMContentLoaded", function () {
+	try {
+		console.log("[Form Validation] DOMContentLoaded fired");
+		var form = document.querySelector("form.marketingForm");
+		if (!form) {
+			console.log("[Form Validation] No marketing form found; aborting");
+			return;
+		}
 
+		var requiredBlocks = Array.prototype.slice.call(
+			form.querySelectorAll('[data-required]:not([data-required="false"])')
+		);
+
+		var EMAIL_ERROR_MESSAGE = "Enter a valid email address";
+		var blockedEmailDomainsMap = {};
+		(function () {
+			var raw = (form.dataset.blockedEmailDomains || "example.com,test.com").split(",");
+			for (var i = 0; i < raw.length; i++) {
+				var d = String(raw[i]).trim().toLowerCase();
+				if (d.length > 0) blockedEmailDomainsMap[d] = true;
+			}
+		})();
+		var PHONE_ERROR_MESSAGE = "Enter a valid phone number";
+		var phoneBlock = null;
+		var phoneInput = null;
+		var phonePlugin = null;
+		var phoneErrorMessageText = PHONE_ERROR_MESSAGE;
+		var hasSubmitted = false;
+
+		function showError(block, field, customMessage) {
+			block.classList.add("has-error");
+			field.setAttribute("aria-invalid", "true");
+			var message = block.querySelector(".field-error-message");
+			var usedMessage = customMessage || "";
+			if (message) {
+				var defaultMessage = message.dataset.defaultMessage || "";
+				if (customMessage) {
+					message.textContent = customMessage;
+				} else if (defaultMessage) {
+					message.textContent = defaultMessage;
+				}
+				message.classList.add("is-visible");
+				if (!usedMessage) {
+					usedMessage = message.textContent || defaultMessage || "";
+				}
+			}
+			console.log("[Form Validation] ShowError", {
+				fieldName: field.name || "",
+				fieldId: field.id || "",
+				message: usedMessage || "(no message)"
+			});
+		}
+
+		function clearError(block, field) {
+			block.classList.remove("has-error");
+			field.removeAttribute("aria-invalid");
+			var message = block.querySelector(".field-error-message");
+			var defaultMessage = message ? (message.dataset.defaultMessage || "") : "";
+			if (message) {
+				if (defaultMessage) {
+					message.textContent = defaultMessage;
+				}
+				message.classList.remove("is-visible");
+			}
+			console.log("[Form Validation] ClearError", {
+				fieldName: field.name || "",
+				fieldId: field.id || ""
+			});
+		}
+
+		function isEmailField(field) {
+			return field.type === "email";
+		}
+
+		function isEmailValid(value) {
+			var trimmed = value.trim();
+			if (!trimmed) return false;
+
+			// Simple RFC5322-like check suitable for client-side use
+			var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+			if (!emailPattern.test(trimmed)) return false;
+
+			// Efficient domain extraction and lookup
+			var atIdx = trimmed.lastIndexOf("@");
+			var domain = trimmed.slice(atIdx + 1).toLowerCase();
+
+			if (blockedEmailDomainsMap[domain]) return false;
+			return true;
+		}
+
+		function validateEmailField(block, field) {
+			if (!isEmailValid(field.value)) {
+				showError(block, field, EMAIL_ERROR_MESSAGE);
+				return false;
+			}
+
+			clearError(block, field);
+			return true;
+		}
+
+		function ensurePhoneMessageDefaults(messageElement) {
+			if (!messageElement) return;
+			var trimmed = (messageElement.textContent || "").trim();
+			phoneErrorMessageText = trimmed || PHONE_ERROR_MESSAGE;
+			// ES5-safe default assignment
+			if (!messageElement.dataset.defaultMessage) {
+				messageElement.dataset.defaultMessage = phoneErrorMessageText;
+			}
+		}
+
+		function validatePhoneField(shouldShowError) {
+			if (!phoneInput) {
+				return true;
+			}
+
+			var value = phoneInput.value.trim();
+			if (!value) {
+				clearError(phoneBlock, phoneInput);
+				return true;
+			}
+
+			if (!phonePlugin) {
+				clearError(phoneBlock, phoneInput);
+				return true;
+			}
+
+			if (phonePlugin.isValidNumber()) {
+				clearError(phoneBlock, phoneInput);
+				return true;
+			}
+
+			if (shouldShowError) {
+				showError(phoneBlock, phoneInput, phoneErrorMessageText);
+			}
+
+			return false;
+		}
+
+		function handlePhoneInput() {
+			validatePhoneField(false);
+		}
+
+		function handlePhoneBlur() {
+			validatePhoneField(true);
+		}
+
+		function handlePhoneCountryChange() {
+			if (!phoneInput) {
+				return;
+			}
+
+			if (!phoneInput.value.trim()) {
+				clearError(phoneBlock, phoneInput);
+				return;
+			}
+
+			if (phonePlugin && phonePlugin.isValidNumber()) {
+				clearError(phoneBlock, phoneInput);
+			}
+		}
+
+		// Centralize preferred countries for reuse
+		var PREFERRED_COUNTRIES = ["gb", "us"];
+
+		function initializePhoneField() {
+			phoneBlock = form.querySelector(".phoneFormFieldBlock");
+			if (!phoneBlock) {
+				console.log("[Form Validation] Phone block not present; skipping phone setup");
+				return;
+			}
+
+			phoneInput = phoneBlock.querySelector('input[type="tel"]');
+			if (!phoneInput) {
+				console.log("[Form Validation] Phone input not found; skipping phone setup");
+				return;
+			}
+
+			ensurePhoneMessageDefaults(phoneBlock.querySelector(".field-error-message"));
+
+			if (!window.intlTelInput) {
+				console.log("[Form Validation] intlTelInput not available; skipping plugin initialization");
+				return;
+			}
+
+			phonePlugin = window.intlTelInput(phoneInput, {
+				utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@26.0.6/build/js/utils.js",
+				autoPlaceholder: "polite",
+				nationalMode: false,
+				preferredCountries: PREFERRED_COUNTRIES,
+			});
+
+			phoneInput.addEventListener("input", handlePhoneInput);
+			phoneInput.addEventListener("blur", handlePhoneBlur);
+			phoneInput.addEventListener("countrychange", handlePhoneCountryChange);
+			console.log("[Form Validation] Phone field initialized", {
+				preferredCountries: PREFERRED_COUNTRIES
+			});
+		}
+
+		function validateRequiredBlocks() {
+			var hasErrors = false;
+
+			for (var i = 0; i < requiredBlocks.length; i++) {
+				var block = requiredBlocks[i];
+				var field = block.querySelector("input, textarea, select");
+				if (!field) {
+					continue;
+				}
+
+				if (!field.value.trim()) {
+					console.log("[Form Validation] Required missing", {
+						fieldName: field.name || "",
+						fieldId: field.id || ""
+					});
+					showError(block, field);
+					hasErrors = true;
+					continue;
+				}
+
+				if (isEmailField(field) && !isEmailValid(field.value)) {
+					console.log("[Form Validation] Email invalid", {
+						fieldName: field.name || "",
+						fieldId: field.id || "",
+						value: field.value
+					});
+					showError(block, field, EMAIL_ERROR_MESSAGE);
+					hasErrors = true;
+					continue;
+				}
+
+				clearError(block, field);
+				console.log("[Form Validation] Field valid", {
+					fieldName: field.name || "",
+					fieldId: field.id || ""
+				});
+			}
+
+			return hasErrors;
+		}
+
+		initializePhoneField();
+		console.log("[Form Validation] Core validation setup complete", {
+			requiredBlockCount: requiredBlocks.length
+		});
+
+		for (var j = 0; j < requiredBlocks.length; j++) {
+			(function (block, field) {
+				if (!field) {
+					return;
+				}
+
+				var message = block.querySelector(".field-error-message");
+				if (message && !message.dataset.defaultMessage) {
+					message.dataset.defaultMessage = message.textContent.trim();
+				}
+
+				field.addEventListener("input", function () {
+					if (isEmailField(field)) {
+						if (field.value.trim() && isEmailValid(field.value)) {
+							clearError(block, field);
+						}
+						return;
+					}
+
+					if (field.value.trim()) {
+						clearError(block, field);
+					}
+				});
+
+				field.addEventListener("blur", function () {
+					if (!field.value.trim()) {
+						showError(block, field);
+						return;
+					}
+
+					if (isEmailField(field)) {
+						validateEmailField(block, field);
+					}
+				});
+
+				if (isEmailField(field)) {
+					field.addEventListener("change", function () {
+						if (!field.value.trim()) {
+							showError(block, field);
+							return;
+						}
+
+						validateEmailField(block, field);
+					});
+				}
+			})(requiredBlocks[j], requiredBlocks[j].querySelector("input, textarea, select"));
+		}
+
+		form.addEventListener("submit", function (event) {
+			if (hasSubmitted) {
+				event.preventDefault();
+				return;
+			}
+
+			var hasRequiredErrors = validateRequiredBlocks();
+			var phoneIsValid = validatePhoneField(true);
+
+			if (hasRequiredErrors || !phoneIsValid) {
+				event.preventDefault();
+				console.log("[Form Validation] Validation failed", {
+					hasRequiredErrors: hasRequiredErrors,
+					phoneIsValid: phoneIsValid
+				});
+				return;
+			}
+
+			hasSubmitted = true;
+			console.log("[Form Validation] Validation passed; submitting form");
+			// Let the browser submit naturally (no manual submit call)
+		});
+	} catch (err) {
+		console.error("[Form Validation] Fatal error", {
+			message: err && err.message ? err.message : String(err),
+			stack: err && err.stack ? err.stack : ""
+		});
+	}
+});
+</script>
+
+<!-- FreeIPAPI integration: collect requester IP info and attach to form -->
+<script>
+	console.log("[IP Info] Script loaded");
+	document.addEventListener("DOMContentLoaded", function () {
+		try {
+			var form = document.querySelector("form.marketingForm");
+			if (!form) {
+				console.log("[IP Info] No marketing form found; aborting");
+				return;
+			}
+
+			function setFieldValue(name, value) {
+				if (!name) return;
+				var el = form.querySelector('[name="' + name + '"]');
+				if (!el) {
+					el = document.createElement("input");
+					el.type = "hidden";
+					el.name = name;
+					form.appendChild(el);
+				}
+				el.value = value == null ? "" : String(value);
+				if (name === "IP") {
+					console.log("[IP Info] IP field updated", { isTextarea: el.tagName === "TEXTAREA" });
+				}
+			}
+
+			function joinNonEmpty(arr, sep) {
+				return (Array.isArray(arr) ? arr : []).filter(function (x) { return x != null && String(x).trim().length > 0; }).join(sep);
+			}
+
+			function formatIpData(data) {
+				var entries = [
+					["IP Address", data.ipAddress],
+					["IP Version", data.ipVersion],
+					["Country", joinNonEmpty([data.countryName, data.countryCode], " / ")],
+					["City", data.cityName],
+					["Region", joinNonEmpty([data.regionName, data.regionCode], " / ")],
+					["ZIP Code", data.zipCode],
+					["Continent", joinNonEmpty([data.continent, data.continentCode], " / ")],
+					["Latitude", data.latitude],
+					["Longitude", data.longitude],
+					["ASN", data.asn],
+					["ASN Org", data.asnOrganization],
+					["Proxy", data.isProxy != null ? String(data.isProxy) : ""],
+					["Time Zones", Array.isArray(data.timeZones) ? data.timeZones.join(", ") : ""],
+					["Phone Codes", Array.isArray(data.phoneCodes) ? data.phoneCodes.join(", ") : ""],
+					["Languages", Array.isArray(data.languages) ? data.languages.join(", ") : ""],
+					["Currencies", Array.isArray(data.currencies) ? data.currencies.join(", ") : ""]
+				];
+				var lines = [];
+				entries.forEach(function (pair) {
+					var label = pair[0];
+					var val = pair[1];
+					var str = val == null ? "" : String(val);
+					if (str.trim().length === 0) { return; }
+					lines.push(label);
+					lines.push(str);
+					lines.push("---");
+				});
+				if (lines.length && lines[lines.length - 1] === "---") {
+					lines.pop();
+				}
+				return lines.join("\n");
+			}
+
+			var fields = [
+				"ipinfo_ipAddress",
+				"ipinfo_ipVersion",
+				"ipinfo_countryName",
+				"ipinfo_countryCode",
+				"ipinfo_cityName",
+				"ipinfo_regionName",
+				"ipinfo_regionCode",
+				"ipinfo_zipCode",
+				"ipinfo_continent",
+				"ipinfo_continentCode",
+				"ipinfo_latitude",
+				"ipinfo_longitude",
+				"ipinfo_asn",
+				"ipinfo_asnOrganization",
+				"ipinfo_isProxy",
+				"ipinfo_timeZone",
+				"ipinfo_phoneCode",
+				"ipinfo_language",
+				"ipinfo_currency",
+				"IP",
+				"IP_json"
+			];
+			for (var i = 0; i < fields.length; i++) {
+				setFieldValue(fields[i], "");
+			}
+
+			function getIPv4Address() {
+				return fetch("https://api4.ipify.org?format=json", { method: "GET" })
+					.then(function (res) { return res.ok ? res.json() : Promise.reject(res.status); })
+					.then(function (j) { return (j && typeof j.ip === "string") ? j.ip : null; })
+					.catch(function () { return null; });
+			}
+
+			getIPv4Address()
+				.then(function (ip4) {
+					var endpoint = ip4
+						? "https://free.freeipapi.com/api/json/" + encodeURIComponent(ip4)
+						: "https://free.freeipapi.com/api/json/";
+					console.log("[IP Info] Fetching:", endpoint, ip4 ? "(forced IPv4)" : "(auto)");
+					return fetch(endpoint, { method: "GET" });
+				})
+				.then(function (res) { return res.ok ? res.json() : Promise.reject(res.status); })
+				.then(function (data) {
+					console.log("[IP Info] Received", data);
+					// Store raw JSON separately and present cleaned output in IP field
+					try {
+						setFieldValue("IP_json", JSON.stringify(data));
+					} catch (e) {
+						console.log("[IP Info] JSON stringify failed", e);
+					}
+					var formatted = formatIpData(data);
+					setFieldValue("IP", formatted);
+					setFieldValue("ipinfo_ipAddress", data.ipAddress);
+					setFieldValue("ipinfo_ipVersion", data.ipVersion);
+					setFieldValue("ipinfo_countryName", data.countryName);
+					setFieldValue("ipinfo_countryCode", data.countryCode);
+					setFieldValue("ipinfo_cityName", data.cityName);
+					setFieldValue("ipinfo_regionName", data.regionName);
+					setFieldValue("ipinfo_regionCode", data.regionCode);
+					setFieldValue("ipinfo_zipCode", data.zipCode);
+					setFieldValue("ipinfo_continent", data.continent);
+					setFieldValue("ipinfo_continentCode", data.continentCode);
+					setFieldValue("ipinfo_latitude", data.latitude);
+					setFieldValue("ipinfo_longitude", data.longitude);
+					setFieldValue("ipinfo_asn", data.asn);
+					setFieldValue("ipinfo_asnOrganization", data.asnOrganization);
+					setFieldValue("ipinfo_isProxy", data.isProxy);
+					setFieldValue("ipinfo_timeZone", Array.isArray(data.timeZones) ? data.timeZones[0] : "");
+					setFieldValue("ipinfo_phoneCode", Array.isArray(data.phoneCodes) ? data.phoneCodes[0] : "");
+					setFieldValue("ipinfo_language", Array.isArray(data.languages) ? data.languages[0] : "");
+					setFieldValue("ipinfo_currency", Array.isArray(data.currencies) ? data.currencies[0] : "");
+				})
+				.catch(function (err) {
+					console.error("[IP Info] Fetch failed", err);
+				});
+		} catch (err) {
+			console.error("[IP Info] Fatal error", {
+				message: err && err.message ? err.message : String(err),
+				stack: err && err.stack ? err.stack : ""
+			});
+		}
+	});
+</script>
+
+<!-- Remove duplicate validation script block below to avoid const/let + undefined requiredBlocks -->
+
+<!-- (delete the entire duplicate <script> starting with console.log("[Form Validation] Script loaded"); near the end) -->
+
+<!-- ...existing code... -->
 
     </head>
 
