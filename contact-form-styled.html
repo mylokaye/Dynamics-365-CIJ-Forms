@@ -7,6 +7,8 @@
         <meta type="xrm/designer/setting" name="layout-editable" value="marketing-designer-layout-editable">
     <link rel="icon" type="image/x-icon" href="https://meganvwalker.com/wp-content/uploads/2020/03/favicon.ico">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@26.0.6/build/css/intlTelInput.css">
+<!-- Load plugin JS non-blocking so window.intlTelInput is available -->
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@26.0.6/build/js/intlTelInput.min.js" defer></script>
 
 <style>
 
@@ -1117,15 +1119,33 @@ document.addEventListener("DOMContentLoaded", function () {
 			form.querySelectorAll('[data-required]:not([data-required="false"])')
 		);
 
-		var EMAIL_ERROR_MESSAGE = "Enter a valid email address";
-		var blockedEmailDomainsMap = {};
+		// Use a list for blocked domains, enabling suffix match (blocks subdomains too)
+		/** @type {string[]} */
+		var blockedEmailDomainsList = [];
 		(function () {
 			var raw = (form.dataset.blockedEmailDomains || "example.com,test.com").split(",");
 			for (var i = 0; i < raw.length; i++) {
 				var d = String(raw[i]).trim().toLowerCase();
-				if (d.length > 0) blockedEmailDomainsMap[d] = true;
+				if (d.length > 0) blockedEmailDomainsList.push(d);
 			}
 		})();
+
+		/**
+		 * Returns true if email domain is in the blocked list.
+		 * Matches exact domain and subdomains (e.g., foo.example.com).
+		 * @param {string} domain
+		 */
+		function isBlockedDomain(domain) {
+			for (var i = 0; i < blockedEmailDomainsList.length; i++) {
+				var d = blockedEmailDomainsList[i];
+				if (domain === d || domain.slice(-("." + d).length) === ("." + d)) {
+					return true;
+				}
+			}
+			return false;
+		}
+
+		var EMAIL_ERROR_MESSAGE = "Enter a valid email address";
 		var PHONE_ERROR_MESSAGE = "Enter a valid phone number";
 		var phoneBlock = null;
 		var phoneInput = null;
@@ -1190,7 +1210,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			var atIdx = trimmed.lastIndexOf("@");
 			var domain = trimmed.slice(atIdx + 1).toLowerCase();
 
-			if (blockedEmailDomainsMap[domain]) return false;
+			if (isBlockedDomain(domain)) return false;
 			return true;
 		}
 
@@ -1397,7 +1417,16 @@ document.addEventListener("DOMContentLoaded", function () {
 			})(requiredBlocks[j], requiredBlocks[j].querySelector("input, textarea, select"));
 		}
 
+		// Cache submit button for disabling during validation
+		var submitButton = form.querySelector(".submitButton");
+
 		form.addEventListener("submit", function (event) {
+			// Disable button to prevent double-click submissions
+			if (submitButton) {
+				submitButton.disabled = true;
+				submitButton.setAttribute("aria-disabled", "true");
+			}
+
 			if (hasSubmitted) {
 				event.preventDefault();
 				return;
@@ -1408,6 +1437,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 			if (hasRequiredErrors || !phoneIsValid) {
 				event.preventDefault();
+				// Re-enable on validation failure
+				if (submitButton) {
+					submitButton.disabled = false;
+					submitButton.removeAttribute("aria-disabled");
+				}
 				console.log("[Form Validation] Validation failed", {
 					hasRequiredErrors: hasRequiredErrors,
 					phoneIsValid: phoneIsValid
@@ -1428,8 +1462,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
-<!-- FreeIPAPI integration: collect requester IP info and attach to form -->
 <script>
+	'use strict';
 	console.log("[IP Info] Script loaded");
 	document.addEventListener("DOMContentLoaded", function () {
 		try {
@@ -1520,20 +1554,43 @@ document.addEventListener("DOMContentLoaded", function () {
 				setFieldValue(fields[i], "");
 			}
 
-			function getIPv4Address() {
-				return fetch("https://api4.ipify.org?format=json", { method: "GET" })
-					.then(function (res) { return res.ok ? res.json() : Promise.reject(res.status); })
-					.then(function (j) { return (j && typeof j.ip === "string") ? j.ip : null; })
-					.catch(function () { return null; });
+			/**
+			 * Create an AbortSignal with a timeout.
+			 * @param {number} ms
+			 * @returns {AbortSignal}
+			 */
+			function createAbortSignal(ms) {
+				var controller = new AbortController();
+				setTimeout(function () { controller.abort(); }, ms);
+				return controller.signal;
 			}
 
-			getIPv4Address()
-				.then(function (ip4) {
-					var endpoint = ip4
-						? "https://free.freeipapi.com/api/json/" + encodeURIComponent(ip4)
+			/**
+			 * Get requester IP (IPv4 preferred, falls back to IPv6).
+			 * @returns {Promise<string|null>}
+			 */
+			function getIPAddress() {
+				var signal = createAbortSignal(5000);
+				return fetch("https://api4.ipify.org?format=json", { method: "GET", signal: signal })
+					.then(function (res) { return res.ok ? res.json() : Promise.reject(res.status); })
+					.then(function (j) { return (j && typeof j.ip === "string") ? j.ip : null; })
+					.catch(function () {
+						// Fallback to IPv6
+						var signal6 = createAbortSignal(5000);
+						return fetch("https://api6.ipify.org?format=json", { method: "GET", signal: signal6 })
+							.then(function (res) { return res.ok ? res.json() : Promise.reject(res.status); })
+							.then(function (j) { return (j && typeof j.ip === "string") ? j.ip : null; })
+							.catch(function () { return null; });
+					});
+			}
+
+			getIPAddress()
+				.then(function (ip) {
+					var endpoint = ip
+						? "https://free.freeipapi.com/api/json/" + encodeURIComponent(ip)
 						: "https://free.freeipapi.com/api/json/";
-					console.log("[IP Info] Fetching:", endpoint, ip4 ? "(forced IPv4)" : "(auto)");
-					return fetch(endpoint, { method: "GET" });
+					console.log("[IP Info] Fetching:", endpoint, ip ? "(IP provided)" : "(auto)");
+					return fetch(endpoint, { method: "GET", signal: createAbortSignal(5000) });
 				})
 				.then(function (res) { return res.ok ? res.json() : Promise.reject(res.status); })
 				.then(function (data) {
